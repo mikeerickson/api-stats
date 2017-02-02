@@ -14,7 +14,7 @@ Released under the MIT license
 
 ### Credits
 
-cd-messenger written by Mike Erickson
+api-stats written by Mike Erickson
 
 E-Mail: [codedungeon@gmail.com](mailto:codedungeon@gmail.com)
 
