@@ -13,6 +13,8 @@
 
 use Illuminate\Support\Facades\Request;
 
+use App\Http\Controllers\API\ApiController;
+
 $middleware = [
 	'api.logger',
 	'api.rateLimit'
@@ -21,15 +23,15 @@ $middleware = [
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
 
-	Route::resource('appearances','ApiController');
-	Route::resource('batting','ApiController');
-	Route::resource('fielding','ApiController');
-	Route::resource('players','ApiController');
-	Route::resource('pitching','ApiController');
-	Route::resource('managers','ApiController');
-	Route::resource('parks','ApiController');
-	Route::resource('teams','ApiController');
-	Route::resource('teamsfranchises','ApiController');
+	Route::resource('appearances','API\ApiController');
+	Route::resource('batting','API\BattingController');
+	Route::resource('fielding','API\ApiController');
+	Route::resource('players','API\ApiController');
+	Route::resource('pitching','API\ApiController');
+	Route::resource('managers','API\ApiController');
+	Route::resource('parks','API\ApiController');
+	Route::resource('teams','API\ApiController');
+	Route::resource('teamsfranchises','API\ApiController');
 
 });
 

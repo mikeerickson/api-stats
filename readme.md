@@ -8,9 +8,8 @@ If you wanna!
 
 ### License
 
-Copyright &copy; 2016-2017 Mike Erickson
+Copyright &copy; 2017 Mike Erickson
 Released under the MIT license
-
 
 ### Credits
 
