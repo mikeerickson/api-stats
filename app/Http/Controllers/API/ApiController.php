@@ -77,12 +77,23 @@ class ApiController extends Controller
 
 	// put -Update single endpoint
 	public function update($id) {
-		return 'API Update';
+
+		// TODO: This process needs to be handled in each endpoint controller
+		//       since each table has a unique approach to tracking down data
+		return response([
+				'error' => 400,
+				'message' => "Unable to update $this->endpoint as it needs to be handled in endpoint controller."]
+			, 400);
 	}
 
 	// delete - Delete single endpoint
 	public function destroy($id) {
-		return 'API Delete';
+		// TODO: This process needs to be handled in each endpoint controller
+		//       since each table has a unique approach to tracking down data
+		return response([
+				'error' => 400,
+				'message' => "Unable to delete $this->endpoint as it needs to be handled in endpoint controller."]
+			, 400);
 	}
 
 }
