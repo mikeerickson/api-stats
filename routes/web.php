@@ -15,11 +15,27 @@ use Illuminate\Support\Facades\Request;
 
 use App\Http\Controllers\API\ApiController;
 
+//\Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+//	echo'<pre>';
+//	var_dump($query->sql);
+//	echo'</pre>';
+//});
+
 $middleware = [
 	'api.logger',
 	'api.rateLimit'
 ];
 
+Route::get('/', function () {
+	return view('welcome');
+});
+
+//Route::get('build', function (Request $request) {
+//	$table = 'batting';
+//	$queryString = Request::input('q');
+//	$query = buildQuery('batting', $queryString);
+//	return response($query, 200);
+//});
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
 
@@ -34,9 +50,3 @@ Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($rou
 	Route::resource('teamsfranchises','API\ApiController');
 
 });
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-

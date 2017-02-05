@@ -28,15 +28,27 @@ class ApiVerifyEndpoint
 		];
 
     	$parts = explode("/", $request->getPathInfo());
-		if(sizeof($parts) >= 3) {
-			$endpoint = $parts[3];
-			if(!in_array($endpoint, $supportedEndpoints)) {
-				return response(['error' => 501, 'message' => 'Unsupported Endpoint', 'requestedEndpoint' => $endpoint], 501);
-			}
-		} else {
-			return response(['error' => 501, 'message' => 'Unsupported Endpoint'], 501);
-		}
 
-        return $next($request);
+    	if(!in_array('api',$parts)) {
+    		return $next($request);
+		} else {
+			if(sizeof($parts) > 3) {
+				$endpoint = $parts[3];
+				if(!in_array($endpoint, $supportedEndpoints)) {
+					return response([
+						'error' => 501,
+						'message' => 'Unsupported Endpoint',
+						'requestedEndpoint' => $endpoint
+					], 501);
+				}
+			} else {
+				return response([
+					'error' => 501,
+					'message' => 'API Access Requires Endpoint'
+				], 501);
+			}
+
+			return $next($request);
+		}
     }
 }

@@ -15,9 +15,11 @@ class ApiRateLimit
      */
     public function handle($request, Closure $next)
     {
-		$headers = getallheaders();
-		$token   = (isset($headers['API-Token']))
-			? $headers['API-Token']
+		$requestMethod = ($request->server('REQUEST_METHOD'));
+		// should this still be locked down for `GET`
+
+		$token = $request->header('API-Token')
+			? $request->header('API-Token')
 			: array_get($request->query(),'token');
 
 		if($token !== 'mkjbbtrsh10') {
