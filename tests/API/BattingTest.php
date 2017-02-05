@@ -117,33 +117,6 @@ class BattersTest extends TestCase
 
 	}
 
-	protected function resultShouldHave($response, $key, $value) {
-		$this->isJson($response->getContent());
-		$data = json_decode($response->getContent());
-		$this->assertTrue($data[0]->$key === $value);
-	}
-
-	protected function login($email = 'mike.erickson@mac.com', $password = 'password')
-	{
-//		Auth::logout();  // logout just in case
-//		Auth::attempt([ 'email' => $email, 'password' => $password]);
-		return $this;
-	}
-
-	protected function logout()
-	{
-//		Auth::logout();
-		return $this;
-	}
-
-	protected function getResponseAsJson($response) {
-		return json_decode($response->getContent());
-	}
-
-	protected function getResponseAsArray($response) {
-		return $response->getOriginalContent();
-	}
-
 	protected function createMockBatter() {
 		return [
 			"playerID" => "erickmi01",

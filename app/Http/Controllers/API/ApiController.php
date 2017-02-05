@@ -18,7 +18,7 @@ class ApiController extends Controller
 
 	function __construct(Request $request)
 	{
-		$this->tablesWithoutYears = ['players'];
+		$this->tablesWithoutYears = ['players','teamsfranchises'];
 		$this->queryString = $request->query();
 		$this->endpoint    = explode("/", $request->getPathInfo())[3];
 		$this->yearId      = isset($this->queryString['yearId']) ? (int)$this->queryString['yearId'] : 2015;

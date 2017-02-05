@@ -9,11 +9,11 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ApiTest extends TestCase
 {
-	/**
-	 * A basic test example.
-	 *
-	 * @return void
-	 */
+	public function __construct($name = null, array $data = [], $dataName = '')
+	{
+		parent::__construct($name, $data, $dataName);
+	}
+
 	public function test_root_api_endpoint()
 	{
 		$response = $this->get('/api');

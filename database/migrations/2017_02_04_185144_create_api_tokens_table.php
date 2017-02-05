@@ -18,6 +18,8 @@ class CreateApiTokensTable extends Migration
 			$table->string('user_name');
 			$table->string('email')->unique();
 			$table->string('token');
+			$table->boolean('active');
+			$table->timestamp('expires');
 			$table->timestamps();
 		});
     }

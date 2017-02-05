@@ -2,7 +2,10 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\APIToken;
+use Carbon\Carbon;
 use Closure;
+use Illuminate\Support\Facades\DB;
 
 class ApiRateLimit
 {
@@ -16,14 +19,25 @@ class ApiRateLimit
     public function handle($request, Closure $next)
     {
 		$requestMethod = ($request->server('REQUEST_METHOD'));
-		// should this still be locked down for `GET`
+		if($requestMethod === 'GET') {
+			return $next($request);
+		}
 
 		$token = $request->header('API-Token')
 			? $request->header('API-Token')
 			: array_get($request->query(),'token');
 
-		if($token !== 'mkjbbtrsh10') {
-			return response(['error' => 401, 'message' => 'Invalid API Token','token' => $token], 401);
+		$result = DB::table('api_tokens')->where('token','=', $token)->get();
+		if(sizeof($result) === 0) {
+			return response(["error" => 401, "message" => "Invalid Token","token" => $token], 401);
+		}
+
+		if($result[0]->active) {
+			if($result[0]->expires < Carbon::now()) {
+				return response(["error" => 401, "message" => "Token Expired","token" => $token], 401);
+			}
+		} else {
+			return response(["error" => 401, "message" => "Account Disabled"], 401);
 		}
         return $next($request);
     }
