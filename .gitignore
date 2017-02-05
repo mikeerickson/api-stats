@@ -9,3 +9,5 @@ Homestead.yaml
 .env
 data
 .vscode
+npm-debug.log
+/logs

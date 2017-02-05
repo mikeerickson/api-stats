@@ -126,3 +126,6 @@
 {"level":"info","message":"Starting: Sat Feb 04 2017 18:51:28 GMT-0800 (PST)","timestamp":"2017-02-04 18:51:28 -08:00"}
 {"level":"info","message":"Starting: Sat Feb 04 2017 18:51:56 GMT-0800 (PST)","timestamp":"2017-02-04 18:51:56 -08:00"}
 {"level":"info","message":"Starting: Sat Feb 04 2017 18:52:18 GMT-0800 (PST)","timestamp":"2017-02-04 18:52:18 -08:00"}
+{"level":"info","message":"Starting: Sat Feb 04 2017 19:06:16 GMT-0800 (PST)","timestamp":"2017-02-04 19:06:16 -08:00"}
+{"level":"info","message":"Starting: Sat Feb 04 2017 19:07:05 GMT-0800 (PST)","timestamp":"2017-02-04 19:07:05 -08:00"}
+{"level":"info","message":"==> Watching Client Files (./src/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-04 19:07:05 -08:00"}

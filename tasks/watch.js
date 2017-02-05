@@ -22,4 +22,9 @@ gulp.task('watch:test:server', ['test:server'], () => {
 	gulp.watch(config.scripts.server, ['test:server']);
 });
 
+gulp.task('watch:test:client', ['test:client'], () => {
+	msg.note(`==> Watching Client Files (${config.scripts.client})`);
+	gulp.watch(config.scripts.client, ['test:client']);
+});
+
 gulp.task('watch',['watch:scripts','watch:lint']);

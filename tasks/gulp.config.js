@@ -12,7 +12,7 @@ const config = {
 	},
 	scripts: {
 		server: ['./**/*.php'],
-		client: []
+		client: ['./src/**/*.js','./specs/**/*.spec.js']
 	}
 };
 
