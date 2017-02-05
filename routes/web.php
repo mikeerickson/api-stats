@@ -12,14 +12,13 @@
 */
 
 use Illuminate\Support\Facades\Request;
-
 use App\Http\Controllers\API\ApiController;
 
-//\Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-//	echo'<pre>';
-//	var_dump($query->sql);
-//	echo'</pre>';
-//});
+Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
+	echo'<pre>';
+		var_dump($query->sql);
+	echo'</pre>';
+});
 
 $middleware = [
 	'api.logger',
@@ -30,12 +29,9 @@ Route::get('/', function () {
 	return view('welcome');
 });
 
-//Route::get('build', function (Request $request) {
-//	$table = 'batting';
-//	$queryString = Request::input('q');
-//	$query = buildQuery('batting', $queryString);
-//	return response($query, 200);
-//});
+Route::get('info', function () {
+	return view('info');
+});
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
 

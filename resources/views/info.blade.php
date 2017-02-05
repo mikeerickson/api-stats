@@ -5,7 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>API Stats: Home</title>
+        <title>API Stats: Info</title>
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -29,12 +29,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    API Stats
+                    API Endpoints
                 </div>
 
                 <div class="links">
-                    <a href="info">Endpoints</a>
-                    <a href="https://github.com/mikeerickson/api-stats">GitHub</a>
+                    <a href="/">Home</a>
+                    <a href="api/v1/players">Players</a>
+                    <a href="api/v1/batting">Batting</a>
+                    <a href="api/v1/pitching">Pitching</a>
+                    <a href="api/v1/fielding">Fielding</a>
+                    <a href="api/v1/managers">Managers</a>
+                    <a href="api/v1/parks">Parks</a>
+                    <a href="api/v1/teams">Teams</a>
                 </div>
             </div>
         </div>
