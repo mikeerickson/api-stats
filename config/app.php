@@ -181,6 +181,7 @@ return [
 		 * Third Party Providers
 		 */
 		Barryvdh\Debugbar\ServiceProvider::class,
+		Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 

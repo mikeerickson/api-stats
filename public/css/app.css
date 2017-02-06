@@ -5814,3 +5814,7 @@ button.close {
 @media print {
   .hidden-print {
     display: none !important; } }
+
+div.message {
+  margin: 20px;
+  font-weight: bold; }

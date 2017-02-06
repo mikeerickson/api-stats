@@ -9,6 +9,6 @@ const app = {
 	version: () => {
 		return pkgInfo.version;
 	}
-}
+};
 
 module.exports = app;

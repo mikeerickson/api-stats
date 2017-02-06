@@ -5,16 +5,27 @@ const msg    = require('gulp-messenger');
 const config = require('./gulp.config');
 const chalk  = require('chalk');
 
-const scriptFiles = ['./tasks/**/*.js', './src/**/*.js', 'gulpfile.js', '!node_modules/**'];
+const scriptFiles = config.scripts.client;
+const sassFiles   = config.scripts.sass;
 
-gulp.task('watch:scripts', ['scripts'], () => {
+gulp.task('watch:scripts', ['build:scripts'], () => {
 	msg.note(`==> Watching Script Files (${scriptFiles})`);
-	gulp.watch(scriptFiles, ['scripts']);
+	gulp.watch(scriptFiles, ['build:scripts']);
 });
 
-gulp.task('watch:lint', ['lint'], () => {
-	msg.note(`==> Watching Lint Files (${scriptFiles})`);
-	gulp.watch(scriptFiles, ['lint']);
+gulp.task('watch:styles', ['build:styles'], () => {
+	msg.note(`==> Watching Style Files (${sassFiles})`);
+	gulp.watch(sassFiles, ['build:styles']);
+});
+
+gulp.task('watch:lint:scripts', ['lint:scripts'], () => {
+	msg.note(`==> Watching Script Lint Files (${scriptFiles})`);
+	gulp.watch(scriptFiles, ['lint:scripts']);
+});
+
+gulp.task('watch:lint:sass', ['lint:sass'], () => {
+	msg.note(`==> Watching Sass Linting Files (${sassFiles})`);
+	gulp.watch(sassFiles, ['lint:sass']);
 });
 
 gulp.task('watch:test:server', ['test:server'], () => {
@@ -27,4 +38,11 @@ gulp.task('watch:test:client', ['test:client'], () => {
 	gulp.watch(config.scripts.client, ['test:client']);
 });
 
-gulp.task('watch',['watch:scripts','watch:lint']);
+gulp.task('watch',[
+	'watch:scripts',
+	'watch:styles',
+	'watch:lint:scripts',
+	'watch:lint:sass'
+]);
+
+gulp.task('watch:lint', ['watch:lint:sass','watch:lint:scripts']);

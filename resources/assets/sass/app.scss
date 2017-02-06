@@ -7,3 +7,8 @@
 
 // Bootstrap
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
+
+div.message {
+  margin: 20px;
+  font-weight: bold;
+}

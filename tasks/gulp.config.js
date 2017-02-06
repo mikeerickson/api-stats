@@ -1,18 +1,22 @@
-/*global module */
+/*global module, require */
 
-const FAIL_CLI_ICON = '✘';
-const PASS_CLI_ICON = '✓';
-const WARN_CLI_ICON = '♺';
+const core = require('cd-core');
 
 const config = {
+	// these icons can be used for console output
 	icon: {
-		fail: FAIL_CLI_ICON,
-		pass: PASS_CLI_ICON,
-		warn: WARN_CLI_ICON
+		fail: core.cliIconFail,
+		pass: core.cliIconPass,
+		warn: core.cliIconWarn
 	},
 	scripts: {
 		server: ['./**/*.php'],
-		client: ['./src/**/*.js','./specs/**/*.spec.js']
+		client: ['./src/**/*.js', './tasks/**/*.js', './specs/**/*.spec.js'],
+		sass:   ['./resources/assets/sass/**/*.s+(a|c)ss'],
+		specs:  ['./specs/**/*.js'],
+	},
+	output: {
+		path: './public'
 	}
 };
 

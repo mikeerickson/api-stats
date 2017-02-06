@@ -46,7 +46,11 @@ class Handler extends ExceptionHandler
     {
 		if($exception instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
 		{
+			$url = $request->getRequestUri();
+			flash("An error occurred loading endpoint <code>$url</code>. Where you attempting to load an API (make sure you include <code>api/v1$url</code>)?",'danger');
 			return response()->view('info')->header('Content-Type', 'text/html');
+//			dd('here');
+//			return redirect('info')->withError('test');
 		}
         return parent::render($request, $exception);
     }

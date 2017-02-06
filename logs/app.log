@@ -133,3 +133,132 @@
 {"level":"info","message":"==> Watching Client Files (./src/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-04 19:11:59 -08:00"}
 {"level":"info","message":"Starting: Mon Feb 06 2017 10:36:00 GMT-0800 (PST)","timestamp":"2017-02-06 10:36:00 -08:00"}
 {"level":"info","message":"==> Watching Server API Files (./**/*.php)","timestamp":"2017-02-06 10:36:01 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:00:42 GMT-0800 (PST)","timestamp":"2017-02-06 13:00:42 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:00:54 GMT-0800 (PST)","timestamp":"2017-02-06 13:00:54 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:01:28 GMT-0800 (PST)","timestamp":"2017-02-06 13:01:28 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:02:12 GMT-0800 (PST)","timestamp":"2017-02-06 13:02:12 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:02:32 GMT-0800 (PST)","timestamp":"2017-02-06 13:02:32 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:03:03 GMT-0800 (PST)","timestamp":"2017-02-06 13:03:03 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:03:30 GMT-0800 (PST)","timestamp":"2017-02-06 13:03:30 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:07:08 GMT-0800 (PST)","timestamp":"2017-02-06 13:07:08 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:07:24 GMT-0800 (PST)","timestamp":"2017-02-06 13:07:24 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:08:19 GMT-0800 (PST)","timestamp":"2017-02-06 13:08:19 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:08:38 GMT-0800 (PST)","timestamp":"2017-02-06 13:08:38 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:09:32 GMT-0800 (PST)","timestamp":"2017-02-06 13:09:32 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:10:20 GMT-0800 (PST)","timestamp":"2017-02-06 13:10:20 -08:00"}
+{"level":"info","message":"==> success [app.css] ","timestamp":"2017-02-06 13:10:21 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:11:07 GMT-0800 (PST)","timestamp":"2017-02-06 13:11:07 -08:00"}
+{"level":"info","message":"==> success [app.css] ","timestamp":"2017-02-06 13:11:08 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:11:39 GMT-0800 (PST)","timestamp":"2017-02-06 13:11:39 -08:00"}
+{"level":"info","message":"/Users/mikee/Documents/Projects/dev/laravel/api-stats/node_modules/cd-core/assets/green.png CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:11:40 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:14:52 GMT-0800 (PST)","timestamp":"2017-02-06 13:14:52 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:14:53 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:15:21 GMT-0800 (PST)","timestamp":"2017-02-06 13:15:21 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:15:21 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:15:34 GMT-0800 (PST)","timestamp":"2017-02-06 13:15:34 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:15:35 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:15:45 GMT-0800 (PST)","timestamp":"2017-02-06 13:15:45 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:15:46 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:16:05 GMT-0800 (PST)","timestamp":"2017-02-06 13:16:05 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:16:06 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:16:19 GMT-0800 (PST)","timestamp":"2017-02-06 13:16:19 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:16:20 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:17:40 GMT-0800 (PST)","timestamp":"2017-02-06 13:17:40 -08:00"}
+{"level":"info","message":"✓ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:17:40 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:17:54 GMT-0800 (PST)","timestamp":"2017-02-06 13:17:54 -08:00"}
+{"level":"info","message":"♺ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:17:54 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:04 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:04 -08:00"}
+{"level":"info","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:18:04 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:17 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:17 -08:00"}
+{"level":"info","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:18:17 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:27 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:27 -08:00"}
+{"level":"error","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:18:27 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:32 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:32 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:18:33 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:40 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:40 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:18:51 GMT-0800 (PST)","timestamp":"2017-02-06 13:18:51 -08:00"}
+{"level":"warn","message":"♺ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:18:51 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:19:01 GMT-0800 (PST)","timestamp":"2017-02-06 13:19:01 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:19:02 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:19:27 GMT-0800 (PST)","timestamp":"2017-02-06 13:19:27 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:19:27 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:19:39 GMT-0800 (PST)","timestamp":"2017-02-06 13:19:39 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:19:39 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:19:55 GMT-0800 (PST)","timestamp":"2017-02-06 13:19:55 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:19:56 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:21:18 GMT-0800 (PST)","timestamp":"2017-02-06 13:21:18 -08:00"}
+{"level":"warn","message":"✘ Script Processing Here ... [gulpfile.js] ","timestamp":"2017-02-06 13:21:19 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:21:36 GMT-0800 (PST)","timestamp":"2017-02-06 13:21:36 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:21:36 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:22:19 GMT-0800 (PST)","timestamp":"2017-02-06 13:22:19 -08:00"}
+{"level":"info","message":"✓ CSS File Created Successfully [app.css] ","timestamp":"2017-02-06 13:22:20 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:22:58 GMT-0800 (PST)","timestamp":"2017-02-06 13:22:58 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:29:29 GMT-0800 (PST)","timestamp":"2017-02-06 13:29:29 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:29:45 GMT-0800 (PST)","timestamp":"2017-02-06 13:29:45 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:30:42 GMT-0800 (PST)","timestamp":"2017-02-06 13:30:42 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:35:25 GMT-0800 (PST)","timestamp":"2017-02-06 13:35:25 -08:00"}
+{"level":"info","message":"✓ Style Linting Complete... [app.scss] ","timestamp":"2017-02-06 13:35:30 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:36:37 GMT-0800 (PST)","timestamp":"2017-02-06 13:36:37 -08:00"}
+{"level":"info","message":"✓ Style Linting Complete... [app.scss] ","timestamp":"2017-02-06 13:36:41 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:38:24 GMT-0800 (PST)","timestamp":"2017-02-06 13:38:24 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:38:51 GMT-0800 (PST)","timestamp":"2017-02-06 13:38:51 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:40:15 GMT-0800 (PST)","timestamp":"2017-02-06 13:40:15 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:41:03 GMT-0800 (PST)","timestamp":"2017-02-06 13:41:03 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:42:07 GMT-0800 (PST)","timestamp":"2017-02-06 13:42:07 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:43:08 GMT-0800 (PST)","timestamp":"2017-02-06 13:43:08 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:43:50 GMT-0800 (PST)","timestamp":"2017-02-06 13:43:50 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:44:02 GMT-0800 (PST)","timestamp":"2017-02-06 13:44:02 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:44:53 GMT-0800 (PST)","timestamp":"2017-02-06 13:44:53 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:45:08 GMT-0800 (PST)","timestamp":"2017-02-06 13:45:08 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:49:31 GMT-0800 (PST)","timestamp":"2017-02-06 13:49:31 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:51:17 GMT-0800 (PST)","timestamp":"2017-02-06 13:51:17 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:51:43 GMT-0800 (PST)","timestamp":"2017-02-06 13:51:43 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:52:13 GMT-0800 (PST)","timestamp":"2017-02-06 13:52:13 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:52:41 GMT-0800 (PST)","timestamp":"2017-02-06 13:52:41 -08:00"}
+{"level":"info","message":"==> Watching Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 13:52:41 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:53:19 GMT-0800 (PST)","timestamp":"2017-02-06 13:53:19 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:53:37 GMT-0800 (PST)","timestamp":"2017-02-06 13:53:37 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:54:02 GMT-0800 (PST)","timestamp":"2017-02-06 13:54:02 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:54:36 GMT-0800 (PST)","timestamp":"2017-02-06 13:54:36 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:54:55 GMT-0800 (PST)","timestamp":"2017-02-06 13:54:55 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:55:14 GMT-0800 (PST)","timestamp":"2017-02-06 13:55:14 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:55:56 GMT-0800 (PST)","timestamp":"2017-02-06 13:55:56 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:56:21 GMT-0800 (PST)","timestamp":"2017-02-06 13:56:21 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:56:33 GMT-0800 (PST)","timestamp":"2017-02-06 13:56:33 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:56:43 GMT-0800 (PST)","timestamp":"2017-02-06 13:56:43 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:56:51 GMT-0800 (PST)","timestamp":"2017-02-06 13:56:51 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:57:11 GMT-0800 (PST)","timestamp":"2017-02-06 13:57:11 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:57:21 GMT-0800 (PST)","timestamp":"2017-02-06 13:57:21 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:58:02 GMT-0800 (PST)","timestamp":"2017-02-06 13:58:02 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 13:58:57 GMT-0800 (PST)","timestamp":"2017-02-06 13:58:57 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:01:15 GMT-0800 (PST)","timestamp":"2017-02-06 14:01:15 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:01:56 GMT-0800 (PST)","timestamp":"2017-02-06 14:01:56 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:03:43 GMT-0800 (PST)","timestamp":"2017-02-06 14:03:43 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:38:28 GMT-0800 (PST)","timestamp":"2017-02-06 14:38:28 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:39:02 GMT-0800 (PST)","timestamp":"2017-02-06 14:39:02 -08:00"}
+{"level":"info","message":"==> Watching Lint Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:39:03 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:40:03 GMT-0800 (PST)","timestamp":"2017-02-06 14:40:03 -08:00"}
+{"level":"info","message":"==> Watching Lint Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:40:04 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:40:11 GMT-0800 (PST)","timestamp":"2017-02-06 14:40:11 -08:00"}
+{"level":"info","message":"==> Watching Lint Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:40:12 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:46:39 GMT-0800 (PST)","timestamp":"2017-02-06 14:46:39 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 14:46:40 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:46:44 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:47:01 GMT-0800 (PST)","timestamp":"2017-02-06 14:47:01 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 14:47:02 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:47:05 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:48:04 GMT-0800 (PST)","timestamp":"2017-02-06 14:48:04 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 14:48:05 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:48:09 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:49:05 GMT-0800 (PST)","timestamp":"2017-02-06 14:49:05 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 14:49:06 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:49:08 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:49:37 GMT-0800 (PST)","timestamp":"2017-02-06 14:49:37 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./tasks/**/*.js,./src/**/*.js,gulpfile.js,!node_modules/**)","timestamp":"2017-02-06 14:49:38 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:49:40 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:50:04 GMT-0800 (PST)","timestamp":"2017-02-06 14:50:04 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./src/**/*.js,./tasks/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-06 14:50:05 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:50:05 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 14:50:33 GMT-0800 (PST)","timestamp":"2017-02-06 14:50:33 -08:00"}
+{"level":"info","message":"==> Watching Script Lint Files (./src/**/*.js,./tasks/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-06 14:50:34 -08:00"}
+{"level":"info","message":"==> Watching Sass Linting Files (./resources/assets/sass/**/*.s+(a|c)ss)","timestamp":"2017-02-06 14:50:35 -08:00"}

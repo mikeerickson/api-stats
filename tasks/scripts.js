@@ -3,10 +3,13 @@
 const gulp   = require('gulp');
 const msg    = require('gulp-messenger');
 const config = require('./gulp.config');
+const chalk  = msg.chalk;
 
-const files = ['./tasks/**/*.js', './src/**/*.js', 'gulpfile.js', '!node_modules/**'];
+const scriptFiles = config.scripts.client;
 
-gulp.task('scripts', () => {
-	gulp.src(files)
-		.pipe(msg.flush.warn(config.icon.warn + ' Script Processing Here ...'));
+gulp.task('build:scripts', () => {
+	gulp.src(scriptFiles)
+		.pipe(msg.flush.warn(chalk.red.bold(config.icon.fail) + ' Script Processing Here ...'));
 });
+
+gulp.task('scripts',['build:scripts']);

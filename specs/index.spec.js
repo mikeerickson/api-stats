@@ -12,7 +12,7 @@ const app = require('../src/index');
 
 describe('api-stats app', () => {
     it('should contain name', () => {
-    	expect(app.name()).to.equal(pkgInfo.name);
+      expect(app.name()).to.equal(pkgInfo.name);
 		});
 		it('should contain version', () => {
 			expect(app.version()).to.equal(pkgInfo.version);
