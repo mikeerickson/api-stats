@@ -26,7 +26,6 @@ class ApiVerifyEndpoint
 			'teams',
 			'teamsfranchises'
 		];
-
     	$parts = explode("/", $request->getPathInfo());
 
     	if(!in_array('api',$parts)) {

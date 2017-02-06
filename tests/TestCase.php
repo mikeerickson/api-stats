@@ -8,10 +8,9 @@ abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-	protected function resultShouldHave($response, $key, $value) {
+	protected function responseShouldHave($response, $key, $value) {
 		$this->isJson($response->getContent());
-		$data = json_decode($response->getContent());
-
+		$data = json_decode($response->getContent())->data;
 		$this->assertTrue($data[0]->$key === $value);
 	}
 
@@ -22,7 +21,6 @@ abstract class TestCase extends BaseTestCase
 	protected function getResponseAsArray($response) {
 		return $response->getOriginalContent();
 	}
-
 
 	protected function login($email = 'mike.erickson@mac.com', $password = 'password')
 	{

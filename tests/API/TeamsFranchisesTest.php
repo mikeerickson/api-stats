@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\API;
 
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -35,7 +35,7 @@ class TeamsFranchisesTest extends TestCase
 	{
 		$response = $this->login()
 			->get('/api/v1/' .$this->endpoint .'?token=' .$this->token);
-		$this->resultShouldHave($response, 'franchID', 'ALT');
+		$this->responseShouldHave($response, 'franchID', 'ALT');
 		return $this;
 	}
 

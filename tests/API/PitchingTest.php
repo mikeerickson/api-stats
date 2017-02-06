@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\API;
 
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -36,7 +36,7 @@ class PitchingTest extends TestCase
 	{
 		$response = $this->login()
 			->get('/api/v1/' .$this->endpoint .'?token=' .$this->token);
-		$this->resultShouldHave($response, 'playerID', 'aardsda01');
+		$this->responseShouldHave($response, 'playerID', 'aardsda01');
 		return $this;
 	}
 
@@ -47,7 +47,7 @@ class PitchingTest extends TestCase
 			->get('api/v1/' .$this->endpoint .'?q=teamID:LAA&token=' .$this->token);
 
 		$response->assertStatus(200);
-		$data = $this->getResponseAsJson($response);
+		$data = $this->getResponseAsJson($response)->data;
 		$this->assertTrue($data[0]->playerID === 'alvarjo02');
 	}
 
@@ -57,7 +57,7 @@ class PitchingTest extends TestCase
 		$response = $this->login()
 			->get('api/v1/' .$this->endpoint .'/?q=teamID:LAN&token=' .$this->token);
 
-		$data = $this->getResponseAsJson($response);
+		$data = $this->getResponseAsJson($response)->data;
 		$this->assertTrue($data[0]->G === 31);
 		$this->assertTrue($data[0]->W === 10);
 

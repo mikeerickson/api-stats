@@ -131,3 +131,5 @@
 {"level":"info","message":"==> Watching Client Files (./src/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-04 19:07:05 -08:00"}
 {"level":"info","message":"Starting: Sat Feb 04 2017 19:11:58 GMT-0800 (PST)","timestamp":"2017-02-04 19:11:58 -08:00"}
 {"level":"info","message":"==> Watching Client Files (./src/**/*.js,./specs/**/*.spec.js)","timestamp":"2017-02-04 19:11:59 -08:00"}
+{"level":"info","message":"Starting: Mon Feb 06 2017 10:36:00 GMT-0800 (PST)","timestamp":"2017-02-06 10:36:00 -08:00"}
+{"level":"info","message":"==> Watching Server API Files (./**/*.php)","timestamp":"2017-02-06 10:36:01 -08:00"}

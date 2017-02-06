@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\API;
 
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -36,7 +36,7 @@ class PlayersTest extends TestCase
 	{
 		$response = $this->login()
 			->get('/api/v1/' .$this->endpoint .'?token=' .$this->token);
-		$this->resultShouldHave($response, 'nameFirst', 'David');
+		$this->responseShouldHave($response, 'nameFirst', 'David');
 		return $this;
 	}
 

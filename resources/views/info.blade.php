@@ -29,7 +29,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    API Endpoints
+                    API Stats Endpoints
                 </div>
 
                 <div class="links">

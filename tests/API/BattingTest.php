@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\API;
 
 use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
@@ -40,10 +40,9 @@ class BattersTest extends TestCase
 	{
 		$response = $this->login()
 			->get('/api/v1/batting?token=' .$this->token);
-		$this->resultShouldHave($response, 'playerID', 'aardsda01');
+		$this->responseShouldHave($response, 'playerID', 'aardsda01');
 		return $this;
 	}
-
 
 	/** @test */
 	public function it_should_show_specific_team()
@@ -52,7 +51,7 @@ class BattersTest extends TestCase
 			->get('api/v1/batting?q=teamID:LAA&token=' .$this->token);
 
 		$response->assertStatus(200);
-		$data = $this->getResponseAsJson($response);
+		$data = $this->getResponseAsJson($response)->data;
 		$this->assertTrue($data[0]->playerID === 'alvarjo02');
 	}
 
@@ -62,17 +61,16 @@ class BattersTest extends TestCase
 		$response = $this->login()
 			->get('api/v1/batting/72266?q=teamID:LAN&token=' .$this->token);
 
-		$data = $this->getResponseAsJson($response);
-		$this->assertTrue($data[0]->G === 79);
-		$this->assertTrue($data[0]->RBI === 38);
+		$data = $this->getResponseAsJson($response)->data;
+		$this->assertTrue($data->G === 79);
+		$this->assertTrue($data->RBI === 38);
 
-		$arrData = (array)$data[0];
+		$arrData = (array)$data;
 		$this->assertTrue($arrData['2B'] === 12);
 		$this->assertTrue($arrData['G'] === 79);
 		$this->assertTrue($arrData['RBI'] === 38);
 
 	}
-
 
 	/** @test  */
 	public function it_should_create_batter()

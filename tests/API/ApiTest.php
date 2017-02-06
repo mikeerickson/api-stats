@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\API;
 
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+
+use Tests\TestCase;
 
 class ApiTest extends TestCase
 {
@@ -32,7 +33,7 @@ class ApiTest extends TestCase
 	public function test_api_players()
 	{
 		$response = $this->get('/api/v1/players?token=mkjbbtrsh10');
-		$data = json_decode($response->getContent());
+		$data = json_decode($response->getContent())->data;
 		$this->isJson($response->getContent());
 		$this->assertTrue($data[0]->nameFirst === "David");
 	}

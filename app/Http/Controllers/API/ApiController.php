@@ -10,15 +10,18 @@ use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
+	protected $statusCode;
 	protected $endpoint;
 	protected $limit;
 	protected $yearId;
 	protected $tablesWithoutYears;
 	protected $query;
+	protected $queryString;
 
 	function __construct(Request $request)
 	{
-		$this->tablesWithoutYears = ['players','teamsfranchises'];
+		$this->tablesWithoutYears = ['players','teamsfranchises','parks'];
+
 		$this->queryString = $request->query();
 		$this->endpoint    = explode("/", $request->getPathInfo())[3];
 		$this->yearId      = isset($this->queryString['yearId']) ? (int)$this->queryString['yearId'] : 2015;
@@ -28,8 +31,9 @@ class ApiController extends Controller
 
 	//	get - Get all rows for endpoint ($this->limit will be used)
 	public function index() {
-		return $this->buildQuery($this->endpoint, $this->query, $this->limit);
-	}
+		$data = $this->buildQuery($this->endpoint, $this->query, $this->limit);
+		return $this->respond("success", $data, $this->setStatusCode(200));
+}
 
 	// post - Create single endpoint
 	public function store(Request $request) {
@@ -65,7 +69,12 @@ class ApiController extends Controller
 
 	// get - Get single endpoint based on `endpoint` id
 	public function show($id) {
-		return DB::table($this->endpoint)->where('id','=', $id)->get();
+		$data = DB::table($this->endpoint)->where('id','=', $id)->first();
+		if($data) {
+			return $this->respondWithSuccess($data);
+		} else {
+			return $this->respondNotFound(ucwords($this->endpoint) .' Endpoint Not Found');
+		}
 	}
 
 	// put -Update single endpoint
@@ -113,6 +122,18 @@ class ApiController extends Controller
 		return response($response, $response["result"]);
 	}
 
+	public function getStatusCode()
+	{
+		return $this->statusCode;
+	}
+
+	public function setStatusCode($statusCode)
+	{
+		$this->statusCode = $statusCode;
+
+		return $this;
+	}
+
 	function buildQuery($endpoint = null, $q = null, $limit = 3) {
 		$yearID       = 2015;
 		$whereClause  = [];
@@ -151,4 +172,59 @@ class ApiController extends Controller
 
 		return $result;
 	}
+
+	function respond($status = "success", $data, $headers = [])
+	{
+		$data = [
+			"status" => $status,
+			"data"   => $data
+		];
+		return response($data, $this->getStatusCode());
+	}
+
+	public function respondWithSuccess($data)
+	{
+		return $this->setStatusCode(200)->respond("success", $data);
+	}
+
+	public function respondWithError($message = 'An Error Occurred')
+	{
+		return $this->respond("fail", [
+			'message'     => $message,
+			'status_code' => $this->getStatusCode()
+		]);
+	}
+
+	public function respondNotFound($message = 'Resource Not Found')
+	{
+		return $this->setStatusCode(404)->respondWithError($message);
+	}
+
+	public function respondDeleleted($message = 'Resource Deleted Successfully', $id = -1)
+	{
+		return $this->setStatusCode(200)->respond([
+			'id'          => (int)$id,
+			'message'     => $message,
+			'status_code' => $this->getStatusCode()
+		]);
+	}
+
+	public function respondUpdate($message = 'Resource Updated Successfully', $id = 0)
+	{
+		return $this->setStatusCode(201)->respond([
+			'message'     => $message,
+			'id'          => $id,
+			'status_code' => $this->getStatusCode()
+		]);
+	}
+
+	public function respondCreated($message = 'Resource Created Successfully', $id = 0)
+	{
+		return $this->setStatusCode(201)->respond([
+			'message'     => $message,
+			'id'          => $id,
+			'status_code' => $this->getStatusCode()
+		]);
+	}
+
 }

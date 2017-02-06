@@ -14,12 +14,6 @@
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\API\ApiController;
 
-Event::listen('Illuminate\Database\Events\QueryExecuted', function ($query) {
-	echo'<pre>';
-		var_dump($query->sql);
-	echo'</pre>';
-});
-
 $middleware = [
 	'api.logger',
 	'api.rateLimit'
