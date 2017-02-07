@@ -58,14 +58,14 @@ class PitchingTest extends TestCase
 			->get('api/v1/' .$this->endpoint .'/?q=teamID:LAN&token=' .$this->token);
 
 		$data = $this->getResponseAsJson($response)->data;
-		$this->assertTrue($data[0]->G === 31);
-		$this->assertTrue($data[0]->W === 10);
+		$this->assertIsMatch($data[0]->G, '31');
+		$this->assertIsMatch($data[0]->W,  '10');
 
 		$arrData = (array)$data[0];
-		$this->assertTrue($arrData['ERA'] === 3.69);
-		$this->assertTrue($arrData['SH'] === '3');
-		$this->assertTrue($arrData['BB'] === 46);
-		$this->assertTrue($arrData['R'] === 82);
+		$this->assertIsMatch($arrData['ERA'], '3.69');
+		$this->assertIsMatch($arrData['SH'], '3');
+		$this->assertIsMatch($arrData['BB'], '46');
+		$this->assertIsMatch($arrData['R'], '82');
 
 	}
 
@@ -105,7 +105,7 @@ class PitchingTest extends TestCase
 
 		$data = json_decode($response->getContent());
 		$response->assertStatus(201);
-		$this->assertTrue($data->id === $id);
+		$this->assertIsMatch($data->id, $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/batting/' .$id .'?token=mkjbbtrsh10');

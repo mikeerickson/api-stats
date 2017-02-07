@@ -74,7 +74,7 @@ class TeamsFranchisesTest extends TestCase
 
 		$data = json_decode($response->getContent());
 		$response->assertStatus(201);
-		$this->assertTrue($data->id === $id);
+		$this->assertIsMatch($data->id, $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/'. $this->endpoint .'/' .$id .'?token=mkjbbtrsh10');

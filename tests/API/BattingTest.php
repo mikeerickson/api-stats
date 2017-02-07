@@ -62,13 +62,14 @@ class BattersTest extends TestCase
 			->get('api/v1/batting/72266?q=teamID:LAN&token=' .$this->token);
 
 		$data = $this->getResponseAsJson($response)->data;
-		$this->assertTrue($data->G === 79);
-		$this->assertTrue($data->RBI === 38);
+
+		$this->assertIsMatch($data->G, 79);
+		$this->assertIsMatch($data->RBI, 38);
 
 		$arrData = (array)$data;
-		$this->assertTrue($arrData['2B'] === 12);
-		$this->assertTrue($arrData['G'] === 79);
-		$this->assertTrue($arrData['RBI'] === 38);
+		$this->assertIsMatch($arrData['2B'], 12);
+		$this->assertIsMatch($arrData['G'], 79);
+		$this->assertIsMatch($arrData['RBI'], 38);
 
 	}
 
@@ -76,7 +77,6 @@ class BattersTest extends TestCase
 	public function it_should_create_batter()
 	{
 		$data = $this->createMockBatter();
-
 		$response = $this->login()
 			->post('api/v1/batting?token=' .$this->token, $data);
 
@@ -89,8 +89,10 @@ class BattersTest extends TestCase
 	public function it_should_delete_batter()
 	{
 		$id = $this->it_should_create_batter();
+
 		$response = $this->login()
 			->delete('api/v1/batting/' .$id .'?token=mkjbbtrsh10');
+
 		$response->assertStatus(200);
 
 		$this->assertArrayHasKey("id",$response->getOriginalContent());
@@ -108,7 +110,7 @@ class BattersTest extends TestCase
 
 		$data = json_decode($response->getContent());
 		$response->assertStatus(201);
-		$this->assertTrue($data->id === $id);
+		$this->assertIsMatch($data->id, $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/batting/' .$id .'?token=mkjbbtrsh10');
@@ -118,7 +120,8 @@ class BattersTest extends TestCase
 	protected function createMockBatter() {
 		return [
 			"playerID" => "erickmi01",
-			"yearID" => 2015
+			"yearID"   => 2015,
+			"lgID"     => 'AL',
 		];
 	}
 

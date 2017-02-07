@@ -35,4 +35,13 @@ abstract class TestCase extends BaseTestCase
 		return $this;
 	}
 
+	protected function assertIsMatch($testValue, $actualValue)
+	{
+		$value = $actualValue;
+		if(env('DB_CONNECTION') === 'sqlite') {
+			$value = (string)$actualValue;
+		}
+		return $testValue === $value;
+	}
+
 }

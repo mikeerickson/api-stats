@@ -73,10 +73,10 @@ class PlayersTest extends TestCase
 		$updateData = ['weight' => 175];
 		$response = $this->login()
 			->put('api/v1/'. $this->endpoint .'/'.$id.'?token='.$this->token, $updateData);
-//dd($response->getStatusCode());
+
 		$data = json_decode($response->getContent());
 		$response->assertStatus(201);
-		$this->assertTrue($data->id === $id);
+		$this->assertIsMatch($data->id, $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/'. $this->endpoint .'/' .$id .'?token=mkjbbtrsh10');
