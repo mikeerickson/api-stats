@@ -31,9 +31,11 @@ Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($rou
 
 	Route::resource('appearances','API\ApiController');
 	Route::resource('batting','API\BattingController');
+	Route::resource('batters','API\BattingController');
 	Route::resource('fielding','API\ApiController');
 	Route::resource('players','API\ApiController');
-	Route::resource('pitching','API\ApiController');
+	Route::resource('pitching','API\PitchingController');
+	Route::resource('pitchers','API\PitchingController');
 	Route::resource('managers','API\ApiController');
 	Route::resource('parks','API\ApiController');
 	Route::resource('teams','API\ApiController');

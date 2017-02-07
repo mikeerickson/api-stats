@@ -9,6 +9,9 @@ const config = {
 		pass: core.cliIconPass,
 		warn: core.cliIconWarn
 	},
+	entry: {
+		filename: './src/index.js'
+	},
 	scripts: {
 		server: ['./**/*.php'],
 		client: ['./src/**/*.js', './tasks/**/*.js', './specs/**/*.spec.js'],
@@ -16,7 +19,8 @@ const config = {
 		specs:  ['./specs/**/*.js'],
 	},
 	output: {
-		path: './public'
+		path: './public',
+		filename: 'bundle.js'
 	}
 };
 

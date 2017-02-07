@@ -23,6 +23,7 @@ class ApiController extends Controller
 		$this->tablesWithoutYears = ['players','teamsfranchises','parks'];
 
 		$this->queryString = $request->query();
+		$this->requestUri  = $request->getRequestUri();
 		$this->endpoint    = explode("/", $request->getPathInfo())[3];
 		$this->yearId      = isset($this->queryString['yearId']) ? (int)$this->queryString['yearId'] : 2015;
 		$this->query       = isset($this->queryString['q']) ? $this->queryString['q'] : '';
@@ -176,8 +177,9 @@ class ApiController extends Controller
 	function respond($status = "success", $data, $headers = [])
 	{
 		$data = [
-			"status" => $status,
-			"data"   => $data
+			"status"  => $status,
+			"api_request" => $this->requestUri,
+			"data"    => $data
 		];
 		return response($data, $this->getStatusCode());
 	}
@@ -191,7 +193,8 @@ class ApiController extends Controller
 	{
 		return $this->respond("fail", [
 			'message'     => $message,
-			'status_code' => $this->getStatusCode()
+			'status_code' => $this->getStatusCode(),
+			"api_request" => $this->requestUri
 		]);
 	}
 
@@ -205,7 +208,8 @@ class ApiController extends Controller
 		return $this->setStatusCode(200)->respond([
 			'id'          => (int)$id,
 			'message'     => $message,
-			'status_code' => $this->getStatusCode()
+			'status_code' => $this->getStatusCode(),
+			"api_request" => $this->requestUri
 		]);
 	}
 

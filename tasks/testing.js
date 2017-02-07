@@ -14,7 +14,8 @@ gulp.task('test:server', () => {
 
 	let options = {
 		debug: false,
-		testSuite: 'API'
+		testSuite: 'API',
+		statusLine: false
 	};
 	gulp.src(files)
 		.pipe(phpunit('./vendor/bin/phpunit', options))

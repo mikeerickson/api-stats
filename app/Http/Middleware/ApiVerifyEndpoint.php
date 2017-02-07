@@ -18,11 +18,13 @@ class ApiVerifyEndpoint
     	$supportedEndpoints = [
     		'appearances',
 			'batting',
+			'batters',
 			'fielding',
 			'managers',
 			'players',
 			'parks',
 			'pitching',
+			'pitchers',
 			'teams',
 			'teamsfranchises'
 		];
