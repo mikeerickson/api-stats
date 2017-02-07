@@ -47,9 +47,9 @@ class TeamsFranchisesTest extends TestCase
 		$response = $this->login()
 			->post('api/v1/' .$this->endpoint .'?token=' .$this->token, $data);
 
-		$this->assertArrayHasKey("key",$response->getOriginalContent());
+		$this->assertArrayHasKey("id",$response->getOriginalContent());
 
-		return $response->getOriginalContent()["key"];
+		return $response->getOriginalContent()["id"];
 	}
 
 	/** @test  */
@@ -60,7 +60,7 @@ class TeamsFranchisesTest extends TestCase
 			->delete('api/v1/' .$this->endpoint .'/' .$id .'?token=mkjbbtrsh10');
 		$response->assertStatus(200);
 
-		$this->assertArrayHasKey("key",$response->getOriginalContent());
+		$this->assertArrayHasKey("id",$response->getOriginalContent());
 	}
 
 	/** @test  */
@@ -73,8 +73,8 @@ class TeamsFranchisesTest extends TestCase
 			->put('api/v1/'. $this->endpoint .'/'.$id.'?token='.$this->token, $updateData);
 
 		$data = json_decode($response->getContent());
-		$response->status(201);
-		$this->assertTrue($data->id === (string)$id);
+		$response->assertStatus(201);
+		$this->assertTrue($data->id === $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/'. $this->endpoint .'/' .$id .'?token=mkjbbtrsh10');

@@ -48,9 +48,9 @@ class PlayersTest extends TestCase
 		$response = $this->login()
 			->post('api/v1/' .$this->endpoint .'?token=' .$this->token, $data);
 
-		$this->assertArrayHasKey("key",$response->getOriginalContent());
+		$this->assertArrayHasKey("id",$response->getOriginalContent());
 
-		return $response->getOriginalContent()["key"];
+		return $response->getOriginalContent()["id"];
 	}
 
 	/** @test  */
@@ -61,7 +61,7 @@ class PlayersTest extends TestCase
 			->delete('api/v1/' .$this->endpoint . '/' .$id .'?token=mkjbbtrsh10');
 		$response->assertStatus(200);
 
-		$this->assertArrayHasKey("key",$response->getOriginalContent());
+		$this->assertArrayHasKey("id",$response->getOriginalContent());
 
 	}
 
@@ -73,10 +73,10 @@ class PlayersTest extends TestCase
 		$updateData = ['weight' => 175];
 		$response = $this->login()
 			->put('api/v1/'. $this->endpoint .'/'.$id.'?token='.$this->token, $updateData);
-
+//dd($response->getStatusCode());
 		$data = json_decode($response->getContent());
-		$response->status(201);
-		$this->assertTrue($data->id === (string)$id);
+		$response->assertStatus(201);
+		$this->assertTrue($data->id === $id);
 
 		// cleanup after ourselves
 		$this->delete('api/v1/'. $this->endpoint .'/' .$id .'?token=mkjbbtrsh10');

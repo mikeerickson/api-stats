@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\API;
 
-use Symfony\Component\HttpKernel\Exception\HttpException;
+use App\Http\Controllers\Controller;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use \Illuminate\Database\QueryException;
-use App\Http\Controllers\Controller;
 
 class ApiController extends Controller
 {
@@ -33,7 +32,11 @@ class ApiController extends Controller
 	//	get - Get all rows for endpoint ($this->limit will be used)
 	public function index() {
 		$data = $this->buildQuery($this->endpoint, $this->query, $this->limit);
-		return $this->respond("success", $data, $this->setStatusCode(200));
+		if(gettype($data) === 'object') {
+			return $this->respondWithSuccess($data);
+		} else {
+			return $this->respondInvalidQuery($data);
+		}
 }
 
 	// post - Create single endpoint
@@ -43,29 +46,28 @@ class ApiController extends Controller
 			$data = $request->all();
 			unset($data['token']); // remove token in case it was supplied as part of form post
 			// query to see if supplied playerID already exists?
-			$result = DB::table($this->endpoint)
+			$id = DB::table($this->endpoint)
 				->insertGetId($data);
 
 		} catch (QueryException $e) {
 			die($e->getMessage());
 		}
 
-		if ($result > 0) {
+		if ($id > 0) {
 			$response = [
-				'result' => 201,
-				'message' => str_singular($this->endpoint) . ' Created Successfully',
-				'key'     => $result
+				'status'  => 'success',
+				'message' => ucwords(str_singular($this->endpoint)) . ' Created Successfully',
+				'id'      => $id,
 			];
+			return response($response, 201);
 		} else {
-			throw new HttpException(400);
+//			throw new HttpException(400);
 			$response = [
-				'result' => 400,
-				'message' => 'An error occurred creating ' . str_singular($this->endpoint)
+				'status'  => 'fail',
+				'message' => 'An error occurred creating ' . ucwords(str_singular($this->endpoint))
 			];
+			return response($response, 400);
 		}
-
-		// send response
-		return response($response, $response['result']);
 	}
 
 	// get - Get single endpoint based on `endpoint` id
@@ -89,19 +91,10 @@ class ApiController extends Controller
 				->where('id', $id)
 				->update($data);
 
-			$response = [
-				"result"  => 201,
-				"id"      => $id,
-				"message" => ucwords($this->endpoint) . " `id` $record->id Updated Successfully"
-			];
+			return $this->setStatusCode(201)->respondUpdated(ucwords($this->endpoint) . " Updated Successfully", $record->id, $data);
 		} else {
-			$response = [
-				"result" => 400,
-				"message" => "Unable to update " .ucwords($this->endpoint) ." `id` $id, record not found."
-			];
+			return $this->setStatusCode(400)->respondWithError("An error occurred updating `id` $id, record not found");
 		}
-
-		return response($response, $response["result"]);
 	}
 
 	// delete - Delete single endpoint
@@ -110,14 +103,14 @@ class ApiController extends Controller
 		if($result) {
 			$response = [
 				"result" => 200,
-				"key" => $id,
-				"message" => ucwords($this->endpoint) ." `id` $id Deleted Successfully"
+				"id" => $id,
+				"message" => ucwords(str_singular($this->endpoint)) ." `id` $id Deleted Successfully"
 			];
 		} else {
 			$response = [
 				"result" => 400,
-				"key" => $id,
-				"message" => "Unable to delete ". ucwords($this->endpoint) ." `id` $id, record not found."
+				"id" => $id,
+				"message" => "Unable to delete ". ucwords(str_singular($this->endpoint)) ." `id` $id, record not found."
 			];
 		}
 		return response($response, $response["result"]);
@@ -165,11 +158,15 @@ class ApiController extends Controller
 				$whereClause[] = ['yearID', '=', $yearID];
 			}
 		}
+		try {
+			$result = DB::table($endpoint)
+				->where($whereClause)
+				->limit($limit)
+				->get();
 
-		$result = DB::table($endpoint)
-			->where($whereClause)
-			->limit($limit)
-			->get();
+		} catch (QueryException $e) {
+			$result = $e->getMessage();
+		}
 
 		return $result;
 	}
@@ -177,9 +174,9 @@ class ApiController extends Controller
 	function respond($status = "success", $data, $headers = [])
 	{
 		$data = [
-			"status"  => $status,
+			"status"      => $status,
 			"api_request" => $this->requestUri,
-			"data"    => $data
+			"data"        => $data
 		];
 		return response($data, $this->getStatusCode());
 	}
@@ -191,19 +188,22 @@ class ApiController extends Controller
 
 	public function respondWithError($message = 'An Error Occurred')
 	{
-		return $this->respond("fail", [
+		$this->setStatusCode(403);
+		$data = [
+			"status"      => "fail",
 			'message'     => $message,
-			'status_code' => $this->getStatusCode(),
 			"api_request" => $this->requestUri
-		]);
+		];
+
+		return response($data, $this->getStatusCode());
 	}
 
-	public function respondNotFound($message = 'Resource Not Found')
+	public function respondNotFound($message = 'Endpoint Not Found')
 	{
 		return $this->setStatusCode(404)->respondWithError($message);
 	}
 
-	public function respondDeleleted($message = 'Resource Deleted Successfully', $id = -1)
+	public function respondDeleted($message = 'Endpoint Deleted Successfully', $id = -1)
 	{
 		return $this->setStatusCode(200)->respond([
 			'id'          => (int)$id,
@@ -213,22 +213,40 @@ class ApiController extends Controller
 		]);
 	}
 
-	public function respondUpdate($message = 'Resource Updated Successfully', $id = 0)
+	public function respondUpdated($message = "Endpoint Updated Successfully", $id = null, $updatedData = [])
+	{
+		$data = [
+			"status"      => "success",
+			"message"     => $message,
+			"id"          => $id,
+			"api_request" => $this->requestUri
+		];
+
+		if(sizeof($updatedData) > 0) {
+			$data["data"] = $updatedData;
+		}
+
+		return response($data, $this->getStatusCode());
+	}
+
+	public function respondCreated($message = 'Endpoint Created Successfully', $id = 0)
 	{
 		return $this->setStatusCode(201)->respond([
 			'message'     => $message,
 			'id'          => $id,
-			'status_code' => $this->getStatusCode()
+			'status_code' => $this->getStatusCode(),
+			"api_request" => $this->requestUri
 		]);
 	}
 
-	public function respondCreated($message = 'Resource Created Successfully', $id = 0)
-	{
-		return $this->setStatusCode(201)->respond([
-			'message'     => $message,
-			'id'          => $id,
-			'status_code' => $this->getStatusCode()
-		]);
+	public function respondInvalidQuery($sql) {
+		$data = [
+			"status"      => "fail",
+			"api_request" => $this->requestUri,
+			"message"     => $sql
+		];
+
+		return response($data, 403);
 	}
 
 }
