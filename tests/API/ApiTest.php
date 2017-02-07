@@ -6,9 +6,9 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-use Tests\TestCase;
+use Tests\ApiTestCase;
 
-class ApiTest extends TestCase
+class ApiTest extends ApiTestCase
 {
 	protected $validEndpoints;
 	public function __construct($name = null, array $data = [], $dataName = '')

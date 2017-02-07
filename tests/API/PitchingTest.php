@@ -3,9 +3,9 @@
 namespace Tests\API;
 
 use Illuminate\Support\Facades\DB;
-use Tests\TestCase;
+use Tests\ApiTestCase;
 
-class PitchingTest extends TestCase
+class PitchingTest extends ApiTestCase
 {
 
 	protected $token;
