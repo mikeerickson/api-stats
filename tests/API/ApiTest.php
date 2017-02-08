@@ -59,7 +59,7 @@ class ApiTest extends ApiTestCase
 
 	public function test_api_has_debug()
 	{
-		$response = $this->get('/api/v1/batting?debug=true&_limit=1');
+		$response = $this->get('/api/v1/batting?debug=true&_limit=1&token=mkjbbtrsh10');
 		$this->assertArrayHasKey('debug',$response->getOriginalContent());
 	}
 
