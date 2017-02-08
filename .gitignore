@@ -11,3 +11,5 @@ data
 .vscode
 npm-debug.log
 /logs
+/.nyc_output
+

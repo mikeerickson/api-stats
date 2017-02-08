@@ -2,15 +2,12 @@
 
 namespace Tests\API;
 
-use Illuminate\Foundation\Testing\WithoutMiddleware;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
 use Tests\ApiTestCase;
 
 class ApiTest extends ApiTestCase
 {
 	protected $validEndpoints;
+
 	public function __construct($name = null, array $data = [], $dataName = '')
 	{
 		parent::__construct($name, $data, $dataName);
