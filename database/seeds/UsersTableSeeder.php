@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Colors\Color;
+
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,6 +14,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+    	$num_rows = 25;
+    	$c = new Color;
+
+		User::truncate();
 
 		User::create([
 			'name'     => 'Mike Erickson',
@@ -21,13 +27,16 @@ class UsersTableSeeder extends Seeder
 
 		$faker = Faker\Factory::create();
 
-		for($i = 0; $i < 25; $i++) {
+		for($i = 0; $i < $num_rows; $i++) {
 			User::create([
 				'name' => $faker->userName,
 				'email' => $faker->email,
 				'password' => bcrypt('password'),
 			]);
 		}
+
+		echo $c("==> Seeded " . ($num_rows + 1) . " Users\n")->green();
+
 
 	}
 }

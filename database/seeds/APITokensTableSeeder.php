@@ -26,6 +26,15 @@ class APITokensTableSeeder extends Seeder {
 			'expires'   => Carbon::now()->addWeeks(52)
 		]);
 
+		// create expired token
+		APIToken::Create([
+			'user_name' => 'Mike Erickson',
+			'token' => 'expired',
+			'email' => 'expired@domain.com',
+			'active' => false,
+			'expires' => Carbon::now()
+		]);
+
 		foreach (range(1, $numRows) as $index) {
 			APIToken::Create([
 				'user_name' => $faker->name,
@@ -36,7 +45,7 @@ class APITokensTableSeeder extends Seeder {
 			]);
 		}
 
-		echo $c("Seeded " . ($numRows + 1) . " Users\n")->green();
+		echo $c("==> Seeded " . ($numRows + 2) . " API Tokens\n")->green();
 
 	}
 }

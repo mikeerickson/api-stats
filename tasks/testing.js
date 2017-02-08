@@ -25,10 +25,12 @@ gulp.task('test:server', () => {
 			msg.error(error);
 		});
 
-		// bump pre release in package.json
+	if (!args.noBump) {
 		execa('bash', ['./scripts/bump.sh']).then(result => {
 			console.log(chalk.green.bold(result.stdout));
 		});
+	}
+
 });
 
 gulp.task('test:client', () => {
@@ -42,9 +44,14 @@ gulp.task('test:client', () => {
 		});
 
 		// bump pre release in package.json
-		execa('bash', ['./scripts/bump.sh']).then(result => {
-			console.log(chalk.green.bold(result.stdout));
-		});
+	if (!args.noBump) {
+			execa('bash', ['./scripts/bump.sh']).then(result => {
+				console.log(chalk.green.bold(result.stdout));
+			});
+	}
+
 });
 
 gulp.task('test:api',['test:server']);
+
+gulp.task('test',['test:server','test:client']);

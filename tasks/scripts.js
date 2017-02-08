@@ -1,14 +1,14 @@
 /* global require*/
 
-const gulp   = require('gulp');
-const msg    = require('gulp-messenger');
-const config = require('./gulp.config');
-const chalk  = msg.chalk;
-const browserify = require('gulp-browserify');
-const rename = require('gulp-rename');
-const execa = require('execa');
-const scriptFiles = config.scripts.client;
-const exec = require('gulp-exec');
+const gulp        = require('gulp');
+const msg         = require('gulp-messenger');
+const config      = require('./gulp.config');
+const chalk       = msg.chalk;
+const browserify  = require('gulp-browserify');
+const rename      = require('gulp-rename');
+const execa       = require('execa');
+const exec        = require('gulp-exec');
+
 gulp.task('build:scripts', () => {
 
 	gulp.src(config.entry.filename)

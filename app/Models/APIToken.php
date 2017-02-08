@@ -9,9 +9,9 @@ class APIToken extends Model
 {
 	protected $table = 'api_tokens';
 
-	public function setTokenAttribute()
+	public function setTokenAttribute($value)
 	{
-		$this->attributes['token'] = $this->createToken();
+		$this->attributes['token'] = $value;
 	}
 
 	public function createToken()

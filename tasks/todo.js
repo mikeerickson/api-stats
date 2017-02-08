@@ -1,10 +1,12 @@
-var gulp   = require('gulp');
-var todo   = require('gulp-todo');
-var msg    = require('gulp-messenger');
-var chalk  = require('chalk');
-var config = require('./gulp.config');
+/*global require*/
 
-var files = [
+const gulp   = require('gulp');
+const todo   = require('gulp-todo');
+const msg    = require('gulp-messenger');
+const chalk  = require('chalk');
+const config = require('./gulp.config');
+
+const files = [
 	'./app/**/*.php',
 	'./routes/**/*.php',
 	'./tasks/**/*.js',
