@@ -2,6 +2,7 @@
 
 namespace Tests\API;
 
+use App\Models\APIToken;
 use Tests\ApiTestCase;
 
 class ApiTest extends ApiTestCase
@@ -54,5 +55,26 @@ class ApiTest extends ApiTestCase
 
 		$response->assertStatus(501);
 		$response->assertSee('API Access Requires Endpoint');
+	}
+
+	public function test_api_has_debug()
+	{
+		$response = $this->get('/api/v1/batting?debug=true&_limit=1');
+		$this->assertArrayHasKey('debug',$response->getOriginalContent());
+	}
+
+	public function test_api_does_not_have_debug()
+	{
+		$response = $this->get('/api/v1/batting_limit=1');
+		$this->assertArrayNotHasKey('debug',$response->getOriginalContent());
+	}
+
+	public function test_has_valid_token()
+	{
+		$response = $this->get('api/v1/batting?token=mkjbbtrsh10&_limit=1&debug=true');
+		$data     = $response->getOriginalContent();
+		$token    = $data['debug']['api_token'];
+		$result   = APIToken::where('token', '=', $token)->first();
+		$this->assertTrue($result->token === $token);
 	}
 }

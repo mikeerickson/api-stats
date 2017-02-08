@@ -7,6 +7,7 @@ const chalk   = require('chalk');
 const config  = require('./gulp.config');
 const execa   = require('execa');
 const mocha   = require('gulp-mocha');
+const args    = require('yargs').argv;
 
 gulp.task('test:server', () => {
 
@@ -14,8 +15,9 @@ gulp.task('test:server', () => {
 
 	let options = {
 		debug: false,
-		testSuite: 'API',
-		statusLine: false
+		statusLine: false,
+		testSuite: (args.testClass) ? '' : 'API',
+		testClass: (args.testClass) ? args.testClass : '',
 	};
 	gulp.src(files)
 		.pipe(phpunit('./vendor/bin/phpunit', options))
@@ -44,3 +46,5 @@ gulp.task('test:client', () => {
 			console.log(chalk.green.bold(result.stdout));
 		});
 });
+
+gulp.task('test:api',['test:server']);

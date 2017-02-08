@@ -16,6 +16,7 @@ class ApiController extends Controller
 	protected $tablesWithoutYears;
 	protected $query;
 	protected $queryString;
+	protected $token;
 
 	function __construct(Request $request)
 	{
@@ -27,6 +28,7 @@ class ApiController extends Controller
 		$this->yearId      = isset($this->queryString['yearId']) ? (int)$this->queryString['yearId'] : 2015;
 		$this->query       = isset($this->queryString['q']) ? $this->queryString['q'] : '';
 		$this->limit       = isset($this->queryString['_limit']) ? $this->queryString['_limit'] : 10;
+		$this->token       = $this->getToken($request);
 	}
 
 	//	get - Get all rows for endpoint ($this->limit will be used)
@@ -178,6 +180,11 @@ class ApiController extends Controller
 			"api_request" => $this->requestUri,
 			"data"        => $data
 		];
+
+		if($this->isDebug()) {
+			$data['debug'] = $this->debug_info();
+		}
+
 		return response($data, $this->getStatusCode());
 	}
 
@@ -247,6 +254,29 @@ class ApiController extends Controller
 		];
 
 		return response($data, 403);
+	}
+
+	private function getToken(Request $request) {
+		$token = $request->header('API-Token')
+			? $request->header('API-Token')
+			: array_get($this->queryString,'token');
+
+		return $token;
+	}
+
+	public function isDebug() {
+		if(isset($this->queryString['debug'])) {
+			return $this->queryString['debug'] === 'true';
+		}
+		return false;
+	}
+
+	public function debug_info() {
+		return [
+			'db_source' => env('DB_CONNECTION'),
+			'db_name'   => env('DB_DATABASE'),
+			'api_token' => $this->token
+		];
 	}
 
 }
