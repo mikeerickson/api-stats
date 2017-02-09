@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use \App\Services\ApiService;
+
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -12,110 +14,61 @@ class ApiController extends Controller
 	protected $statusCode;
 	protected $endpoint;
 	protected $limit;
-	protected $yearId;
-	protected $tablesWithoutYears;
 	protected $query;
 	protected $queryString;
 	protected $token;
+	protected $api;
 
 	function __construct(Request $request)
 	{
-		$this->tablesWithoutYears = ['players','teamsfranchises','parks'];
+		$this->api = new ApiService($request);
 
 		$this->queryString = $request->query();
 		$this->requestUri  = $request->getRequestUri();
-		$this->endpoint    = explode("/", $request->getPathInfo())[3];
-		$this->yearId      = isset($this->queryString['yearId']) ? (int)$this->queryString['yearId'] : 2015;
+		$this->endpoint    = $this->api->getEndpoint($request);
+
 		$this->query       = isset($this->queryString['q']) ? $this->queryString['q'] : '';
 		$this->limit       = isset($this->queryString['_limit']) ? $this->queryString['_limit'] : 10;
 		$this->token       = $this->getToken($request);
+
 	}
 
 	//	get - Get all rows for endpoint ($this->limit will be used)
-	public function index() {
-		$data = $this->buildQuery($this->endpoint, $this->query, $this->limit);
-		if(gettype($data) === 'object') {
+	public function index()
+	{
+		$data = $this->api->buildQuery($this->endpoint, $this->query, $this->limit);
+		if (gettype($data) === 'object') {
 			return $this->respondWithSuccess($data);
 		} else {
 			return $this->respondInvalidQuery($data);
 		}
-}
+	}
 
 	// post - Create single endpoint
-	public function store(Request $request) {
-
-		try {
-			$data = $request->all();
-			unset($data['token']); // remove token in case it was supplied as part of form post
-			// query to see if supplied playerID already exists?
-			$id = DB::table($this->endpoint)
-				->insertGetId($data);
-
-		} catch (QueryException $e) {
-			die($e->getMessage());
-		}
-
-		if ($id > 0) {
-			$response = [
-				'status'  => 'success',
-				'message' => ucwords(str_singular($this->endpoint)) . ' Created Successfully',
-				'id'      => $id,
-			];
-			return response($response, 201);
-		} else {
-//			throw new HttpException(400);
-			$response = [
-				'status'  => 'fail',
-				'message' => 'An error occurred creating ' . ucwords(str_singular($this->endpoint))
-			];
-			return response($response, 400);
-		}
+	public function store(Request $request)
+	{
+		$response = $this->api->post($request);
+		return response($response, $response['status_code']);
 	}
 
 	// get - Get single endpoint based on `endpoint` id
 	public function show($id) {
-		$data = DB::table($this->endpoint)->where('id','=', $id)->first();
-		if($data) {
-			return $this->respondWithSuccess($data);
-		} else {
-			return $this->respondNotFound(ucwords($this->endpoint) .' Endpoint Not Found');
-		}
+		$response = $this->api->get($id);
+		return response($response, $response['status_code']);
 	}
 
 	// put -Update single endpoint
 	public function update($id, Request $request) {
-		$record = DB::table($this->endpoint)->find($id);
-		if(isset($record->id)) {
-			$data = $request->all();
-			unset($data['token']); // remove token in case it was supplied as part of form post
+		$response = $this->api->put($id, $request)
+			->getOriginalContent();
 
-			$result = DB::table($this->endpoint)
-				->where('id', $id)
-				->update($data);
-
-			return $this->setStatusCode(201)->respondUpdated(ucwords($this->endpoint) . " Updated Successfully", $record->id, $data);
-		} else {
-			return $this->setStatusCode(400)->respondWithError("An error occurred updating `id` $id, record not found");
-		}
+		return response($response, $response['status_code']);
 	}
 
 	// delete - Delete single endpoint
 	public function destroy($id) {
-		$result = DB::table($this->endpoint)->where('id','=', $id)->delete();
-		if($result) {
-			$response = [
-				"result" => 200,
-				"id" => $id,
-				"message" => ucwords(str_singular($this->endpoint)) ." `id` $id Deleted Successfully"
-			];
-		} else {
-			$response = [
-				"result" => 400,
-				"id" => $id,
-				"message" => "Unable to delete ". ucwords(str_singular($this->endpoint)) ." `id` $id, record not found."
-			];
-		}
-		return response($response, $response["result"]);
+		$response = $this->api->delete($id);
+		return response($response, $response["status_code"]);
 	}
 
 	public function getStatusCode()
@@ -128,49 +81,6 @@ class ApiController extends Controller
 		$this->statusCode = $statusCode;
 
 		return $this;
-	}
-
-	function buildQuery($endpoint = null, $q = null, $limit = 3) {
-		$yearID       = 2015;
-		$whereClause  = [];
-		$yearSupplied = false;
-		$keys         = [];
-		$values       = [];
-
-		// refactor this to use regex so users can supply delimiters
-		// =, >, <, >=, <=, <>, #
-		if($q !== '') {
-			foreach(explode(',', $q) as $param)
-			{
-				list($keys[],$values[]) = explode(':',$param);
-			}
-		}
-
-		// build where clause
-		for($i = 0; $i < sizeof($keys); $i++) {
-			if($keys[$i] === 'yearID') {
-				$yearSupplied = true;
-			}
-			$whereClause[] = [$keys[$i], '=', $values[$i]];
-		}
-
-		// insert yearID if not supplied
-		if(!in_array($endpoint, $this->tablesWithoutYears)) {
-			if(!$yearSupplied) {
-				$whereClause[] = ['yearID', '=', $yearID];
-			}
-		}
-		try {
-			$result = DB::table($endpoint)
-				->where($whereClause)
-				->limit($limit)
-				->get();
-
-		} catch (QueryException $e) {
-			$result = $e->getMessage();
-		}
-
-		return $result;
 	}
 
 	function respond($status = "success", $data, $headers = [])

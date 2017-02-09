@@ -62,7 +62,6 @@ class BattersTest extends ApiTestCase
 			->get('api/v1/batting/72266?q=teamID:LAN&token=' .$this->token);
 
 		$data = $this->getResponseAsJson($response)->data;
-
 		$this->assertIsMatch($data->G, 79);
 		$this->assertIsMatch($data->RBI, 38);
 
@@ -102,9 +101,12 @@ class BattersTest extends ApiTestCase
 	/** @test  */
 	public function it_should_update_batter_info()
 	{
+		// create temporary batter (it will be deleted at end of test
 		$id = $this->it_should_create_batter();
 
+		// data we are updating
 		$updateData = ['2B' => '22'];
+
 		$response = $this->login()
 			->put('api/v1/batting/'.$id.'?token='.$this->token, $updateData);
 
