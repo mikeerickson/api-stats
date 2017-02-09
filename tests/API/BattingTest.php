@@ -45,6 +45,15 @@ class BattersTest extends ApiTestCase
 		return $this;
 	}
 
+	public function it_should_return_sql_error_on_bad_query()
+	{
+		$response = $this->login()
+			->get('/api/v1/batting?_limit=3&token=' .$this->token);
+
+		$this->responseShouldHave($response, 'playerID', 'aardsda01');
+		return $this;
+	}
+
 	/** @test */
 	public function it_should_show_specific_team()
 	{

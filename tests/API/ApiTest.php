@@ -22,6 +22,7 @@ class ApiTest extends ApiTestCase
 			'Parks',
 			'Teams'
 		];
+
 	}
 
 	public function test_api_home_page()
@@ -41,7 +42,7 @@ class ApiTest extends ApiTestCase
 		}
 	}
 
-	public function test_root_api_endpoint()
+	public function test_api_root_endpoint()
 	{
 		$response = $this->get('/api');
 
@@ -59,7 +60,7 @@ class ApiTest extends ApiTestCase
 
 	public function test_api_has_debug()
 	{
-		$response = $this->get('/api/v1/batting?debug=true&_limit=1&token=mkjbbtrsh10');
+		$response = $this->get('/api/v1/batting?debug=true&limit=1&token=mkjbbtrsh10');
 		$this->assertArrayHasKey('debug',$response->getOriginalContent());
 	}
 

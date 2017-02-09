@@ -13,6 +13,7 @@ abstract class ApiTestCase extends TestCase
 	 */
 	public function __construct()
 	{
+
 	}
 
 	/**

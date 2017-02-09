@@ -44,20 +44,43 @@ class ApiService
 
 	public function get($id = null)
 	{
-		if ($id === null ) {
+		$errors = [];
+
+		if ($id === null) {
 			$data = $this->buildQuery($this->endpoint, $this->query, $this->limit);
+			if(array_has($data,'sql')) {
+				$errors = $data;
+				$data = [];
+			}
 		} else {
-			$data = DB::table($this->endpoint)->where('id','=', $id)->first();
+			try {
+				$data = DB::table($this->endpoint)->where('id','=', $id)->first();
+			} catch (QueryException $e) {
+				$errors = [
+					'message' => 'Internal SQL Error',
+					'sql'     => $e->getMessage(),
+				];
+				$data = null;
+			}
 		}
+
 		$response = [
 			'status'      => ($data) ? "success" : "fail",
 			'status_code' => ($data) ? 200 : 400,
 			'api_request' => $this->requestedUri
 		];
 
+		if(sizeof($errors) > 0) {
+			$response['message'] = $errors['message'];
+			$response['sql']     = $errors['sql'];
+			$response['status']  = "error";
+		}
+
 		if($data) {
 			$response['data'] = $data;
 		}
+
+		$response = array_merge($response, $errors);
 		return response($response, $response['status_code']);
 	}
 
@@ -150,6 +173,7 @@ class ApiService
 		$yearSupplied = false;
 		$keys         = [];
 		$values       = [];
+		$errors       = [];
 
 		// refactor this to use regex so users can supply delimiters
 		// =, >, <, >=, <=, <>, #
@@ -159,7 +183,6 @@ class ApiService
 				list($keys[],$values[]) = explode(':',$param);
 			}
 		}
-
 		// build where clause
 		for($i = 0; $i < sizeof($keys); $i++) {
 			if($keys[$i] === 'yearID') {
@@ -174,14 +197,22 @@ class ApiService
 				$whereClause[] = ['yearID', '=', $yearID];
 			}
 		}
+
 		try {
 			$result = DB::table($endpoint)
 				->where($whereClause)
 				->limit($limit)
 				->get();
-
 		} catch (QueryException $e) {
-			$result = $e->getMessage();
+			$errors = [
+				'status'  => 'SQL Error',
+				'message' => 'Internal SQL Error',
+				'sql'     => $e->getMessage(),
+			];
+		}
+
+		if(sizeof($errors) > 0) {
+			$result = array_merge($errors);
 		}
 
 		return $result;

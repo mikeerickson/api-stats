@@ -36,13 +36,6 @@ class ApiController extends Controller
 	//	get - Get all rows for endpoint ($this->limit will be used)
 	public function index()
 	{
-//		$data = $this->api->buildQuery($this->endpoint, $this->query, $this->limit);
-//		$data = $this->api->get();
-//		if (gettype($data) === 'object') {
-//			return $this->respondWithSuccess($data);
-//		} else {
-//			return $this->respondInvalidQuery($data);
-//		}
 		$response = $this->api->get()->getOriginalContent();
 		return $this->respond($response, $response['status_code']);
 	}
