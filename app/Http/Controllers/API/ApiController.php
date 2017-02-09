@@ -36,12 +36,15 @@ class ApiController extends Controller
 	//	get - Get all rows for endpoint ($this->limit will be used)
 	public function index()
 	{
-		$data = $this->api->buildQuery($this->endpoint, $this->query, $this->limit);
-		if (gettype($data) === 'object') {
-			return $this->respondWithSuccess($data);
-		} else {
-			return $this->respondInvalidQuery($data);
-		}
+//		$data = $this->api->buildQuery($this->endpoint, $this->query, $this->limit);
+//		$data = $this->api->get();
+//		if (gettype($data) === 'object') {
+//			return $this->respondWithSuccess($data);
+//		} else {
+//			return $this->respondInvalidQuery($data);
+//		}
+		$response = $this->api->get()->getOriginalContent();
+		return $this->respond($response, $response['status_code']);
 	}
 
 	// post - Create single endpoint
@@ -53,8 +56,8 @@ class ApiController extends Controller
 
 	// get - Get single endpoint based on `endpoint` id
 	public function show($id) {
-		$response = $this->api->get($id);
-		return response($response, $response['status_code']);
+		$response = $this->api->get($id)->getOriginalContent();
+		return $this->respond($response, $response['status_code']);
 	}
 
 	// put -Update single endpoint
@@ -62,14 +65,17 @@ class ApiController extends Controller
 		$response = $this->api->put($id, $request)
 			->getOriginalContent();
 
-		return response($response, $response['status_code']);
+		return $this->respond($response, $response['status_code']);
 	}
 
 	// delete - Delete single endpoint
 	public function destroy($id) {
 		$response = $this->api->delete($id);
-		return response($response, $response["status_code"]);
+
+		return $this->respond($response, $response['status_code']);
 	}
+
+
 
 	public function getStatusCode()
 	{
@@ -83,24 +89,18 @@ class ApiController extends Controller
 		return $this;
 	}
 
-	function respond($status = "success", $data, $headers = [])
+	function respond($data, $headers = [])
 	{
-		$data = [
-			"status"      => $status,
-			"api_request" => $this->requestUri,
-			"data"        => $data
-		];
-
 		if($this->isDebug()) {
-			$data['debug'] = $this->debug_info();
+			$data['debug'] = $this->addDebugInfo();
 		}
 
-		return response($data, $this->getStatusCode());
+		return response($data, $data['status_code']);
 	}
 
 	public function respondWithSuccess($data)
 	{
-		return $this->setStatusCode(200)->respond("success", $data);
+		return $this->setStatusCode(200)->respond($data, 200);
 	}
 
 	public function respondWithError($message = 'An Error Occurred')
@@ -181,7 +181,7 @@ class ApiController extends Controller
 		return false;
 	}
 
-	public function debug_info() {
+	public function addDebugInfo() {
 		return [
 			'db_source' => env('DB_CONNECTION'),
 			'db_name'   => env('DB_DATABASE'),

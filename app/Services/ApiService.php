@@ -12,16 +12,21 @@ class ApiService
 {
 	protected $endpoint;
 	protected $queryString;
+	protected $query;
 	protected $requestedUri;
 	protected $request;
 	protected $tablesWithoutYears;
+	protected $limit;
 
 	function __construct(Request $request)
 	{
-		$this->request = $request;
 		$this->tablesWithoutYears = ['players','teamsfranchises','parks'];
 
 		$this->queryString  = $request->query();
+		$this->request      = $request;
+		$this->query        = isset($this->queryString['q'])     ? $this->queryString['q'] : '';
+		$this->limit        = isset($this->queryString['limit']) ? $this->queryString['limit'] : 10;
+
 		$this->requestedUri = $request->getRequestUri();
 		$this->endpoint     = $this->getEndpoint($request);
 	}
@@ -37,24 +42,23 @@ class ApiService
 		return $endpoint;
 	}
 
-	public function get($id)
+	public function get($id = null)
 	{
-		$response = [];
-		$data = DB::table($this->endpoint)->where('id','=', $id)->first();
-
+		if ($id === null ) {
+			$data = $this->buildQuery($this->endpoint, $this->query, $this->limit);
+		} else {
+			$data = DB::table($this->endpoint)->where('id','=', $id)->first();
+		}
 		$response = [
 			'status'      => ($data) ? "success" : "fail",
 			'status_code' => ($data) ? 200 : 400,
-			'api_request' => $this->requestedUri,
-			'message'     => ($data)
-				? ucwords($this->endpoint) ." `id` $data->id Found"
-				: ucwords($this->endpoint) ." Endpoint Not Found"
+			'api_request' => $this->requestedUri
 		];
 
 		if($data) {
 			$response['data'] = $data;
 		}
-		return $response;
+		return response($response, $response['status_code']);
 	}
 
 	public function put($id, $request)

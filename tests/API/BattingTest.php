@@ -39,7 +39,8 @@ class BattersTest extends ApiTestCase
 	public function it_should_show_batters()
 	{
 		$response = $this->login()
-			->get('/api/v1/batting?token=' .$this->token);
+			->get('/api/v1/batting?_limit=3&token=' .$this->token);
+
 		$this->responseShouldHave($response, 'playerID', 'aardsda01');
 		return $this;
 	}
