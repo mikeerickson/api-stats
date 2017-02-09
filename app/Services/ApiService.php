@@ -54,7 +54,7 @@ class ApiService
 		if($data) {
 			$response['data'] = $data;
 		}
-		return $this->addDebugInfo($response);
+		return $response;
 	}
 
 	public function put($id, $request)
@@ -118,7 +118,7 @@ class ApiService
 			];
 		}
 
-		return $this->addDebugInfo($response);
+		return $response;
 	}
 
 	public function delete($id)
@@ -137,7 +137,7 @@ class ApiService
 				: ucwords($this->endpoint) ." Endpoint `id` $id Not Found"
 		];
 
-		return $this->addDebugInfo($response);
+		return $response;
 	}
 
 	public function buildQuery($endpoint = null, $q = null, $limit = 3) {
@@ -183,11 +183,4 @@ class ApiService
 		return $result;
 	}
 
-	public function addDebugInfo($response)
-	{
-		if(isset($this->queryString['debug'])) {
-			$response['debug'] = ['test' => 'value'];
-		}
-		return $response;
-	}
 }
