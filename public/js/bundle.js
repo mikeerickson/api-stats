@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 33);
+/******/ 	return __webpack_require__(__webpack_require__.s = 34);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -291,10 +291,10 @@ module['exports'] = colors;
 
 colors.themes = {};
 
-var ansiStyles = colors.styles = __webpack_require__(21);
+var ansiStyles = colors.styles = __webpack_require__(24);
 var defineProps = Object.defineProperties;
 
-colors.supportsColor = __webpack_require__(22);
+colors.supportsColor = __webpack_require__(25);
 
 if (typeof colors.enabled === "undefined") {
   colors.enabled = colors.supportsColor;
@@ -413,15 +413,15 @@ var sequencer = function sequencer (map, str) {
 };
 
 // custom formatter methods
-colors.trap = __webpack_require__(15);
-colors.zalgo = __webpack_require__(16);
+colors.trap = __webpack_require__(18);
+colors.zalgo = __webpack_require__(19);
 
 // maps
 colors.maps = {};
-colors.maps.america = __webpack_require__(17);
-colors.maps.zebra = __webpack_require__(20);
-colors.maps.rainbow = __webpack_require__(18);
-colors.maps.random = __webpack_require__(19)
+colors.maps.america = __webpack_require__(20);
+colors.maps.zebra = __webpack_require__(23);
+colors.maps.rainbow = __webpack_require__(21);
+colors.maps.random = __webpack_require__(22)
 
 for (var map in colors.maps) {
   (function(map){
@@ -446,143 +446,52 @@ module.exports = function () {
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(module) {
-
-function assembleStyles () {
-	var styles = {
-		modifiers: {
-			reset: [0, 0],
-			bold: [1, 22], // 21 isn't widely supported and 22 does the same thing
-			dim: [2, 22],
-			italic: [3, 23],
-			underline: [4, 24],
-			inverse: [7, 27],
-			hidden: [8, 28],
-			strikethrough: [9, 29]
-		},
-		colors: {
-			black: [30, 39],
-			red: [31, 39],
-			green: [32, 39],
-			yellow: [33, 39],
-			blue: [34, 39],
-			magenta: [35, 39],
-			cyan: [36, 39],
-			white: [37, 39],
-			gray: [90, 39]
-		},
-		bgColors: {
-			bgBlack: [40, 49],
-			bgRed: [41, 49],
-			bgGreen: [42, 49],
-			bgYellow: [43, 49],
-			bgBlue: [44, 49],
-			bgMagenta: [45, 49],
-			bgCyan: [46, 49],
-			bgWhite: [47, 49]
-		}
-	};
-
-	// fix humans
-	styles.colors.grey = styles.colors.gray;
-
-	Object.keys(styles).forEach(function (groupName) {
-		var group = styles[groupName];
-
-		Object.keys(group).forEach(function (styleName) {
-			var style = group[styleName];
-
-			styles[styleName] = group[styleName] = {
-				open: '\u001b[' + style[0] + 'm',
-				close: '\u001b[' + style[1] + 'm'
-			};
-		});
-
-		Object.defineProperty(styles, groupName, {
-			value: group,
-			enumerable: false
-		});
-	});
-
-	return styles;
-}
-
-Object.defineProperty(module, 'exports', {
-	enumerable: true,
-	get: assembleStyles
-});
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(32)(module)))
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports) {
 
 module.exports = {
-	"_args": [
-		[
-			{
-				"raw": "cd-messenger",
-				"scope": null,
-				"escapedName": "cd-messenger",
-				"name": "cd-messenger",
-				"rawSpec": "",
-				"spec": "latest",
-				"type": "tag"
-			},
-			"/Users/mikee/Documents/Projects/dev/laravel/api-stats"
-		]
+	"name": "cd-messenger",
+	"version": "2.7.16",
+	"description": "console log logger gulp notification browser node message",
+	"main": "index.js",
+	"reveal": true,
+	"scripts": {
+		"all": "npm run eslint",
+		"build:dev": "node -r babel-register node_modules/.bin/webpack --hide-modules --config=webpack.config.babel.js && bash ./scripts/copy.sh",
+		"build:prod": "NODE_ENV=production node -r babel-register node_modules/.bin/webpack --hide-modules --config=webpack.config.babel.js && bash ./scripts/copy.sh",
+		"build:watch_temp": "node -r babel-register node_modules/.bin/webpack --hide-modules -w --config=webpack.config.babel.js",
+		"build:watch": "echo \"\n\n  ==> NOTE:  Running this causes an infinite loop, review cd-datetime-picker project for solution (gulp?)\n\n\"",
+		"build": "npm run clean && npm run build:dev && npm run build:prod",
+		"clean": "./node_modules/.bin/rimraf lib && ./node_modules/.bin/rimraf examples/lib",
+		"eslint": "eslint \"./**/*.js\"",
+		"lint": "npm run eslint",
+		"publish": "npm run build && bash ./scripts/delete-sourcemaps.sh",
+		"test:node": "node examples/node-test",
+		"test:watch": "./node_modules/.bin/mocha --compilers js:babel-core/register -w",
+		"test": "./node_modules/.bin/mocha --compilers js:babel-core/register"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mikeerickson/cd-messenger.git"
+	},
+	"keywords": [
+		"console",
+		"log",
+		"logger",
+		"gulp",
+		"notification",
+		"debug",
+		"error",
+		"info",
+		"warning",
+		"dump",
+		"browser"
 	],
-	"_from": "cd-messenger@latest",
-	"_id": "cd-messenger@2.7.16",
-	"_inCache": true,
-	"_location": "/cd-messenger",
-	"_nodeVersion": "6.8.1",
-	"_npmOperationalInternal": {
-		"host": "packages-12-west.internal.npmjs.com",
-		"tmp": "tmp/cd-messenger-2.7.16.tgz_1485983473822_0.6400473569519818"
-	},
-	"_npmUser": {
-		"name": "codedungeon",
-		"email": "codedungeon@gmail.com"
-	},
-	"_npmVersion": "4.0.3",
-	"_phantomChildren": {},
-	"_requested": {
-		"raw": "cd-messenger",
-		"scope": null,
-		"escapedName": "cd-messenger",
-		"name": "cd-messenger",
-		"rawSpec": "",
-		"spec": "latest",
-		"type": "tag"
-	},
-	"_requiredBy": [
-		"#DEV:/",
-		"#USER"
-	],
-	"_resolved": "https://registry.npmjs.org/cd-messenger/-/cd-messenger-2.7.16.tgz",
-	"_shasum": "e9a1874f5f0e049a446b7927aa68e430b13e0970",
-	"_shrinkwrap": null,
-	"_spec": "cd-messenger",
-	"_where": "/Users/mikee/Documents/Projects/dev/laravel/api-stats",
-	"author": {
-		"name": "Mike Erickson",
-		"email": "codedungeon@gmail.com"
-	},
+	"author": "Mike Erickson <codedungeon@gmail.com>",
+	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/mikeerickson/cd-messenger/issues"
 	},
-	"dependencies": {
-		"chalk": "1.1.3",
-		"chalkline": "0.0.5",
-		"cli-table": "0.3.1",
-		"pretty-web-logger": "1.0.7"
-	},
-	"description": "console log logger gulp notification browser node message",
+	"homepage": "https://github.com/mikeerickson/cd-messenger#readme",
 	"devDependencies": {
 		"@slightlytyler/webpack-shell-plugin": "0.4.5",
 		"babel-core": "6.22.1",
@@ -606,75 +515,25 @@ module.exports = {
 		"webpack": "2.2.0",
 		"webpack-build-notifier": "0.1.13"
 	},
-	"directories": {},
-	"dist": {
-		"shasum": "e9a1874f5f0e049a446b7927aa68e430b13e0970",
-		"tarball": "https://registry.npmjs.org/cd-messenger/-/cd-messenger-2.7.16.tgz"
-	},
-	"gitHead": "c940e017bdfbcb4879a848db7627b5e38030d7d0",
-	"homepage": "https://github.com/mikeerickson/cd-messenger#readme",
-	"keywords": [
-		"console",
-		"log",
-		"logger",
-		"gulp",
-		"notification",
-		"debug",
-		"error",
-		"info",
-		"warning",
-		"dump",
-		"browser"
-	],
-	"license": "MIT",
-	"main": "index.js",
-	"maintainers": [
-		{
-			"name": "codedungeon",
-			"email": "codedungeon@gmail.com"
-		},
-		{
-			"name": "merickson",
-			"email": "codedungeon@gmail.com"
-		}
-	],
-	"name": "cd-messenger",
-	"optionalDependencies": {},
-	"readme": "ERROR: No README data found!",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mikeerickson/cd-messenger.git"
-	},
-	"reveal": true,
-	"scripts": {
-		"all": "npm run eslint",
-		"build": "npm run clean && npm run build:dev && npm run build:prod",
-		"build:dev": "node -r babel-register node_modules/.bin/webpack --hide-modules --config=webpack.config.babel.js && bash ./scripts/copy.sh",
-		"build:prod": "NODE_ENV=production node -r babel-register node_modules/.bin/webpack --hide-modules --config=webpack.config.babel.js && bash ./scripts/copy.sh",
-		"build:watch": "echo \"\n\n  ==> NOTE:  Running this causes an infinite loop, review cd-datetime-picker project for solution (gulp?)\n\n\"",
-		"build:watch_temp": "node -r babel-register node_modules/.bin/webpack --hide-modules -w --config=webpack.config.babel.js",
-		"clean": "rimraf lib && ./node_modules/.bin/rimraf examples/lib",
-		"eslint": "eslint \"./**/*.js\"",
-		"lint": "npm run eslint",
-		"publish": "npm run build && bash ./scripts/delete-sourcemaps.sh",
-		"test": "mocha --compilers js:babel-core/register",
-		"test:node": "node examples/node-test",
-		"test:watch": "mocha --compilers js:babel-core/register -w"
-	},
-	"version": "2.7.16"
+	"dependencies": {
+		"chalk": "1.1.3",
+		"chalkline": "0.0.5",
+		"cli-table": "0.3.1",
+		"pretty-web-logger": "1.0.7"
+	}
 };
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
-var escapeStringRegexp = __webpack_require__(6);
-var ansiStyles = __webpack_require__(3);
-var stripAnsi = __webpack_require__(26);
-var hasAnsi = __webpack_require__(24);
-var supportsColor = __webpack_require__(27);
+var escapeStringRegexp = __webpack_require__(5);
+var ansiStyles = __webpack_require__(11);
+var stripAnsi = __webpack_require__(29);
+var hasAnsi = __webpack_require__(27);
+var supportsColor = __webpack_require__(12);
 var defineProps = Object.defineProperties;
 var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
 
@@ -789,7 +648,7 @@ module.exports.supportsColor = supportsColor;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -807,6 +666,34 @@ module.exports = function (str) {
 
 
 /***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
 /* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -814,7 +701,7 @@ module.exports = function (str) {
 
 if (process.browser) {
   let Browser = __webpack_require__(9);
-  module.exports = new Browser(__webpack_require__(4));
+  module.exports = new Browser(__webpack_require__(3));
 }
 else {
   module.exports = __webpack_require__(10);
@@ -829,15 +716,20 @@ else {
 module.exports = {
 	"name": "api-stats",
 	"private": true,
-	"version": "0.0.1-dev.185",
+	"version": "0.0.1-dev.355",
 	"scripts": {
-		"build": "webpack --hide-modules & build:css",
-		"build:css": "node-sass \"./resources/assets/sass/app.scss\" > ./public/css/app.css",
+		"build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
+		"build:prod": "npm run clean && npm run build:sass & npm run copy:assets & cross-env NODE_ENV=production webpack --hide-modules --config webpack.config.babel.js && npm run post:build",
+		"build:css": "bash ./scripts/build-sass.sh",
 		"build:dev": "webpack -w --hide-modules & gulp watch:styles",
 		"build:sass": "npm run build:css",
-		"build:scripts": "echo \"   ==> build scripts\"",
+		"build:scripts": "npm run build",
 		"bump:dev": "bump prerelease",
 		"bump:patch": "bump patch",
+		"clean": "rimraf ./public/js/bundle.js & rimraf ./public/css/app.css",
+		"clean:css": "rimraf ./public/css/app.css",
+		"post:build": "node ./scripts/post-build.js",
+		"copy:assets": "node ./scripts/copy.js",
 		"lint": "npm-run-all lint:sass lint:scripts",
 		"lint:sass": "sass-lint \"./resources/assets/sass/*.s+(a|c)ss\" -q -v || true",
 		"lint:scripts": "eslint \"./src/**/*.js\"",
@@ -845,10 +737,13 @@ module.exports = {
 		"serve": "npm run start",
 		"start": "php artisan serve --port 7000",
 		"test": "npm run test:client",
-		"test:all": "npm ru ntest:api && npm run test:client",
+		"test:all": "npm-run-all test:api test:client",
+		"test:all:coverage": "npm-run-all test:api:coverage test:client:coverage",
 		"test:api": "./vendor/bin/phpunit --testsuite API",
+		"test:api:coverage": "./vendor/bin/phpunit --testsuite API --coverage-html ./tests/coverage && open ./tests/coverage/index.html",
 		"test:api:watch": "gulp watch:test:server",
 		"test:client": "mocha specs/ --require babel-register",
+		"test:client:coverage": "nyc --report-dir ./specs/coverage -r html mocha specs --require babel-register && open ./specs/coverage/index.html",
 		"test:client:watch": "npm run test:client -- --watch",
 		"test:watch": "npm run test:client:watch",
 		"tw": "npm run test:client:watch",
@@ -856,7 +751,6 @@ module.exports = {
 	},
 	"devDependencies": {
 		"@slightlytyler/webpack-shell-plugin": "0.4.5",
-		"axios": "^0.15.2",
 		"babel-core": "6.22.1",
 		"babel-loader": "6.2.10",
 		"babel-preset-es2015": "6.22.0",
@@ -868,8 +762,10 @@ module.exports = {
 		"chai": "3.5.0",
 		"chalk": "1.1.3",
 		"chokidar": "1.6.1",
+		"copy-webpack-plugin": "4.0.1",
+		"cross-env": "3.1.4",
 		"css-loader": "0.26.1",
-		"eslint": "3.14.1",
+		"eslint": "3.15.0",
 		"eslint-loader": "1.6.1",
 		"execa": "0.6.0",
 		"gulp": "3.9.1",
@@ -879,27 +775,31 @@ module.exports = {
 		"gulp-livereload": "3.8.1",
 		"gulp-messenger": "0.27.0",
 		"gulp-mocha": "3.0.1",
-		"gulp-phpunit": "0.22.1",
+		"gulp-phpunit": "0.22.2",
 		"gulp-rename": "1.2.2",
 		"gulp-sass": "3.1.0",
 		"gulp-sass-lint": "1.3.2",
 		"gulp-shell": "0.5.2",
 		"gulp-todo": "5.3.0",
-		"jquery": "^3.1.0",
-		"laravel-mix": "^0.5.0",
-		"lodash": "^4.16.2",
+		"laravel-mix": "0.7.2",
 		"mocha": "3.2.0",
 		"node-sass": "4.5.0",
 		"npm-run-all": "4.0.1",
+		"nyc": "10.1.2",
 		"require-dir": "0.3.1",
 		"run-all": "1.0.1",
 		"sass-lint": "1.10.2",
-		"sass-loader": "4.1.1",
+		"sass-loader": "5.0.1",
 		"style-loader": "0.13.1",
 		"stylelint": "7.8.0",
-		"vue": "^2.0.1",
 		"watch-ignore-webpack-plugin": "1.0.0",
 		"webpack": "2.2.1"
+	},
+	"dependencies": {
+		"axios": "0.15.3",
+		"jquery": "3.1.1",
+		"lodash": "4.17.4",
+		"vue": "2.1.10"
 	}
 };
 
@@ -907,7 +807,7 @@ module.exports = {
 /* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
-let logger = __webpack_require__(25);
+let logger = __webpack_require__(28);
 
 function showColorMessage(msg, bgColor = 'white', ...params) {
   let mgStyle = `background: ${bgColor}; color: white; display: block;`;
@@ -974,10 +874,10 @@ module.exports = MessengerBrowser;
 /***/ (function(module, exports, __webpack_require__) {
 
 
-const chalk   = __webpack_require__(5);
-const cl      = __webpack_require__(11);
-const Table   = __webpack_require__(12);
-const pkgInfo = __webpack_require__(4);
+const chalk   = __webpack_require__(4);
+const cl      = __webpack_require__(13);
+const Table   = __webpack_require__(15);
+const pkgInfo = __webpack_require__(3);
 
 const CLI_ICON_FAIL = '✘';
 const CLI_ICON_PASS = '✓';
@@ -1062,16 +962,147 @@ module.exports = messenger;
 /* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+function assembleStyles () {
+	var styles = {
+		modifiers: {
+			reset: [0, 0],
+			bold: [1, 22], // 21 isn't widely supported and 22 does the same thing
+			dim: [2, 22],
+			italic: [3, 23],
+			underline: [4, 24],
+			inverse: [7, 27],
+			hidden: [8, 28],
+			strikethrough: [9, 29]
+		},
+		colors: {
+			black: [30, 39],
+			red: [31, 39],
+			green: [32, 39],
+			yellow: [33, 39],
+			blue: [34, 39],
+			magenta: [35, 39],
+			cyan: [36, 39],
+			white: [37, 39],
+			gray: [90, 39]
+		},
+		bgColors: {
+			bgBlack: [40, 49],
+			bgRed: [41, 49],
+			bgGreen: [42, 49],
+			bgYellow: [43, 49],
+			bgBlue: [44, 49],
+			bgMagenta: [45, 49],
+			bgCyan: [46, 49],
+			bgWhite: [47, 49]
+		}
+	};
+
+	// fix humans
+	styles.colors.grey = styles.colors.gray;
+
+	Object.keys(styles).forEach(function (groupName) {
+		var group = styles[groupName];
+
+		Object.keys(group).forEach(function (styleName) {
+			var style = group[styleName];
+
+			styles[styleName] = group[styleName] = {
+				open: '\u001b[' + style[0] + 'm',
+				close: '\u001b[' + style[1] + 'm'
+			};
+		});
+
+		Object.defineProperty(styles, groupName, {
+			value: group,
+			enumerable: false
+		});
+	});
+
+	return styles;
+}
+
+Object.defineProperty(module, 'exports', {
+	enumerable: true,
+	get: assembleStyles
+});
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+var argv = process.argv;
+
+var terminator = argv.indexOf('--');
+var hasFlag = function (flag) {
+	flag = '--' + flag;
+	var pos = argv.indexOf(flag);
+	return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
+};
+
+module.exports = (function () {
+	if ('FORCE_COLOR' in process.env) {
+		return true;
+	}
+
+	if (hasFlag('no-color') ||
+		hasFlag('no-colors') ||
+		hasFlag('color=false')) {
+		return false;
+	}
+
+	if (hasFlag('color') ||
+		hasFlag('colors') ||
+		hasFlag('color=true') ||
+		hasFlag('color=always')) {
+		return true;
+	}
+
+	if (process.stdout && !process.stdout.isTTY) {
+		return false;
+	}
+
+	if (process.platform === 'win32') {
+		return true;
+	}
+
+	if ('COLORTERM' in process.env) {
+		return true;
+	}
+
+	if (process.env.TERM === 'dumb') {
+		return false;
+	}
+
+	if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
+		return true;
+	}
+
+	return false;
+})();
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
 /* WEBPACK VAR INJECTION */(function(process) {
 // TODO: expose more of `chalk` and condense this file more
 // directly copy/pasted and manipulated from `chalk`'s index.js file
 
-var escapeStringRegexp = __webpack_require__(6);
+var escapeStringRegexp = __webpack_require__(5);
 var defineProps = Object.defineProperties;
 var isSimpleWindowsTerm = process.platform === 'win32' && !/^xterm/i.test(process.env.TERM);
-var ansiStyles = __webpack_require__(3);
-var util = __webpack_require__(30);
-var chalk = __webpack_require__(5);
+var ansiStyles = __webpack_require__(14);
+var util = __webpack_require__(32);
+var chalk = __webpack_require__(4);
 var block = "\u2588";
 
 var columns = 80;
@@ -1182,7 +1213,80 @@ module.exports = new Chalkline();
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 12 */
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+function assembleStyles () {
+	var styles = {
+		modifiers: {
+			reset: [0, 0],
+			bold: [1, 22], // 21 isn't widely supported and 22 does the same thing
+			dim: [2, 22],
+			italic: [3, 23],
+			underline: [4, 24],
+			inverse: [7, 27],
+			hidden: [8, 28],
+			strikethrough: [9, 29]
+		},
+		colors: {
+			black: [30, 39],
+			red: [31, 39],
+			green: [32, 39],
+			yellow: [33, 39],
+			blue: [34, 39],
+			magenta: [35, 39],
+			cyan: [36, 39],
+			white: [37, 39],
+			gray: [90, 39]
+		},
+		bgColors: {
+			bgBlack: [40, 49],
+			bgRed: [41, 49],
+			bgGreen: [42, 49],
+			bgYellow: [43, 49],
+			bgBlue: [44, 49],
+			bgMagenta: [45, 49],
+			bgCyan: [46, 49],
+			bgWhite: [47, 49]
+		}
+	};
+
+	// fix humans
+	styles.colors.grey = styles.colors.gray;
+
+	Object.keys(styles).forEach(function (groupName) {
+		var group = styles[groupName];
+
+		Object.keys(group).forEach(function (styleName) {
+			var style = group[styleName];
+
+			styles[styleName] = group[styleName] = {
+				open: '\u001b[' + style[0] + 'm',
+				close: '\u001b[' + style[1] + 'm'
+			};
+		});
+
+		Object.defineProperty(styles, groupName, {
+			value: group,
+			enumerable: false
+		});
+	});
+
+	return styles;
+}
+
+Object.defineProperty(module, 'exports', {
+	enumerable: true,
+	get: assembleStyles
+});
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)(module)))
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
@@ -1190,8 +1294,8 @@ module.exports = new Chalkline();
  * Module dependencies.
  */
 
-var colors = __webpack_require__(23)
-  , utils = __webpack_require__(13)
+var colors = __webpack_require__(26)
+  , utils = __webpack_require__(16)
   , repeat = utils.repeat
   , truncate = utils.truncate
   , pad = utils.pad;
@@ -1486,7 +1590,7 @@ module.exports.version = '0.0.1';
 
 
 /***/ }),
-/* 13 */
+/* 16 */
 /***/ (function(module, exports) {
 
 
@@ -1576,7 +1680,7 @@ exports.strlen = function(str){
 
 
 /***/ }),
-/* 14 */
+/* 17 */
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -1585,11 +1689,11 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 14;
+webpackEmptyContext.id = 17;
 
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports) {
 
 module['exports'] = function runTheTrap (text, options) {
@@ -1640,7 +1744,7 @@ module['exports'] = function runTheTrap (text, options) {
 
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports) {
 
 // please no
@@ -1750,7 +1854,7 @@ module['exports'] = function zalgo(text, options) {
 
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var colors = __webpack_require__(1);
@@ -1767,7 +1871,7 @@ module['exports'] = (function() {
 })();
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var colors = __webpack_require__(1);
@@ -1786,7 +1890,7 @@ module['exports'] = (function () {
 
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var colors = __webpack_require__(1);
@@ -1799,7 +1903,7 @@ module['exports'] = (function () {
 })();
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var colors = __webpack_require__(1);
@@ -1809,7 +1913,7 @@ module['exports'] = function (letter, i, exploded) {
 };
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports) {
 
 /*
@@ -1891,7 +1995,7 @@ Object.keys(codes).forEach(function (key) {
 });
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {/*
@@ -1958,7 +2062,7 @@ module.exports = (function () {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //
@@ -1972,7 +2076,7 @@ var colors = __webpack_require__(1);
 module['exports'] = colors;
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1983,7 +2087,7 @@ module.exports = re.test.bind(re);
 
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2048,7 +2152,7 @@ module.exports = {
 
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2061,65 +2165,7 @@ module.exports = function (str) {
 
 
 /***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-var argv = process.argv;
-
-var terminator = argv.indexOf('--');
-var hasFlag = function (flag) {
-	flag = '--' + flag;
-	var pos = argv.indexOf(flag);
-	return pos !== -1 && (terminator !== -1 ? pos < terminator : true);
-};
-
-module.exports = (function () {
-	if ('FORCE_COLOR' in process.env) {
-		return true;
-	}
-
-	if (hasFlag('no-color') ||
-		hasFlag('no-colors') ||
-		hasFlag('color=false')) {
-		return false;
-	}
-
-	if (hasFlag('color') ||
-		hasFlag('colors') ||
-		hasFlag('color=true') ||
-		hasFlag('color=always')) {
-		return true;
-	}
-
-	if (process.stdout && !process.stdout.isTTY) {
-		return false;
-	}
-
-	if (process.platform === 'win32') {
-		return true;
-	}
-
-	if ('COLORTERM' in process.env) {
-		return true;
-	}
-
-	if (process.env.TERM === 'dumb') {
-		return false;
-	}
-
-	if (/^screen|^xterm|^vt100|color|ansi|cygwin|linux/i.test(process.env.TERM)) {
-		return true;
-	}
-
-	return false;
-})();
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports) {
 
 if (typeof Object.create === 'function') {
@@ -2148,7 +2194,7 @@ if (typeof Object.create === 'function') {
 
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = function isBuffer(arg) {
@@ -2159,7 +2205,7 @@ module.exports = function isBuffer(arg) {
 }
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {// Copyright Joyent, Inc. and other Node contributors.
@@ -2687,7 +2733,7 @@ function isPrimitive(arg) {
 }
 exports.isPrimitive = isPrimitive;
 
-exports.isBuffer = __webpack_require__(29);
+exports.isBuffer = __webpack_require__(31);
 
 function objectToString(o) {
   return Object.prototype.toString.call(o);
@@ -2731,7 +2777,7 @@ exports.log = function() {
  *     prototype.
  * @param {function} superCtor Constructor function to inherit prototype from.
  */
-exports.inherits = __webpack_require__(28);
+exports.inherits = __webpack_require__(30);
 
 exports._extend = function(origin, add) {
   // Don't do anything if add isn't an object
@@ -2749,10 +2795,10 @@ function hasOwnProperty(obj, prop) {
   return Object.prototype.hasOwnProperty.call(obj, prop);
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(31), __webpack_require__(0)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33), __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 var g;
@@ -2779,35 +2825,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*global require, module*/

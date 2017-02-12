@@ -38,13 +38,13 @@
 
                 <div class="links">
                     <a href="/">Home</a>
-                    <a href="api/v1/players">Players</a>
-                    <a href="api/v1/batting">Batting</a>
-                    <a href="api/v1/pitching">Pitching</a>
-                    <a href="api/v1/fielding">Fielding</a>
-                    <a href="api/v1/managers">Managers</a>
-                    <a href="api/v1/parks">Parks</a>
-                    <a href="api/v1/teams">Teams</a>
+                    <a href="api/v1/players?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Players</a>
+                    <a href="api/v1/batting?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Batting</a>
+                    <a href="api/v1/pitching?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Pitching</a>
+                    <a href="api/v1/fielding?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Fielding</a>
+                    <a href="api/v1/managers?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Managers</a>
+                    <a href="api/v1/parks?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Parks</a>
+                    <a href="api/v1/teams?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Teams</a>
                 </div>
             </div>
         </div>

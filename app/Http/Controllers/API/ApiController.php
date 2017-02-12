@@ -176,9 +176,9 @@ class ApiController extends Controller
 
 	public function addDebugInfo() {
 		return [
+			'api_token' => $this->token,
 			'db_source' => env('DB_CONNECTION'),
-			'db_name'   => env('DB_DATABASE'),
-			'api_token' => $this->token
+			'db_name'   => (env('DB_CONNECTION') === 'sqlite') ? env('DB_NAME'): env('DB_DATABASE'),
 		];
 	}
 

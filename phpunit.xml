@@ -10,6 +10,7 @@
          stopOnFailure="false">
     <testsuites>
         <testsuite name="API">
+            <file>./tests/API/ApiSetupTest.php</file>
             <directory suffix="Test.php">./tests/API</directory>
         </testsuite>
 

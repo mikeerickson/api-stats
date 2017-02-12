@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
 //		\App\Http\Middleware\DownForMaintenance::class,
 		\App\Http\Middleware\ApiVerifyEndpoint::class,
+		\Barryvdh\Cors\HandleCors::class,
     ];
 
     /**

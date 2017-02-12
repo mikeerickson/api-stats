@@ -9,9 +9,9 @@ class ApiTest extends ApiTestCase
 {
 	protected $validEndpoints;
 
-	public function __construct($name = null, array $data = [], $dataName = '')
+	public function __construct()
 	{
-		parent::__construct($name, $data, $dataName);
+		parent::__construct();
 
 		$this->validEndpoints = [
 			'Players',
@@ -76,6 +76,23 @@ class ApiTest extends ApiTestCase
 		$data     = $response->getOriginalContent();
 		$token    = $data['debug']['api_token'];
 		$result   = APIToken::where('token', '=', $token)->first();
+
 		$this->assertTrue($result->token === $token);
 	}
+
+	/** @test */
+	public function it_should_test_rate_limit()
+	{
+		$request_limit = 60;
+		for ($x = 1; $x <= $request_limit + 1; $x++) {
+			$response = $this->get('/api/v1/batting?token=mkjbbtrsh10&limit=1');
+			if($response) {
+				$data = $response->getOriginalContent();
+				if(gettype($data) === 'string') {
+					$this->assertTrue($data === 'Too Many Attempts.');
+				}
+			}
+		}
+	}
+	
 }

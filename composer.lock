@@ -4,8 +4,61 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "59ad3471262b6ad4c2e4499edb8b97cb",
+    "content-hash": "2bd6af10a5425e4702cc3e195dc7f26c",
     "packages": [
+        {
+            "name": "barryvdh/laravel-cors",
+            "version": "v0.8.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-cors.git",
+                "reference": "e05c3ba65e98c96df5f2e1f8b7b6d7e9de4a1837"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-cors/zipball/e05c3ba65e98c96df5f2e1f8b7b6d7e9de4a1837",
+                "reference": "e05c3ba65e98c96df5f2e1f8b7b6d7e9de4a1837",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.1.x|5.2.x|5.3.x|5.4.x",
+                "php": ">=5.5.9",
+                "symfony/http-foundation": "~2.7|~3.0",
+                "symfony/http-kernel": "~2.7|~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8|^5.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Barryvdh\\Cors\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Barry vd. Heuvel",
+                    "email": "barryvdh@gmail.com"
+                }
+            ],
+            "description": "Adds CORS (Cross-Origin Resource Sharing) headers support in your Laravel application",
+            "keywords": [
+                "api",
+                "cors",
+                "crossdomain",
+                "laravel"
+            ],
+            "time": "2017-01-25T12:53:12+00:00"
+        },
         {
             "name": "barryvdh/laravel-debugbar",
             "version": "v2.3.2",
@@ -652,6 +705,44 @@
                 "storage"
             ],
             "time": "2017-01-30T17:41:17+00:00"
+        },
+        {
+            "name": "lijinma/php-cli-color",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/lijinma/php-cli-color.git",
+                "reference": "5ee4f7414882b26a4a657428e9a15872bde99b38"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/lijinma/php-cli-color/zipball/5ee4f7414882b26a4a657428e9a15872bde99b38",
+                "reference": "5ee4f7414882b26a4a657428e9a15872bde99b38",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Lijinma\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jinma li",
+                    "email": "lijinma@126.com",
+                    "homepage": "http://www.lijinma.com"
+                }
+            ],
+            "description": "Make colorful CLI output easy",
+            "homepage": "https://github.com/lijinma/php-cli-color",
+            "time": "2014-12-23T07:14:16+00:00"
         },
         {
             "name": "maximebf/debugbar",

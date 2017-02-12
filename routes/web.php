@@ -11,13 +11,21 @@
 |
 */
 
+use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\API\ApiController;
 
 $middleware = [
 	'api.logger',
-	'api.rateLimit'
+	'api.rateLimit',
+	'api'
 ];
+
+// curl -H "Origin: http://example.com" --verbose http://localhost:8000/api
+Route::group(['middleware' => 'api'], function(Router $router){
+	$router->get('cors-test', 'CorsController@index');
+});
+
 
 Route::get('/', function () {
 	return view('welcome');
@@ -42,3 +50,4 @@ Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($rou
 	Route::resource('teamsfranchises','API\ApiController');
 
 });
+

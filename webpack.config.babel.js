@@ -2,7 +2,9 @@
 
 import path from 'path';
 import WebpackShellPlugin from '@slightlytyler/webpack-shell-plugin';
-import WatchIgnorePlugin from 'watch-ignore-webpack-plugin'
+import WatchIgnorePlugin  from 'watch-ignore-webpack-plugin'
+import CopyWebpackPlugin  from 'copy-webpack-plugin';
+
 const isProd  = (process.env.ENV === 'production') || (process.env.NODE_ENV === 'production');
 const isDev   = !isProd;
 

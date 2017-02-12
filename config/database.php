@@ -40,6 +40,20 @@ return [
 			'prefix' => '',
         ],
 
+		'mysql:docker' => [
+			'driver' => 'mysql',
+			'host' => env('DOCKER_DB_HOST'),
+			'port' => env('DOCKER_DB_PORT'),
+			'database' => env('DOCKER_DB_DATABASE'),
+			'username' => env('DOCKER_DB_USERNAME'),
+			'password' => env('DOCKER_DB_PASSWORD'),
+			'charset' => 'utf8mb4',
+			'collation' => 'utf8mb4_unicode_ci',
+			'prefix' => '',
+			'strict' => true,
+			'engine' => null,
+		],
+
         'mysql' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
