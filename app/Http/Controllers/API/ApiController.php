@@ -179,7 +179,9 @@ class ApiController extends Controller
 	function respond($data, $headers = [])
 	{
 		if($this->isDebug()) {
-			$data['debug'] = $this->addDebugInfo();
+//			$data['debug'] = $this->addDebugInfo();
+			$debugData = ["debug" => $this->addDebugInfo()];
+			$data = array_merge($debugData, $data);
 		}
 
 		return response($data, $data['status_code']);

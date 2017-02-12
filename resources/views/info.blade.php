@@ -38,14 +38,15 @@
 
                 <div class="links">
                     <a href="/">Home</a>
-                    <a href="api/v1/players?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Players</a>
-                    <a href="api/v1/batting?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Batting</a>
-                    <a href="api/v1/pitching?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Pitching</a>
-                    <a href="api/v1/fielding?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Fielding</a>
-                    <a href="api/v1/managers?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Managers</a>
-                    <a href="api/v1/parks?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Parks</a>
-                    <a href="api/v1/teams?token=c3be77b4-c9f1-3109-8729-e6704c93ef41">Teams</a>
+                    <a href="api/v1/players?{{ $data['qs'] }}">Players</a>
+                    <a href="api/v1/batting?{{ $data['qs'] }}">Batting</a>
+                    <a href="api/v1/pitching?{{ $data['qs'] }}">Pitching</a>
+                    <a href="api/v1/fielding?{{ $data['qs'] }}">Fielding</a>
+                    <a href="api/v1/managers?{{ $data['qs'] }}">Managers</a>
+                    <a href="api/v1/parks?{{ $data['qs'] }}">Parks</a>
+                    <a href="api/v1/teams?{{ $data['qs'] }}">Teams</a>
                 </div>
+
             </div>
         </div>
 

@@ -32,7 +32,8 @@ Route::get('/', function () {
 });
 
 Route::get('info', function () {
-	return view('info');
+	$data = ["qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"];
+	return view('info')->with('data', $data);
 });
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
