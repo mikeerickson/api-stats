@@ -183,6 +183,7 @@ return [
 		Barryvdh\Debugbar\ServiceProvider::class,
 		Laracasts\Flash\FlashServiceProvider::class,
 		Barryvdh\Cors\ServiceProvider::class,
+		Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
 
     ],
 

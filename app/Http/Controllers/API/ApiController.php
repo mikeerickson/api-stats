@@ -3,22 +3,48 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use \App\Services\ApiService;
-
-use Illuminate\Database\QueryException;
+use App\Services\ApiService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
+/**
+ * Class ApiController
+ * @package App\Http\Controllers\API
+ */
 class ApiController extends Controller
 {
-	protected $statusCode;
-	protected $endpoint;
-	protected $limit;
-	protected $query;
-	protected $queryString;
-	protected $token;
+	/**
+	 * @var ApiService
+	 */
 	protected $api;
+	/**
+	 * @var string
+	 */
+	protected $endpoint;
+	/**
+	 * @var int
+	 */
+	protected $limit;
+	/**
+	 * @var string
+	 */
+	protected $query;
+	/**
+	 * @var array|string
+	 */
+	protected $queryString;
+	/**
+	 * @var
+	 */
+	protected $statusCode;
+	/**
+	 * @var array|mixed|string
+	 */
+	protected $token;
 
+	/**
+	 * ApiController constructor.
+	 * @param Request $request
+	 */
 	function __construct(Request $request)
 	{
 		$this->api = new ApiService($request);
@@ -29,11 +55,21 @@ class ApiController extends Controller
 
 		$this->query       = isset($this->queryString['q']) ? $this->queryString['q'] : '';
 		$this->limit       = isset($this->queryString['_limit']) ? $this->queryString['_limit'] : 10;
-		$this->token       = $this->getToken($request);
+		$this->token       = $this->api->getToken($request);
+
+		if($this->api->isTrialToken($this->token)) {
+			if($this->limit >= $this->api->trialLimit()) {
+				$this->limit = $this->api->trialLimit();
+			}
+		}
 
 	}
 
 	//	get - Get all rows for endpoint ($this->limit will be used)
+
+	/**
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function index()
 	{
 		$response = $this->api->get()->getOriginalContent();
@@ -41,19 +77,45 @@ class ApiController extends Controller
 	}
 
 	// post - Create single endpoint
+
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function store(Request $request)
 	{
 		$response = $this->api->post($request);
 		return response($response, $response['status_code']);
 	}
 
+	/**
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function create(Request $request)
+	{
+
+		return $this->store($request);
+	}
+
 	// get - Get single endpoint based on `endpoint` id
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function show($id) {
 		$response = $this->api->get($id)->getOriginalContent();
 		return $this->respond($response, $response['status_code']);
 	}
 
 	// put -Update single endpoint
+
+	/**
+	 * @param $id
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function update($id, Request $request) {
 		$response = $this->api->put($id, $request)
 			->getOriginalContent();
@@ -61,20 +123,47 @@ class ApiController extends Controller
 		return $this->respond($response, $response['status_code']);
 	}
 
+	/**
+	 * @param $id
+	 * @param Request $request
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function edit($id, Request $request) {
+		return $this->update($id, $request);
+	}
+
 	// delete - Delete single endpoint
+
+	/**
+	 * @param $id
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function destroy($id) {
 		$response = $this->api->delete($id);
 
 		return $this->respond($response, $response['status_code']);
 	}
 
+	/**
+	 * @param $id
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function delete($id) {
+		return $this->destroy($id);
+	}
 
-
+	/**
+	 * @return mixed
+	 */
 	public function getStatusCode()
 	{
 		return $this->statusCode;
 	}
 
+	/**
+	 * @param $statusCode
+	 * @return $this
+	 */
 	public function setStatusCode($statusCode)
 	{
 		$this->statusCode = $statusCode;
@@ -82,6 +171,11 @@ class ApiController extends Controller
 		return $this;
 	}
 
+	/**
+	 * @param $data
+	 * @param array $headers
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	function respond($data, $headers = [])
 	{
 		if($this->isDebug()) {
@@ -91,11 +185,19 @@ class ApiController extends Controller
 		return response($data, $data['status_code']);
 	}
 
+	/**
+	 * @param $data
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function respondWithSuccess($data)
 	{
 		return $this->setStatusCode(200)->respond($data, 200);
 	}
 
+	/**
+	 * @param string $message
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
 	public function respondWithError($message = 'An Error Occurred')
 	{
 		$this->setStatusCode(403);
@@ -159,14 +261,6 @@ class ApiController extends Controller
 		return response($data, 403);
 	}
 
-	private function getToken(Request $request) {
-		$token = $request->header('API-Token')
-			? $request->header('API-Token')
-			: array_get($this->queryString,'token');
-
-		return $token;
-	}
-
 	public function isDebug() {
 		if(isset($this->queryString['debug'])) {
 			return $this->queryString['debug'] === 'true';
@@ -175,11 +269,18 @@ class ApiController extends Controller
 	}
 
 	public function addDebugInfo() {
-		return [
+		$debug = [
 			'api_token' => $this->token,
 			'db_source' => env('DB_CONNECTION'),
 			'db_name'   => (env('DB_CONNECTION') === 'sqlite') ? env('DB_NAME'): env('DB_DATABASE'),
 		];
+
+		if($this->token === 'c3be77b4-c9f1-3109-8729-e6704c93ef41') {
+			$debug['trial'] = "Trial access limited to {$this->limit} rows";
+		}
+		
+		return $debug;
 	}
 
 }
+

@@ -17,6 +17,8 @@ class ApiService
 	protected $request;
 	protected $tablesWithoutYears;
 	protected $limit;
+	protected $token;
+	protected $trialLimit;
 
 	function __construct(Request $request)
 	{
@@ -26,9 +28,17 @@ class ApiService
 		$this->request      = $request;
 		$this->query        = isset($this->queryString['q'])     ? $this->queryString['q'] : '';
 		$this->limit        = isset($this->queryString['limit']) ? $this->queryString['limit'] : 10;
+		$this->trialLimit   = 3;
 
 		$this->requestedUri = $request->getRequestUri();
 		$this->endpoint     = $this->getEndpoint($request);
+		$this->token        = $this->getToken();
+
+		if($this->isTrialToken($this->token)) {
+			if($this->limit > 3) {
+				$this->limit = 3;
+			}
+		}
 	}
 
 	public function getEndpoint()
@@ -216,6 +226,25 @@ class ApiService
 		}
 
 		return $result;
+	}
+
+	public function getToken()
+	{
+		$token = $this->request->header('API-Token')
+			? $this->request->header('API-Token')
+			: array_get($this->request->query(),'token');
+
+		return $token;
+	}
+
+	public function isTrialToken($token)
+	{
+		return $token === 'c3be77b4-c9f1-3109-8729-e6704c93ef41';
+	}
+
+	public function trialLimit()
+	{
+		return $this->trialLimit;
 	}
 
 }

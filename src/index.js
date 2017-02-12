@@ -1,7 +1,7 @@
 /*global require, module*/
 
-const pkgInfo   = require('../package.json');
-const messenger = require('cd-messenger');
+const pkgInfo   = require('../package.json')
+const messenger = require('cd-messenger')
 
 messenger.info('=== ' + pkgInfo.name + ' v' + pkgInfo.version + ' ===');
 

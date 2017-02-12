@@ -7,13 +7,14 @@ use Tests\ApiTestCase;
 
 class ApiTest extends ApiTestCase
 {
-	protected $validEndpoints;
+	protected $valid_endpoints;
+	protected $rate_limit;
 
 	public function __construct()
 	{
 		parent::__construct();
 
-		$this->validEndpoints = [
+		$this->valid_endpoints = [
 			'Players',
 			'Batting',
 			'Pitching',
@@ -22,7 +23,7 @@ class ApiTest extends ApiTestCase
 			'Parks',
 			'Teams'
 		];
-
+		$this->rate_limit = 60;
 	}
 
 	public function test_api_home_page()
@@ -37,7 +38,7 @@ class ApiTest extends ApiTestCase
 		$response = $this->get('/info');
 
 		$response->assertStatus(200);
-		foreach ($this->validEndpoints as $endpoint) {
+		foreach ($this->valid_endpoints as $endpoint) {
 			$response->assertSee($endpoint);
 		}
 	}
@@ -80,11 +81,10 @@ class ApiTest extends ApiTestCase
 		$this->assertTrue($result->token === $token);
 	}
 
-	/** @test */
+	/** restore this when testing rate limit @ test */
 	public function it_should_test_rate_limit()
 	{
-		$request_limit = 60;
-		for ($x = 1; $x <= $request_limit + 1; $x++) {
+		for ($x = 1; $x <= $this->rate_limit + 1; $x++) {
 			$response = $this->get('/api/v1/batting?token=mkjbbtrsh10&limit=1');
 			if($response) {
 				$data = $response->getOriginalContent();
@@ -94,5 +94,5 @@ class ApiTest extends ApiTestCase
 			}
 		}
 	}
-	
+
 }
