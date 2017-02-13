@@ -15,8 +15,18 @@ div.message {
 }
 
 .content {
-  border: 1px solid green;
+  //border: 1px solid green;
   margin: 20px;
+  padding: 20px;
 }
+
+/* override jumbotron background color to match site */
+.jumbotron {
+  background: #f3f7f9;
+  p.tagline {
+    font-size: 18px;
+  }
+}
+
 
 @import 'sticky-footer';
