@@ -9,7 +9,14 @@
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
 div.message {
-  margin: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   font-weight: bold;
 }
 
+.content {
+  border: 1px solid green;
+  margin: 20px;
+}
+
+@import 'sticky-footer';

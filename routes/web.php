@@ -27,14 +27,28 @@ Route::group(['middleware' => 'api'], function(Router $router){
 });
 
 
+
 Route::get('/', function () {
-	return view('welcome');
+	$data = ["qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"];
+	return view('home')->with('data', $data);
 });
 
-Route::get('info', function () {
+Route::get('about', function () {
+	flash('Message', 'success');
 	$data = ["qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"];
-	return view('info')->with('data', $data);
+	return view('about')->with('data', $data);
 });
+
+Route::get('contact', function () {
+	$data = ["qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"];
+	return view('contact')->with('data', $data);
+});
+
+Route::get('login', function () {
+	return response('login');
+});
+
+
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
 
