@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>API Stats</title>
+    <title>API Stats : {{ endpoint() }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css"/>
@@ -22,19 +22,24 @@
     <![endif]-->
 </head>
     <body>
-
+        {{--Application Navbar (will appear on all pages--}}
         @include('navbar')
+
+        {{--Any flash messages will appear here--}}
         @include('message')
 
         <div id="content" class="content">
             @yield('content')
         </div>
 
+        {{--Vendor libraries available on CDN so we dont overload our bundle--}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        {{--Application bundle--}}
         <script src="js/bundle.js"></script>
 
+        {{--Application Footer (sticky footer)--}}
         @include('footer')
 
     </body>

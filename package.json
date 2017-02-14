@@ -1,7 +1,11 @@
 {
   "name": "api-stats",
   "private": true,
+<<<<<<< HEAD
   "version": "0.0.1-dev.359",
+=======
+  "version": "0.0.1-dev.511",
+>>>>>>> refactor-main-site-layout
   "scripts": {
     "build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
     "build:prod": "npm run clean && npm run build:sass & npm run copy:assets & cross-env NODE_ENV=production webpack --hide-modules --config webpack.config.babel.js && npm run post:build",
@@ -60,6 +64,7 @@
     "gulp-livereload": "3.8.1",
     "gulp-messenger": "0.27.0",
     "gulp-mocha": "3.0.1",
+    "gulp-notify": "3.0.0",
     "gulp-phpunit": "0.22.2",
     "gulp-rename": "1.2.2",
     "gulp-sass": "3.1.0",

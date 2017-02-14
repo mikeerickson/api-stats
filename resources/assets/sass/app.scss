@@ -15,8 +15,33 @@ div.message {
 }
 
 .content {
-  border: 1px solid green;
+  //border: 1px solid green;
   margin: 20px;
+  padding: 20px;
 }
 
+/* override jumbotron background color to match site */
+.jumbotron {
+  background: #f3f7f9;
+  p.tagline {
+    font-size: 18px;
+  }
+}
+
+ul.endpoint-list > li {
+  margin-bottom: 10px;
+}
+a.btn-endpoint:hover {
+  text-decoration: none;
+}
+
+a.btn-endpoint:focus {
+  text-decoration: none;
+}
+
+.api-response {
+  max-height: 350px;
+}
 @import 'sticky-footer';
+
+@import 'syntax-highlight';

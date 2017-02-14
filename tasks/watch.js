@@ -13,9 +13,9 @@ gulp.task('watch:scripts', ['build:scripts'], () => {
 	gulp.watch(scriptFiles, ['build:scripts']);
 });
 
-gulp.task('watch:styles', ['build:styles'], () => {
+gulp.task('watch:styles', ['lint:sass', 'build:styles'], () => {
 	msg.note(`==> Watching Style Files (${sassFiles})`);
-	gulp.watch(sassFiles, ['build:styles']);
+	gulp.watch(sassFiles, ['lint:sass', 'build:styles']);
 });
 
 gulp.task('watch:lint:scripts', ['lint:scripts'], () => {

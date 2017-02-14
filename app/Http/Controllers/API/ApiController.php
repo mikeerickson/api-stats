@@ -179,9 +179,8 @@ class ApiController extends Controller
 	function respond($data, $headers = [])
 	{
 		if($this->isDebug()) {
-//			$data['debug'] = $this->addDebugInfo();
-			$debugData = ["debug" => $this->addDebugInfo()];
-			$data = array_merge($debugData, $data);
+			$debugData = ["debug" => $this->addDebugInfo(sizeof($data['data']))];
+			$data      = array_merge($debugData, $data);
 		}
 
 		return response($data, $data['status_code']);
@@ -270,11 +269,12 @@ class ApiController extends Controller
 		return false;
 	}
 
-	public function addDebugInfo() {
+	public function addDebugInfo($num_rows = 0) {
 		$debug = [
 			'api_token' => $this->token,
 			'db_source' => env('DB_CONNECTION'),
 			'db_name'   => (env('DB_CONNECTION') === 'sqlite') ? env('DB_NAME'): env('DB_DATABASE'),
+			'num_rows'  => $num_rows
 		];
 
 		if($this->token === 'c3be77b4-c9f1-3109-8729-e6704c93ef41') {
