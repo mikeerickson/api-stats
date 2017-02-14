@@ -13,11 +13,11 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="{{ isEndpoint('home')    ? 'active' : '' }}"><a href="/">Home</a></li>
-                <li class="{{ isEndpoint('about')   ? 'active' : '' }}"><a href="/about">About</a></li>
-                <li class="{{ isEndpoint('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
+                <li class="{{ isEndpoint('home')    ? 'active' : '' }} {{ isEndpoint(['login','register']) ? 'disabled' : '' }}"><a href="/">Home</a></li>
+                <li class="{{ isEndpoint('about')   ? 'active' : '' }} {{ isEndpoint(['login','register']) ? 'disabled' : '' }}"><a href="/about">About</a></li>
+                <li class="{{ isEndpoint('contact') ? 'active' : '' }} {{ isEndpoint(['login','register']) ? 'disabled' : '' }}"><a href="/contact">Contact</a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Endpoints <span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle {{ isEndpoint(['login','register']) ? 'hide' : '' }}" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Endpoints <span class="caret"></span></a>
                     <ul class="dropdown-menu">
                         <li><a href="/resource?endpoint=players">Players</a></li>
                         <li><a href="/resource?endpoint=batting">Batting</a></li>
@@ -30,8 +30,20 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Login</a></li>
+                @if(! isEndpoint('login'))
+                    @if (Auth::check())
+                        <li><a href="/logout">Logout</a></li>
+                    @else
+                        @if(! isEndpoint('register'))
+                            <li><a href="/register">Register</a></li>
+                        @endif
+                        @if(! isEndpoint('register'))
+                            <li><a href="/login">Login</a></li>
+                        @endif
+                    @endif
+                @endif
             </ul>
         </div><!--/.nav-collapse -->
     </div><!--/.container-fluid -->
 </nav>
+

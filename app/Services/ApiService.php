@@ -28,15 +28,15 @@ class ApiService
 		$this->request      = $request;
 		$this->query        = isset($this->queryString['q'])     ? $this->queryString['q'] : '';
 		$this->limit        = isset($this->queryString['limit']) ? $this->queryString['limit'] : 10;
-		$this->trialLimit   = 3;
+		$this->trialLimit   = 10;
 
 		$this->requestedUri = $request->getRequestUri();
 		$this->endpoint     = $this->getEndpoint($request);
 		$this->token        = $this->getToken();
 
 		if($this->isTrialToken($this->token)) {
-			if($this->limit > 3) {
-				$this->limit = 3;
+			if($this->limit > $this->trialLimit) {
+				$this->limit = $this->trialLimit;
 			}
 		}
 	}

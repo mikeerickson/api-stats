@@ -19,8 +19,10 @@ const config = {
 		specs:  ['./specs/**/*.js'],
 	},
 	output: {
-		path: './public',
-		filename: 'bundle.js'
+		path:       './public',
+		filename:   'bundle.js',
+		scriptPath: './public/js',
+		stylePath:  './public/css',
 	}
 };
 

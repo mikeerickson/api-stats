@@ -61,10 +61,17 @@ Route::get('resource', function () {
 });
 
 Route::get('login', function () {
-	return response('login');
+	return view('login');
 });
 
+Route::get('logout', function () {
+	Auth::logout();
+	return view('/');
+});
 
+Route::get('register', function () {
+	return view('register');
+});
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
 
@@ -97,17 +104,26 @@ function endpoint()
 	if(strpos($endpoint, 'resource') !== false) {
 		$endpoint = "Endpoints";
 	}
-	return ucwords(str_replace("/","",$endpoint));
+	return str_replace("/","",$endpoint);
 }
 
 function isEndpoint($testEndpoint)
 {
-	return (strtolower(endpoint()) === strtolower($testEndpoint));
+	if(gettype($testEndpoint) === 'array') {
+		foreach ($testEndpoint as &$value) {
+			if(strtolower(endpoint()) === strtolower($value)) {
+				return true;
+			}
+		}
+		return false;
+	} else {
+		return (strtolower(endpoint()) === strtolower($testEndpoint));
+	}
 }
 
 function getEndpoint($qs)
 {
-	return ucwords(getQueryStringParam($qs, 'endpoint'));
+	return getQueryStringParam($qs, 'endpoint');
 }
 
 function getQueryStringParam($qs, $key)

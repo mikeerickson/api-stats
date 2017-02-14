@@ -1,6 +1,6 @@
 const gulp = require('gulp');
 const livereload = require('gulp-livereload');
-const config = require('./gulp.config');
+const config = require('../config');
 
 const files = [
 	...config.scripts.server,

@@ -2,7 +2,7 @@
 
 const gulp     = require('gulp');
 const eslint   = require('gulp-eslint');
-const config   = require('./gulp.config');
+const config   = require('../config');
 const sassLint = require('gulp-sass-lint');
 
 const files = config.scripts.client;

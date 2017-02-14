@@ -4,7 +4,7 @@ const gulp   = require('gulp');
 const todo   = require('gulp-todo');
 const msg    = require('gulp-messenger');
 const chalk  = require('chalk');
-const config = require('./gulp.config');
+const config = require('../config');
 
 const files = [
 	'./app/**/*.php',

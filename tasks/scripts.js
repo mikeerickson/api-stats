@@ -2,7 +2,7 @@
 
 const gulp         = require('gulp');
 const msg          = require('gulp-messenger');
-const config       = require('./gulp.config');
+const config       = require('../config');
 const chalk        = require('chalk');
 const browserify   = require('gulp-browserify');
 const rename       = require('gulp-rename');

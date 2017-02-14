@@ -1,9 +1,12 @@
 /*global require, module, process, __dirname*/
 
-import path from 'path';
-import WebpackShellPlugin from '@slightlytyler/webpack-shell-plugin';
-import WatchIgnorePlugin  from 'watch-ignore-webpack-plugin'
-import CopyWebpackPlugin  from 'copy-webpack-plugin';
+import path   from 'path';
+import core   from 'cd-core';
+import config from './config';
+
+import WebpackShellPlugin    from '@slightlytyler/webpack-shell-plugin';
+import WatchIgnorePlugin     from 'watch-ignore-webpack-plugin';
+import WebpackNotifierPlugin from 'webpack-notifier';
 
 const isProd  = (process.env.ENV === 'production') || (process.env.NODE_ENV === 'production');
 const isDev   = !isProd;
@@ -20,18 +23,27 @@ const webpackConfig = {
 			{test: /(\.jsx|\.js)$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /(node_modules)/}
 		]
 	},
-	plugins: []
+	plugins: [
+		new WebpackNotifierPlugin({
+			title:   'Bundle Scripts',
+			icon:    core.getPassIcon(),
+			sound:   true,
+			message: `${config.output.scriptPath}/bundle.js Created Successfully`
+		}),
+	]
 }
 
 if (isDev) {
 	// webpackConfig.devtool = 'source-map';
-	console.log(path.join(__dirname, 'app/**/*.php'));
 	webpackConfig.plugins.push(new WatchIgnorePlugin([
 		path.join(__dirname, 'package.json'),
 		path.join(__dirname, 'app/**/*.php'),
+		path.join(__dirname, 'tasks/**/*.js'),
+		path.join(__dirname, 'specs/**/*.spec.js'),
+		path.join(__dirname, 'sandbox/**/*'),
 	])),
 	webpackConfig.plugins.push(new WebpackShellPlugin({
-		onBuildStart: ['bash ./scripts/bump.sh'], // need to bump version first before files copied etc
+		onBuildStart: ['bash ./scripts/bump.sh'],  // need to bump version first before files copied etc
 		onBuildExit: []
 	}));
 }

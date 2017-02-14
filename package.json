@@ -1,24 +1,24 @@
 {
-  "name": "api-stats",
+  "name": "Stats API",
   "private": true,
-  "version": "0.0.1-dev.511",
+  "version": "0.0.1-dev.570",
   "scripts": {
     "build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
-    "build:prod": "npm run clean && npm run build:sass & npm run copy:assets & cross-env NODE_ENV=production webpack --hide-modules --config webpack.config.babel.js && npm run post:build",
     "build:css": "bash ./scripts/build-sass.sh",
     "build:dev": "webpack -w --hide-modules & gulp watch:styles",
+    "build:prod": "npm run clean && npm run build:sass & npm run copy:assets & cross-env NODE_ENV=production webpack --hide-modules --config webpack.config.babel.js && npm run post:build",
     "build:sass": "npm run build:css",
-    "build:scripts": "npm run build",
+    "build:scripts": "webpack --hide-modules",
     "bump:dev": "bump prerelease",
     "bump:patch": "bump patch",
     "clean": "rimraf ./public/js/bundle.js & rimraf ./public/css/app.css",
     "clean:css": "rimraf ./public/css/app.css",
-    "post:build": "node ./scripts/post-build.js",
     "copy:assets": "node --verbose ./scripts/copy.js",
     "lint": "npm-run-all lint:sass lint:scripts",
     "lint:sass": "sass-lint \"./resources/assets/sass/*.s+(a|c)ss\" -q -v || true",
     "lint:scripts": "eslint \"./src/**/*.js\"",
     "lint:watch": "gulp watch:lint",
+    "post:build": "node ./scripts/post-build.js",
     "serve": "npm run start",
     "start": "php artisan serve --port 7000",
     "test": "npm run test:client",
@@ -32,7 +32,9 @@
     "test:client:watch": "npm run test:client -- --watch",
     "test:watch": "npm run test:client:watch",
     "tw": "npm run test:client:watch",
-    "watch": "gulp watch"
+    "watch": "npm-run-all watch:scripts watch:styles",
+    "watch:scripts": "webpack -w --hide-modules",
+    "watch:styles": "gulp watch:styles"
   },
   "devDependencies": {
     "@slightlytyler/webpack-shell-plugin": "0.4.5",
@@ -79,7 +81,8 @@
     "style-loader": "0.13.1",
     "stylelint": "7.8.0",
     "watch-ignore-webpack-plugin": "1.0.0",
-    "webpack": "2.2.1"
+    "webpack": "2.2.1",
+    "webpack-notifier": "1.5.0"
   },
   "dependencies": {
     "axios": "0.15.3",

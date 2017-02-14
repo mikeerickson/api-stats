@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>API Stats : {{ endpoint() }}</title>
+    <title>API Stats : {{ ucwords(endpoint()) }}</title>
 
     <!-- Styles -->
     <link rel="stylesheet" href="css/app.css"/>
