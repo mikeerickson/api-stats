@@ -12,6 +12,7 @@
 */
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Request;
 use App\Http\Controllers\API\ApiController;
 
@@ -50,6 +51,7 @@ Route::get('contact', function () {
 });
 
 Route::get('resource', function () {
+
 	$data = [
 		"qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"
 	];
@@ -87,10 +89,19 @@ function endpoint()
 	if($endpoint === '/') {
 		$endpoint = "Home";
 	}
+	$pos = strpos($endpoint, "?");
+
+	if($pos !== false) {
+		 $endpoint = substr($endpoint, 0, $pos);
+	}
+	if(strpos($endpoint, 'resource') !== false) {
+		$endpoint = "Endpoints";
+	}
 	return ucwords(str_replace("/","",$endpoint));
 }
 
-function isEndpoint($testEndpoint) {
+function isEndpoint($testEndpoint)
+{
 	return (strtolower(endpoint()) === strtolower($testEndpoint));
 }
 
@@ -104,6 +115,7 @@ function getQueryStringParam($qs, $key)
 	$parts = http_parse_query($qs);
 	return $parts[$key];
 }
+
 /**
  * Parses http query string into an array
  *

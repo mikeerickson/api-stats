@@ -28,5 +28,20 @@ div.message {
   }
 }
 
+ul.endpoint-list > li {
+  margin-bottom: 10px;
+}
+a.btn-endpoint:hover {
+  text-decoration: none;
+}
 
+a.btn-endpoint:focus {
+  text-decoration: none;
+}
+
+.api-response {
+  max-height: 350px;
+}
 @import 'sticky-footer';
+
+@import 'syntax-highlight';

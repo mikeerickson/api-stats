@@ -22,7 +22,6 @@
     <![endif]-->
 </head>
     <body>
-
         {{--Application Navbar (will appear on all pages--}}
         @include('navbar')
 
