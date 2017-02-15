@@ -54,7 +54,7 @@ class ApiController extends Controller
 		$this->endpoint    = $this->api->getEndpoint($request);
 
 		$this->query       = isset($this->queryString['q']) ? $this->queryString['q'] : '';
-		$this->limit       = isset($this->queryString['_limit']) ? $this->queryString['_limit'] : 10;
+		$this->limit       = isset($this->queryString['limit']) ? $this->queryString['limit'] : $this->api->trialLimit();
 		$this->token       = $this->api->getToken($request);
 
 		if($this->api->isTrialToken($this->token)) {

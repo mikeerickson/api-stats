@@ -26,7 +26,8 @@ class ApiVerifyEndpoint
 			'pitching',
 			'pitchers',
 			'teams',
-			'teamsfranchises'
+			'teamsfranchises',
+			'salaries',
 		];
     	$parts = explode("/", $request->getPathInfo());
 

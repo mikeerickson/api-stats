@@ -85,6 +85,7 @@ Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($rou
 	Route::resource('managers','API\ApiController');
 	Route::resource('parks','API\ApiController');
 	Route::resource('teams','API\ApiController');
+	Route::resource('salaries','API\ApiController');
 	Route::resource('teamsfranchises','API\ApiController');
 
 });

@@ -26,6 +26,7 @@
                         <li><a href="/resource?endpoint=managers">Managers</a></li>
                         <li><a href="/resource?endpoint=teams">Teams</a></li>
                         <li><a href="/resource?endpoint=parks">Parks</a></li>
+                        <li><a href="/resource?endpoint=salaries">Salaries</a></li>
                     </ul>
                 </li>
             </ul>

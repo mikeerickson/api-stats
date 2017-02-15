@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 
@@ -26,9 +25,9 @@ class ApiService
 
 		$this->queryString  = $request->query();
 		$this->request      = $request;
+		$this->trialLimit   = env('APP_TRIAL_LIMIT') or 10;
 		$this->query        = isset($this->queryString['q'])     ? $this->queryString['q'] : '';
-		$this->limit        = isset($this->queryString['limit']) ? $this->queryString['limit'] : 10;
-		$this->trialLimit   = 10;
+		$this->limit        = isset($this->queryString['limit']) ? $this->queryString['limit'] : $this->trialLimit;
 
 		$this->requestedUri = $request->getRequestUri();
 		$this->endpoint     = $this->getEndpoint($request);
