@@ -1,7 +1,6 @@
 /*global require, module*/
 
 const axios = require('axios');
-const $     = require('jquery');
 
 let endpoint = new Vue({
 	delimiters: ['{%', '%}'],
