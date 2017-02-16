@@ -44,6 +44,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
 
+        {{--Pull in vue from CDN--}}
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
         {{--Application bundle--}}
         <script src="js/bundle.js"></script>
 

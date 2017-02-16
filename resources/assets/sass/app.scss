@@ -34,11 +34,11 @@ div.message {
 ul.endpoint-list > li {
   margin-bottom: 10px;
 }
-a.btn-endpoint:hover {
+a.endpoint-link:hover {
   text-decoration: none;
 }
 
-a.btn-endpoint:focus {
+a.endpoint-link:focus {
   text-decoration: none;
 }
 
@@ -49,6 +49,25 @@ a.btn-endpoint:focus {
 .avatar {
   padding-top: 8px;
 }
+
+
+ul.v-endpoint-list {
+  list-style: none;
+  margin-left: 5px;
+  padding-left: 0;
+}
+
+ul.v-endpoint-list > li {
+  padding-left: 1em;
+  text-indent: -1em;
+  padding-bottom: 10px;
+}
+
+ul.v-endpoint-list > li:before {
+  content: '⚾️';
+  padding-right: 10px;
+}
+
 @import 'sticky-footer';
 
 @import 'syntax-highlight';
