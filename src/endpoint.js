@@ -1,6 +1,7 @@
 /*global require, module*/
 
 const axios = require('axios');
+const msg   = require('cd-messenger');
 
 let endpoint = new Vue({
 	delimiters: ['{%', '%}'],
@@ -85,7 +86,7 @@ let endpoint = new Vue({
 		},
 	},
 	mounted() {
-		console.log('Vue Container Ready');
+		msg.success(' === Vue Container Ready === ');
 	}
 });
 
