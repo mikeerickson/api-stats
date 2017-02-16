@@ -3,6 +3,8 @@
 const axios = require('axios');
 const msg   = require('cd-messenger');
 
+Vue.component('endpoint', require('./components/Endpoint.vue'));
+
 let endpoint = new Vue({
 	delimiters: ['{%', '%}'],
 	el: '#v-resource',

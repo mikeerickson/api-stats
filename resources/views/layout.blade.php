@@ -21,7 +21,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-    <body>
+    <body id="app">
         {{--Application Navbar (will appear on all pages--}}
         @include('navbar')
 

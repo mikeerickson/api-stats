@@ -1374,6 +1374,8 @@ module.exports = function(module) {
 var axios = __webpack_require__(17);
 var msg = __webpack_require__(15);
 
+Vue.component('endpoint', __webpack_require__(62));
+
 var endpoint = new Vue({
 	delimiters: ['{%', '%}'],
 	el: '#v-resource',
@@ -1482,7 +1484,7 @@ module.exports = {
 	"name": "api-stats",
 	"appname": "Baseball Stats API",
 	"private": true,
-	"version": "0.0.1-dev.623",
+	"version": "0.0.1-dev.625",
 	"scripts": {
 		"build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
 		"build:css": "bash ./scripts/build-sass.sh",
@@ -4447,6 +4449,12 @@ var messenger = __webpack_require__(15);
 var endpoint = __webpack_require__(14); // using via public/js/bundle.js
 
 messenger.success(' === ' + pkgInfo.appname + ' v' + pkgInfo.version + ' === ');
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports) {
+
+throw new Error("Module parse failed: /Users/mikee/Documents/Projects/dev/laravel/api-stats/src/components/Endpoint.vue Unexpected token (1:0)\nYou may need an appropriate loader to handle this file type.\n| <template>\n|     <div class=\"container\">\n|         <div class=\"row\">");
 
 /***/ })
 /******/ ]);
