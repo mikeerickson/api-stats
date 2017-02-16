@@ -6,4 +6,4 @@ const endpoint  = require('./endpoint');
 
 messenger.success('=== ' + pkgInfo.name + ' v' + pkgInfo.version + ' ===');
 
-endpoint.init();
+// endpoint.init();
