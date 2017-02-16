@@ -38,13 +38,13 @@
 
                 <div class="links">
                     <a href="/">Home</a>
-                    <a href="api/v1/players?{{ $data['qs'] }}">Players</a>
-                    <a href="api/v1/batting?{{ $data['qs'] }}">Batting</a>
-                    <a href="api/v1/pitching?{{ $data['qs'] }}">Pitching</a>
-                    <a href="api/v1/fielding?{{ $data['qs'] }}">Fielding</a>
-                    <a href="api/v1/managers?{{ $data['qs'] }}">Managers</a>
-                    <a href="api/v1/parks?{{ $data['qs'] }}">Parks</a>
-                    <a href="api/v1/teams?{{ $data['qs'] }}">Teams</a>
+                    <a href="api/v1/players?">Players</a>
+                    <a href="api/v1/batting?">Batting</a>
+                    <a href="api/v1/pitching?">Pitching</a>
+                    <a href="api/v1/fielding?">Fielding</a>
+                    <a href="api/v1/managers?">Managers</a>
+                    <a href="api/v1/parks?">Parks</a>
+                    <a href="api/v1/teams?">Teams</a>
                 </div>
 
             </div>

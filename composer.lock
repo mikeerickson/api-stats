@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d9d797b74ab20608acf5ba2785015f49",
+    "content-hash": "a974fda2c0145f6c7d21271ca6dfe16c",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -139,6 +139,50 @@
             ],
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30T15:22:37+00:00"
+        },
+        {
+            "name": "creativeorange/gravatar",
+            "version": "1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/creativeorange/gravatar.git",
+                "reference": "06cfcd2754fe0678298da1d244ab17231368d291"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/creativeorange/gravatar/zipball/06cfcd2754fe0678298da1d244ab17231368d291",
+                "reference": "06cfcd2754fe0678298da1d244ab17231368d291",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "5.*",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Creativeorange\\Gravatar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jaco Tijssen",
+                    "email": "jaco@creativeorange.nl",
+                    "homepage": "https://www.creativeorange.nl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel 5.0, 5.1, 5.2 and 5.3 gravatar package for retrieving gravatar image URLs or checking the existance of an image.",
+            "keywords": [
+                "avatar",
+                "gravatar",
+                "laravel"
+            ],
+            "time": "2016-07-27T16:49:05+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

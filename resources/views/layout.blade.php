@@ -28,6 +28,14 @@
         {{--Any flash messages will appear here--}}
         @include('message')
 
+        @if(!Auth::check())
+            <div class="text-center">
+                @if (isEndpoint('home'))
+                    <a class="btn btn-lg btn-success" href="register" role="button">Sign Up Now!</a>
+                @endif
+            </div>
+        @endif
+
         <div id="content" class="content">
             @yield('content')
         </div>

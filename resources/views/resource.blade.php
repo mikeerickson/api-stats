@@ -16,9 +16,7 @@
         <li class="endpoint-item"><a href="#" x-data-request="DELETE" class="btn-endpoint"><b>DELETE</b> {{ $endpoint }}/1</a></li>
     </ul>
     <hr />
-    <h3>Results</h3>
+    <h3>Results</h3>.
     <p>API Endpoint Response</p>
-    <pre id="response" class="api-response hide">
-
-    </pre>
+    <pre id="response" class="api-response hide"></pre>
 @stop

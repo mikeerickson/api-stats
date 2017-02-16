@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Models\User;
+use App\User;
 use Colors\Color;
 
 
@@ -21,7 +21,7 @@ class UsersTableSeeder extends Seeder
 
 		User::create([
 			'name'     => 'Mike Erickson',
-			'email'    => 'codedungeon@gmail.com',
+			'email'    => 'mike.erickson@mac.com',
 			'password' => bcrypt('mkjbbtrsh10')
 		]);
 

@@ -1,31 +1,31 @@
 @extends('layout')
 
 @section('content')
-    <div id="login-form">
-        <h1>Login</h1>
-        <form>
+    <div class="col-md-3">
 
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="Please supply email address">
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password">
-            </div>
-            <button type="submit" class="btn btn-default">Login</button>
-        </form>
     </div>
 
-    <style id="contact-form">
-        form > button.btn-default {
+    <div class="col-md-6">
+        <div id="login-form">
+            <h1>Login</h1>
+            <form action="/login" method="POST">
 
-        }
-        .error {
-            border: 1px solid red;
-        }
-        .valid {
-            border: 1px solid green;
-        }
-    </style>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password">
+                </div>
+                <button type="submit" class="btn btn-default">Login</button>
+                <p>
+                    <br />
+                    If you don't have an account, please <a href="register">register</a> to gain full access.
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div class="col-md-3"></div>
 @stop

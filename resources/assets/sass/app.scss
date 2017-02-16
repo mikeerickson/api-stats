@@ -26,6 +26,9 @@ div.message {
   p.tagline {
     font-size: 18px;
   }
+  p.tagline-small {
+    font-size: 14px;
+  }
 }
 
 ul.endpoint-list > li {
@@ -41,6 +44,10 @@ a.btn-endpoint:focus {
 
 .api-response {
   max-height: 450px;
+}
+
+.avatar {
+  padding-top: 8px;
 }
 @import 'sticky-footer';
 

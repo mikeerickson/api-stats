@@ -1,20 +1,12 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
+use App\User;
 use Illuminate\Routing\Router;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Request;
-use App\Http\Controllers\API\ApiController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
+// ================================================================================================================
+// API MIDDLEWARE
 
 $middleware = [
 	'api.logger',
@@ -27,53 +19,96 @@ Route::group(['middleware' => 'api'], function(Router $router){
 	$router->get('cors-test', 'CorsController@index');
 });
 
-
+// ================================================================================================================
+// APPLICATION ROUTES
 
 Route::get('/', function () {
-	$data = [
-		"qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"
-	];
-	return view('home')->with('data', $data);
+	return view('home');
+})->name('index');
+
+Route::get('home', function() {
+	return view('home');
 });
 
 Route::get('about', function () {
-	$data = [
-		"qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"
-	];
-	return view('about')->with('data', $data);
-});
+	return view('about');
+})->name('about');
 
 Route::get('contact', function () {
-	$data = [
-		"qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"
-	];
-	return view('contact')->with('data', $data);
-});
+	return view('contact');
+})->name('contact');
 
 Route::get('resource', function () {
+	if(Auth::check()) {
+		return view('resource')
+			->with('endpoint', getEndpoint($_SERVER['QUERY_STRING']));
+	} else {
+		flash('Please login and try again.  If you don\'t have an account, please <a href="register">register</a> to gain full access');
+		return redirect('login');
+	}
 
-	$data = [
-		"qs" => "token=c3be77b4-c9f1-3109-8729-e6704c93ef41&debug=true"
-	];
-	return view('resource')
-		->with('data', $data)
-		->with('endpoint', getEndpoint($_SERVER['QUERY_STRING']));
 });
+
+// ================================================================================================================
+// AUTHENTICATION (login, logout)
 
 Route::get('login', function () {
 	return view('login');
+})->name('login');
+
+Route::post('login', function(Request $request) {
+
+	$email    = $request->input("email");
+	$password = $request->input("password");
+
+	if (Auth::attempt(["email" => $email, "password" => $password], true, true)) {
+		return redirect("home");
+	} else {
+		flash("Invalid E-Mail or Password, please try again.","danger");
+		return redirect('login')->withInput($request->input());
+	}
 });
 
 Route::get('logout', function () {
 	Auth::logout();
-	return view('/');
-});
+	return redirect('home');
+})->name('logout');
+
+// ================================================================================================================
+// REGISTER (register)
 
 Route::get('register', function () {
 	return view('register');
+})->name('register');
+
+Route::post('register', function (Request $request) {
+	$data = $request->input();
+
+	if($data['password'] === $data['passwordconfirm']) {
+		try {
+			$newData = $data;
+			unset($newData['passwordconfirm']);
+			$newData['password'] = bcrypt($newData['password']);
+			$result = User::create($newData);
+		} catch(Exception $e) {
+			flash($e->errorInfo[2],'danger');
+			return redirect('register');
+		}
+		if($result) {
+			Auth::attempt(["email" => $data['email'], "password" => $data['password']], true, true);
+			return redirect('home');
+		}
+	}
+	flash('Passwords Must Match', 'danger');
+	return redirect('register');
 });
 
-Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($route) {
+
+// ================================================================================================================
+// API ROUTES
+// ================================================================================================================
+
+Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function () {
 
 	Route::resource('appearances','API\ApiController');
 	Route::resource('batting','API\BattingController');
@@ -90,6 +125,9 @@ Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function ($rou
 
 });
 
+// ================================================================================================================
+// ROUTE HELPERS
+// ================================================================================================================
 
 function endpoint()
 {
@@ -144,60 +182,60 @@ function getQueryStringParam($qs, $key)
  * @return array
  */
 function http_parse_query($queryString, $argSeparator = '&', $decType = PHP_QUERY_RFC1738) {
-	$result             = array();
-	$parts              = explode($argSeparator, $queryString);
+	$result = array();
+	$parts  = explode($argSeparator, $queryString);
 
 	foreach ($parts as $part) {
 		list($paramName, $paramValue)   = explode('=', $part, 2);
 
 		switch ($decType) {
 			case PHP_QUERY_RFC3986:
-				$paramName      = rawurldecode($paramName);
-				$paramValue     = rawurldecode($paramValue);
+				$paramName  = rawurldecode($paramName);
+				$paramValue = rawurldecode($paramValue);
 				break;
 
 			case PHP_QUERY_RFC1738:
 			default:
-				$paramName      = urldecode($paramName);
-				$paramValue     = urldecode($paramValue);
+				$paramName  = urldecode($paramName);
+				$paramValue = urldecode($paramValue);
 				break;
 		}
 
 
 		if (preg_match_all('/\[([^\]]*)\]/m', $paramName, $matches)) {
-			$paramName      = substr($paramName, 0, strpos($paramName, '['));
-			$keys           = array_merge(array($paramName), $matches[1]);
+			$paramName = substr($paramName, 0, strpos($paramName, '['));
+			$keys      = array_merge(array($paramName), $matches[1]);
 		} else {
-			$keys           = array($paramName);
+			$keys      = array($paramName);
 		}
 
-		$target         = &$result;
+		$target = &$result;
 
 		foreach ($keys as $index) {
 			if ($index === '') {
 				if (isset($target)) {
 					if (is_array($target)) {
-						$intKeys        = array_filter(array_keys($target), 'is_int');
-						$index  = count($intKeys) ? max($intKeys)+1 : 0;
+						$intKeys = array_filter(array_keys($target), 'is_int');
+						$index   = count($intKeys) ? max($intKeys)+1 : 0;
 					} else {
 						$target = array($target);
 						$index  = 1;
 					}
 				} else {
-					$target         = array();
-					$index          = 0;
+					$target = array();
+					$index  = 0;
 				}
 			} elseif (isset($target[$index]) && !is_array($target[$index])) {
 				$target[$index] = array($target[$index]);
 			}
 
-			$target         = &$target[$index];
+			$target = &$target[$index];
 		}
 
 		if (is_array($target)) {
-			$target[]   = $paramValue;
+			$target[] = $paramValue;
 		} else {
-			$target     = $paramValue;
+			$target   = $paramValue;
 		}
 	}
 
