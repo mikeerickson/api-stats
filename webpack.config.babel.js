@@ -12,7 +12,7 @@ const isProd  = (process.env.ENV === 'production') || (process.env.NODE_ENV === 
 const isDev   = !isProd;
 
 const webpackConfig = {
-	entry: path.join(__dirname,'src','index.js'),
+	entry: path.join(__dirname,'src','js','index.js'),  // use config
 	output: {
 		path: './public/js',
 		filename: 'bundle.js'
@@ -20,8 +20,29 @@ const webpackConfig = {
 	module: {
 		rules: [
 			{test: /(\.scss|\.sass)$/, loaders: ['style-loader','css-loader', 'sass-loader'], exclude: /(node_modules)/},
-			{test: /(\.jsx|\.js)$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /(node_modules)/}
-		]
+			{test: /(\.jsx|\.js)$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /(node_modules)/},
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
+        options: {
+          loaders: {
+            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+            // the "scss" and "sass" values for the lang attribute to the right configs here.
+            // other preprocessors should work out of the box, no loader config like this necessary.
+            'scss': 'vue-style-loader!css-loader!sass-loader',
+            'sass': 'vue-style-loader!css-loader!sass-loader?indentedSyntax'
+          }
+          // other vue-loader options go here
+        }
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]?[hash]'
+        }
+      }
+    ]
 	},
 	plugins: [
 		new WebpackNotifierPlugin({
@@ -30,7 +51,12 @@ const webpackConfig = {
 			sound:   true,
 			message: `${config.output.scriptPath}/bundle.js Created Successfully`
 		}),
-	]
+	],
+  resolve: {
+	  alias: {
+	    'vue$': 'vue/dist/vue.common.js'
+    }
+  }
 }
 
 if (isDev) {

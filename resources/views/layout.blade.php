@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Baseball Stats API">
+    <meta name="author" content="Mike Erickson">
     <link rel="icon" href="../../favicon.ico">
 
     <title>API Stats : {{ ucwords(endpoint()) }}</title>
@@ -22,12 +22,14 @@
     <![endif]-->
 </head>
     <body id="app">
+
         {{--Application Navbar (will appear on all pages--}}
         @include('navbar')
 
         {{--Any flash messages will appear here--}}
         @include('message')
 
+        {{--Configure Authentication--}}
         @if(!Auth::check())
             <div class="text-center">
                 @if (isEndpoint('home'))
@@ -36,6 +38,12 @@
             </div>
         @endif
 
+        {{--Vue Application Component --}}
+        <div id="v-app">
+            {{--<example></example>--}}
+        </div>
+
+        {{--Laravel Controlled Output--}}
         <div id="content" class="content">
             @yield('content')
         </div>

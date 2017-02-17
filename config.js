@@ -10,12 +10,12 @@ const config = {
 		warn: core.cliIconWarn
 	},
 	entry: {
-		filename: './src/index.js'
+		filename: './src/js/index.js'
 	},
 	scripts: {
 		server: ['./**/*.php'],
-		client: ['./src/**/*.js', './tasks/**/*.js', './specs/**/*.spec.js'],
-		sass:   ['./resources/assets/sass/**/*.s+(a|c)ss'],
+		client: ['./src/js/**/*.js', './tasks/**/*.js', './specs/**/*.spec.js'],
+		sass:   ['./src/sass/**/*.s+(a|c)ss'],
 		specs:  ['./specs/**/*.js'],
 	},
 	output: {

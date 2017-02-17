@@ -1,3 +1,4 @@
+/*global require*/
 
 console.log('test')
 /**

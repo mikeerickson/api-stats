@@ -3,13 +3,11 @@
 const axios = require('axios');
 const msg   = require('cd-messenger');
 
-Vue.component('endpoint', require('./components/Endpoint.vue'));
-
 let endpoint = new Vue({
 	delimiters: ['{%', '%}'],
 	el: '#v-resource',
 	data: {
-		result: 'Select Endpoint From List Above ...'
+		result: 'Select Endpoint From List Above...'
 	},
 	methods: {
 		handleRequest(evt, request) {
@@ -88,7 +86,7 @@ let endpoint = new Vue({
 		},
 	},
 	mounted() {
-		msg.success(' === Vue Container Ready === ');
+		// msg.success(' === Vue Container Ready === ');
 	}
 });
 

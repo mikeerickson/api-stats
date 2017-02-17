@@ -69,6 +69,32 @@ ul.v-endpoint-list > li:before {
   padding-right: 10px;
 }
 
+.home-endpoints > a, .home-docs > a {
+  color: #636b6f;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+div.home-endpoints, div.home-docs {
+  margin-top: 40px;
+}
+
+@media (max-width: 1630px) {
+  div.home-endpoints {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    display: none;
+  }
+}
+
 @import 'sticky-footer';
 
 @import 'syntax-highlight';
