@@ -1,0 +1,31 @@
+/* override jumbotron background color to match site */
+.jumbotron {
+  background: #f3f7f9;
+  p.tagline {
+    font-size: 18px;
+  }
+  p.tagline-small {
+    font-size: 14px;
+    color: darkgreen;
+  }
+}
+
+.home-endpoints > a, .home-docs > a {
+  color: #636b6f;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+div.home-endpoints, div.home-docs {
+  margin-top: 40px;
+}
+
+@media (max-width: 1630px) {
+  div.home-endpoints {
+    display: none;
+  }
+}

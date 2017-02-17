@@ -1,4 +1,3 @@
-
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
 
@@ -8,11 +7,9 @@
 // Bootstrap
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
-div.message {
-  margin-left: 10px;
-  margin-right: 10px;
-  font-weight: bold;
-}
+// Notification Banner (Message)
+@import 'message';
+
 
 .content {
   //border: 1px solid green;
@@ -20,81 +17,10 @@ div.message {
   padding: 20px;
 }
 
-/* override jumbotron background color to match site */
-.jumbotron {
-  background: #f3f7f9;
-  p.tagline {
-    font-size: 18px;
-  }
-  p.tagline-small {
-    font-size: 14px;
-    color: darkgreen;
-  }
-}
-
-ul.endpoint-list > li {
-  margin-bottom: 10px;
-}
-a.endpoint-link:hover {
-  text-decoration: none;
-}
-
-a.endpoint-link:focus {
-  text-decoration: none;
-}
-
-.api-response {
-  max-height: 450px;
-}
-
-.avatar {
-  padding-top: 8px;
-}
-
-
-ul.v-endpoint-list {
-  list-style: none;
-  margin-left: 5px;
-  padding-left: 0;
-}
-
-ul.v-endpoint-list > li {
-  padding-left: 1em;
-  text-indent: -1em;
-  padding-bottom: 10px;
-}
-
-ul.v-endpoint-list > li:before {
-  content: '⚾️';
-  padding-right: 10px;
-}
-
-.home-endpoints > a, .home-docs > a {
-  color: #636b6f;
-  padding: 0 10px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-decoration: none;
-  text-transform: uppercase;
-}
-
-div.home-endpoints, div.home-docs {
-  margin-top: 40px;
-}
-
-@media (max-width: 1630px) {
-  div.home-endpoints {
-    display: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .avatar {
-    display: none;
-  }
-}
-
-@import 'sticky-footer';
-
-@import 'syntax-highlight';
+//Import section styles (used by Laravel resource/views)
+@import 'navbar';
+@import 'resource';
+@import 'contact';
+@import 'about';
+@import 'home';
+@import 'footer';

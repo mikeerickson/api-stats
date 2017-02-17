@@ -1,0 +1,34 @@
+ul.endpoint-list > li {
+  margin-bottom: 10px;
+}
+a.endpoint-link:hover {
+  text-decoration: none;
+}
+
+a.endpoint-link:focus {
+  text-decoration: none;
+}
+
+.api-response {
+  max-height: 450px;
+}
+
+
+ul.v-endpoint-list {
+  list-style: none;
+  margin-left: 5px;
+  padding-left: 0;
+}
+
+ul.v-endpoint-list > li {
+  padding-left: 1em;
+  text-indent: -1em;
+  padding-bottom: 10px;
+}
+
+ul.v-endpoint-list > li:before {
+  content: '⚾️';
+  padding-right: 10px;
+}
+
+@import 'syntax-highlight';

@@ -10,7 +10,8 @@ const config = {
 		warn: core.cliIconWarn
 	},
 	entry: {
-		filename: './src/js/index.js'
+		filename: './src/js/index.js',
+    sass:     './src/sass/app.scss'
 	},
 	scripts: {
 		server: ['./**/*.php'],

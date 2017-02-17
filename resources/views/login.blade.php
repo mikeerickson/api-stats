@@ -18,7 +18,7 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" name="password" id="password">
                 </div>
-                <button type="submit" class="btn btn-default">Login</button>
+                <button type="submit" class="btn btn-default btn-primary">Login</button>
                 <p>
                     <br />
                     If you don't have an account, please <a href="register">register</a> to gain full access.

@@ -1,0 +1,9 @@
+.avatar {
+  padding-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .avatar {
+    display: none;
+  }
+}

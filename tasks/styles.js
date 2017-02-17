@@ -1,22 +1,23 @@
 /* global require*/
 
-const gulp   = require('gulp');
-const sass   = require('gulp-sass');
-const config = require('../config');
-const msg    = require('gulp-messenger');
-const chalk  = require('chalk');
-const notify = require('gulp-notify');
-const core   = require('cd-core');
+const gulp        = require('gulp');
+const sass        = require('gulp-sass');
+const config      = require('../config');
+const msg         = require('gulp-messenger');
+const chalk       = require('chalk');
+const notify      = require('gulp-notify');
+const core        = require('cd-core');
+const handleError = require('./utils/handleError'); // replaced sass.logError
 
 gulp.task('build:styles', () => {
-	gulp.src(config.scripts.sass)
+	gulp.src(config.entry.sass)
 		.pipe(sass({
 			outputStyle: 'compressed'
-		}).on('error', sass.logError))
+		}).on('error', handleError))
 		.pipe(gulp.dest(`${config.output.path}/css`))
 		.pipe(notify({
 			title: 'Sass/Styles Build',
-			message: `${config.output.path}/css/app.js Created Successfully`,
+			message: `${config.output.path}/css/app.css Created Successfully`,
 			icon: core.getPassIcon(),
 			sound: true
 		}))

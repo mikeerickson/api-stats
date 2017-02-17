@@ -7,6 +7,7 @@ import config from './config';
 import WebpackShellPlugin    from '@slightlytyler/webpack-shell-plugin';
 import WatchIgnorePlugin     from 'watch-ignore-webpack-plugin';
 import WebpackNotifierPlugin from 'webpack-notifier';
+import BrowserSyncPlugin     from 'browser-sync-webpack-plugin';
 
 const isProd  = (process.env.ENV === 'production') || (process.env.NODE_ENV === 'production');
 const isDev   = !isProd;
@@ -51,6 +52,19 @@ const webpackConfig = {
 			sound:   true,
 			message: `${config.output.scriptPath}/bundle.js Created Successfully`
 		}),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3001,
+      proxy: {
+        target: 'http://localhost:7000',
+        reqHeaders: () => {
+          return {
+            host: 'localhost:3001'
+          };
+        }
+      },
+      files: ['./public/**/*.*','./resources/views/*.php']
+    }),
 	],
   resolve: {
 	  alias: {
