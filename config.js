@@ -16,6 +16,7 @@ const config = {
 	scripts: {
 		server: ['./**/*.php'],
 		client: ['./src/js/**/*.js', './tasks/**/*.js', './specs/**/*.spec.js'],
+		php :   ['./app/**/*.php'],
 		sass:   ['./src/sass/**/*.s+(a|c)ss'],
 		specs:  ['./specs/**/*.js'],
 	},

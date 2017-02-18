@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+path: ./app/
+jobs: 10
+extensions:
+  - php
+exclude:
+  - vendor

@@ -7,10 +7,16 @@ const chalk  = require('chalk');
 
 const scriptFiles = config.scripts.client;
 const sassFiles   = config.scripts.sass;
+const phpFiles    = config.scripts.php;
 
 gulp.task('watch:scripts', ['build:scripts'], () => {
 	msg.note(`==> Watching Script Files (${scriptFiles})`);
 	gulp.watch(scriptFiles, ['build:scripts']);
+});
+
+gulp.task('watch:php', ['lint:php'], () => {
+  msg.note(`==> Watching PHP Files (${phpFiles})`);
+  gulp.watch(phpFiles, ['lint:php']);
 });
 
 gulp.task('watch:styles', ['lint:sass', 'build:styles'], () => {

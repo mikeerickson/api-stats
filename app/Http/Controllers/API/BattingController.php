@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 
 class BattingController extends ApiController
 {
-	protected $endpoint;
+    protected $endpoint;
 
-	function __construct(Request $request)
-	{
-		parent::__construct($request);
-		$this->endpoint = 'batting'; // override if user entered `batters`
-	}
+    public function __construct(Request $request)
+    {
+        parent::__construct($request);
+        $this->endpoint = 'batting'; // override if user entered `batters`
+    }
 }

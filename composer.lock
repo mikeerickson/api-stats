@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a974fda2c0145f6c7d21271ca6dfe16c",
+    "content-hash": "b23a583cd7584c894c1c50014b1ff25e",
     "packages": [
         {
             "name": "barryvdh/laravel-cors",
@@ -1377,6 +1377,55 @@
                 "php"
             ],
             "time": "2017-02-03T21:57:31+00:00"
+        },
+        {
+            "name": "overtrue/phplint",
+            "version": "0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overtrue/phplint.git",
+                "reference": "2fef65c21ca2ba97c5be9172de8ca8c9a335fcd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overtrue/phplint/zipball/2fef65c21ca2ba97c5be9172de8ca8c9a335fcd7",
+                "reference": "2fef65c21ca2ba97c5be9172de8ca8c9a335fcd7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9",
+                "symfony/console": "^2.7|^3.0",
+                "symfony/finder": "^2.7|^3.0",
+                "symfony/process": "^2.7|^3.0",
+                "symfony/yaml": "^2.7|^3.0"
+            },
+            "bin": [
+                "bin/phplint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overtrue\\PHPLint\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "overtrue",
+                    "email": "anzhengchao@gmail.com"
+                }
+            ],
+            "description": "a php syntax check tool.",
+            "keywords": [
+                "check",
+                "lint",
+                "phplint",
+                "syntax"
+            ],
+            "time": "2016-10-31T04:25:53+00:00"
         },
         {
             "name": "paragonie/random_compat",
