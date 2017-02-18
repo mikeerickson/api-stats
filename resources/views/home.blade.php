@@ -1,14 +1,14 @@
 @extends('layout')
 
 @section('content')
-    <div id="v-home" class="home v-cloak--hidden">
+    <div id="v-home" v-cloak>
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <!-- Main component for a primary marketing message or call to action -->
             <div class="jumbotron">
                 <div>
                     <h1>⚾&nbsp;&nbsp;Stats API</h1>
-                    <span class="v-cloak v-cloak--hidden">v{% version %}</span><br />
+                    <span>v{% version %}</span><br />
                 </div>
                 <h2>2015 Major League Baseball Stats</h2>
                 <p></p>

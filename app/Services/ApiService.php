@@ -75,7 +75,7 @@ class ApiService
         $response = [
             'status'      => ($data) ? "success" : "fail",
             'status_code' => ($data) ? 200 : 400,
-            'api_request' => $this->requestedUri
+            'api_request' => $this->request->method() . ' ' .$this->requestedUri
         ];
 
         if (sizeof($errors) > 0) {
