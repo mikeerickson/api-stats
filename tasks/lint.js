@@ -5,16 +5,13 @@ const eslint   = require('gulp-eslint');
 const config   = require('../config');
 const sassLint = require('gulp-sass-lint');
 const phplint  = require('gulp-phplint');
-const notify   = require('gulp-notify');
 const core     = require('cd-core');
-const exec     = require('gulp-exec');
 const execa    = require('execa');
 const chalk    = require('chalk');
 
 const NotificationCenter = require('node-notifier').NotificationCenter;
 
-const files    = config.scripts.client;
-const phpFiles = config.scripts.php;
+let files    = config.scripts.client;
 
 gulp.task('lint:scripts', () => {
 	return gulp.src(files)
@@ -30,14 +27,12 @@ gulp.task('lint:sass', () => {
 });
 
 gulp.task('lint:php', () => {
-  let errors = false;
 
   execa('bash', ['./scripts/lint-php.sh'],{stdio: 'inherit'})
     .then((result) => {
     })
     .catch((err) => {
     });
-
 
   var notifier = new NotificationCenter();
   notifier.notify({
