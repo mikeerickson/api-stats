@@ -1,3 +1,5 @@
+@import 'mixins/size';
+
 ul.endpoint-list > li {
   margin-bottom: 10px;
 }
@@ -13,6 +15,34 @@ a.endpoint-link:focus {
   max-height: 450px;
 }
 
+div.tree-view-wrapper {
+  border: 1px solid darkgrey;
+  @include border-radius();
+  background: lightyellow;
+  max-height: 400px;
+}
+
+.tree-view-item-value {
+  color: darkslategrey;
+  margin-right: 5px;
+  font-weight: normal;
+}
+
+.tree-view-item-key {
+  color: royalblue;
+  font-size: 14px;
+  font-weight: initial;
+}
+
+.tree-view-item-key-with-chevron {
+  color: green;
+  font-weight: initial;
+}
+
+.tree-view-item-key-with-chevron.opened {
+  color: orangered;
+  font-weight: normal;
+}
 
 ul.v-endpoint-list {
   list-style: none;

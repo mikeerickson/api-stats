@@ -2,12 +2,16 @@
 
 const axios = require('axios');
 const msg   = require('cd-messenger');
+const TreeView = require('vue-json-tree-view');
+
+Vue.use(TreeView);
 
 let endpoint = new Vue({
 	delimiters: ['{%', '%}'],
 	el: '#v-resource',
 	data: {
-		result: 'Select Endpoint From List Above...'
+		result: ['Select Endpoint From List Above...'],
+    tree: ['Select Endpoint From List Above...']
 	},
 	methods: {
 		handleRequest(evt, request) {
@@ -34,7 +38,8 @@ let endpoint = new Vue({
 				axios.get(url)
 					.then((response) => {
 						let output = (JSON.stringify(response.data, null, 2));
-						this.result = this.syntaxHighlight(output);
+						// this.result = this.syntaxHighlight(output);
+						this.tree = response.data;
 					})
 					.catch((err) => {
 						let errMsg = `Error:   ${err.response.data.error}\nMessage: ${err.response.data.message}`;

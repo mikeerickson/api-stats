@@ -2,7 +2,7 @@
   "name": "api-stats",
   "appname": "Baseball Stats API",
   "private": true,
-  "version": "0.0.1-dev.679",
+  "version": "0.0.1-dev.698",
   "scripts": {
     "build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
     "build:css": "bash ./scripts/build-sass.sh",
@@ -86,7 +86,7 @@
     "require-dir": "0.3.1",
     "run-all": "1.0.1",
     "sass-lint": "1.10.2",
-    "sass-loader": "6.0.0",
+    "sass-loader": "6.0.1",
     "style-loader": "0.13.1",
     "stylelint": "7.8.0",
     "vue-loader": "11.0.0",
@@ -99,6 +99,7 @@
     "axios": "0.15.3",
     "jquery": "3.1.1",
     "lodash": "4.17.4",
-    "vue": "2.1.10"
+    "vue": "2.1.10",
+    "vue-json-tree-view": "1.0.0"
   }
 }

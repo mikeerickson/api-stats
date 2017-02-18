@@ -3,6 +3,7 @@
 @section('content')
     <div id="v-resource">
 
+
         <div id="endpoint-list">
             <h3>{{ ucwords(str_singular($endpoint)) }} Endpoints</h3>
             <br />
@@ -21,10 +22,15 @@
             </ul>
         </div>
 
-        <div id="endpoint-results">
+        <div id="endpoint-tree">
             <h3>{{ ucwords(str_singular($endpoint)) }} Response</h3>
-            <pre id="v-response" v-html="result" class="api-response">
-            </pre>
+            {{--<pre v-html="result"></pre>--}}
+            <tree-view :data="tree" max-depth="3"></tree-view>
+        </div>
+
+        <div id="endpoint-results" class="hide">
+            <h3>{{ ucwords(str_singular($endpoint)) }} Response</h3>
+            {{--<pre id="v-response" v-html="result" class="api-response"></pre>--}}
         </div>
 
     </div>
