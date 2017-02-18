@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Batting extends Model
 {
-	protected $table = 'batting';
+    protected $table = 'batting';
+
+    public function player()
+    {
+        return $this->belongsTo(Player::class);
+    }
 }
