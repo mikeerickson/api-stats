@@ -1,8 +1,8 @@
 {
   "name": "api-stats",
-  "appname": "Baseball Stats API",
+  "appName": "Baseball Stats API",
   "private": true,
-  "version": "0.0.1-dev.698",
+  "version": "0.0.1-dev.719",
   "scripts": {
     "build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
     "build:css": "bash ./scripts/build-sass.sh",

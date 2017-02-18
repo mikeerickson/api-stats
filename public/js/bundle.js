@@ -1519,9 +1519,9 @@ module.exports = Component.exports
 
 module.exports = {
 	"name": "api-stats",
-	"appname": "Baseball Stats API",
+	"appName": "Baseball Stats API",
 	"private": true,
-	"version": "0.0.1-dev.698",
+	"version": "0.0.1-dev.718",
 	"scripts": {
 		"build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
 		"build:css": "bash ./scripts/build-sass.sh",
@@ -4613,14 +4613,48 @@ module.exports = g;
 var pkgInfo = __webpack_require__(17);
 var messenger = __webpack_require__(4);
 var endpoint = __webpack_require__(15); // using via public/js/bundle.js
+var home = __webpack_require__(66); // using via public/js/bundle.js
 
 messenger.success(' === ' + pkgInfo.appname + ' v' + pkgInfo.version + ' === ');
 
 Vue.component('example', __webpack_require__(16));
 
-var app = new Vue({
-  el: '#v-app'
+// const app = new Vue({
+//   el: '#v-app'
+// });
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*global require, module*/
+
+var pkgInfo = __webpack_require__(17);
+
+var home = new Vue({
+  delimiters: ['{%', '%}'],
+  el: '#v-home',
+  data: {
+    version: pkgInfo.version,
+    appName: pkgInfo.appName
+  },
+  methods: {
+    getVersion2: function getVersion2() {
+      return undefined.version;
+    },
+    getAppName: function getAppName() {
+      return undefined.appName;
+    }
+  },
+  computed: {
+    getVersion: function getVersion() {
+      return this.version;
+    }
+  },
+  mounted: function mounted() {}
 });
+
+module.exports = home;
 
 /***/ })
 /******/ ]);

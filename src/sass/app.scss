@@ -1,5 +1,12 @@
+[v-cloak] .v-cloak--hidden{
+  display: none;
+}
+
+// Include Mixins
+@import 'mixins/__index__';
+
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600');
+@include google-font('Raleway:300,400,600');
 
 // Variables
 @import 'variables';
@@ -7,17 +14,17 @@
 // Bootstrap
 @import 'node_modules/bootstrap-sass/assets/stylesheets/bootstrap';
 
-// Notification Banner (Message)
-@import 'message';
-
-
 .content {
-  //border: 1px solid green;
   margin: 20px;
   padding: 20px;
 }
 
+.version {
+  font-size: 14px;
+  font-weight: bold;
+}
 //Import section styles (used by Laravel resource/views)
+@import 'message';
 @import 'navbar';
 @import 'resource';
 @import 'contact';

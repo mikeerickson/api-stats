@@ -3,7 +3,7 @@
 @section('content')
     <div id="about" class="about">
         <div class="col-md-3">
-            <img src="images/profile.jpg">
+            <img class="author-profile" src="images/profile.jpg">
             <hr/>
             <p>
                 E-Mail: <a href="mailto:codedungeon@gmail.com">codedungeon@gmail.com</a>
