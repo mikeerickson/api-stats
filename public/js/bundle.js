@@ -864,7 +864,7 @@ module.exports = {
 	"name": "api-stats",
 	"appName": "Baseball Stats API",
 	"private": true,
-	"version": "0.0.1-dev.720",
+	"version": "0.0.1-dev.721",
 	"scripts": {
 		"build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
 		"build:css": "bash ./scripts/build-sass.sh",

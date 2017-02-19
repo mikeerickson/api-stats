@@ -6,10 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
 {
-    protected $table = 'player';
+    protected $table = 'players';
 
     public function batters()
     {
-        return $this->hasMany(Batting::class);
+        return $this->belongsTo(Batting::class, 'playerID', 'playerID');
+    }
+
+    public function pitchers()
+    {
+        return $this->belongsTo(Pitching::class, 'playerID', 'playerID');
     }
 }

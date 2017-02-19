@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\Batting;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -62,7 +63,25 @@ class ApiService
             }
         } else {
             try {
-                $data = DB::table($this->endpoint)->where('id', '=', $id)->first();
+                $model = "App\Models\\" . ucwords($this->endpoint);
+                if ($this->hasModel($model)) {
+                    $data = $model::with('player')
+                        ->where('playerID', '=', $id)
+                        ->where('yearID', '=', '2015')
+                        ->get();
+                } else {
+                    // insert yearID if not supplied
+                    if (!in_array($endpoint, $this->tablesWithoutYears)) {
+                        $data = DB::table($this->endpoint)
+                            ->where('playerID', '=', $id)
+                            ->where('yearID', '=', '2015')
+                            ->get();
+                    }
+
+                    $data = DB::table($this->endpoint)
+                        ->where('playerID', '=', $id)
+                        ->get();
+                }
             } catch (QueryException $e) {
                 $errors = [
                     'message' => 'Internal SQL Error',
@@ -244,5 +263,10 @@ class ApiService
     public function trialLimit()
     {
         return $this->trialLimit;
+    }
+
+    public function hasModel($model)
+    {
+        return class_exists($model);
     }
 }

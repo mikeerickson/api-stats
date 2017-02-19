@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Batting extends Model
+class Salaries extends Model
 {
-    protected $table = 'batting';
+    protected $table = 'salaries';
 
     public function player()
     {
         return $this->hasOne(Player::class, 'playerID', 'playerID');
     }
 }
+#!/usr/bin/env bash

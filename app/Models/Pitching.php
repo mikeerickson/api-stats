@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Batting extends Model
+class Pitching extends Model
 {
-    protected $table = 'batting';
+    protected $table = 'pitching';
 
     public function player()
     {

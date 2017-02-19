@@ -9,7 +9,7 @@
             <br />
             <ul class="v-endpoint-list">
                 <li class="endpoint-item"><a href="#" class="endpoint-link" @click="handleRequest($event, '{{ $endpoint }}/')"><b>GET</b> {{ $endpoint }}/</a></li>
-                <li class="endpoint-item"><a href="#" class="endpoint-link" @click="handleRequest($event, '{{ $endpoint }}/1')"><b>GET</b> {{ $endpoint }}/1</a></li>
+                <li class="endpoint-item"><a href="#" class="endpoint-link" @click="handleRequest($event, '{{ $endpoint }}/35')"><b>GET</b> {{ $endpoint }}/35</a></li>
                 @if(($endpoint === 'parks') || ($endpoint === 'players'))
                     {{--These endpoints do not contain a teamID--}}
                 @else
