@@ -1,8 +1,10 @@
 /*global require, module*/
 
-const axios = require('axios');
-const msg   = require('cd-messenger');
+const Vue      = require('vue');
+const axios    = require('axios');
+const msg      = require('cd-messenger');
 const TreeView = require('vue-json-tree-view');
+
 
 Vue.use(TreeView);
 
@@ -11,11 +13,11 @@ let endpoint = new Vue({
 	el: '#v-resource',
 	data: {
 		result: ['Select Endpoint From List Above...'],
-    tree: ['Select Endpoint From List Above...']
+    tree: ['Select Endpoint From List Above...'],
+    formData: { form: {fname: 'Mike'} }
 	},
 	methods: {
 		handleRequest(evt, request) {
-
 			let req = request;
 
 			// convert this to baseURL (remove up to endpoint)
@@ -31,7 +33,8 @@ let endpoint = new Vue({
 			url = this.addQueryStringItem(url, 'debug=true');
 
 			if ((/POST|PUT|PATCH|DELETE/.test(req))) {
-				this.result = (req + ' Action Not Supported In Demo');
+				this.result = req + ' Action Not Supported In Demo';
+				this.tree = { data: [this.result] };
 			}
 			else {
 				this.result = '';
@@ -40,6 +43,7 @@ let endpoint = new Vue({
 						let output = (JSON.stringify(response.data, null, 2));
 						// this.result = this.syntaxHighlight(output);
 						this.tree = response.data;
+						// this.formData = this.buildForm(response.data);
 					})
 					.catch((err) => {
 						let errMsg = `Error:   ${err.response.data.error}\nMessage: ${err.response.data.message}`;
@@ -89,10 +93,43 @@ let endpoint = new Vue({
 				return '<span class="' + cls + '">' + match + '</span>';
 			});
 		},
+    buildForm(response) {
+      return buildForm(response.data);
+    }
 	},
 	mounted() {
-		// msg.success(' === Vue Container Ready === ');
+		msg.success(' === Vue Container Ready === ');
 	}
 });
+
+function buildForm(data) {
+
+  if(data.length === 1) {
+    let model  = _model(Object.keys(data[0]));
+    let fields = _fields(Object.keys(data[0]));
+    return {form: {}, model, fields};
+  }
+  else {
+    return {form: {}, model: {}, fields: {}};
+  }
+
+
+  function _model(keys) {
+    let record = {};
+    keys.forEach((item) => {
+      record[item] = '';
+    });
+    return record;
+  }
+
+  function _fields(keys) {
+    let fields = [];
+    for (let i = 0; i <= keys.length; i++) {
+      fields.push({key: keys[i], type: 'input', required: true});
+    }
+    return fields;
+  }
+
+}
 
 module.exports = endpoint;

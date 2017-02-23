@@ -54,6 +54,7 @@
 
         {{--Pull in vue from CDN--}}
         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        {{--<script src="js/vue-formly.min.js"></script>--}}
 
         {{--Application bundle--}}
         <script src="js/bundle.js"></script>

@@ -63,7 +63,7 @@ class ApiService
             }
         } else {
             try {
-                $model = "App\Models\\" . ucwords($this->endpoint);
+                $model = "App\\Models\\" . ucwords($this->endpoint);
                 if ($this->hasModel($model)) {
                     $data = $model::with('player')
                         ->where('playerID', '=', $id)
@@ -71,7 +71,7 @@ class ApiService
                         ->get();
                 } else {
                     // insert yearID if not supplied
-                    if (!in_array($endpoint, $this->tablesWithoutYears)) {
+                    if (!in_array($this->endpoint, $this->tablesWithoutYears)) {
                         $data = DB::table($this->endpoint)
                             ->where('playerID', '=', $id)
                             ->where('yearID', '=', '2015')
