@@ -114,17 +114,27 @@ class ApiService
     public function put($id, $request)
     {
         $record = DB::table($this->endpoint)->find($id);
-        $id     = (isset($record->id)) ? $record->id : 0;
-        $data   = null;
 
-        if ($id > 0) {
+        $id       = (isset($record->id)) ? $record->id : 0;
+        $playerID = (isset($record->playerID)) ? $record->playerID : '0';
+        $data     = null;
+
+        if (($id > 0) || ($playerID !== '')) {
             $data = $request->all();
             unset($data['token']); // remove token in case it was supplied as part of form post
 
-            $result = DB::table($this->endpoint)
-                ->where('id', $id)
-                ->update($data);
+            if ($this->hasPlayerID($this->endpoint)) {
+                $result = DB::table($this->endpoint)
+                    ->where('id', $id)
+                    ->orWhere('playerID', $playerID)
+                    ->update($data);
+            } else {
+                $result = DB::table($this->endpoint)
+                    ->where('id', $id)
+                    ->update($data);
+            }
         }
+
         $response = [
             'status'      => ($data) ? "success" : "fail",
             'status_code' => ($data) ? 201 : 400,
@@ -263,6 +273,21 @@ class ApiService
     public function trialLimit()
     {
         return $this->trialLimit;
+    }
+
+    public function hasPlayerID($endpoint)
+    {
+        $noPlayerID = [
+            'homegames',
+            'parks',
+            'schools',
+            'seriespost',
+            'teams',
+            'teamsfranchises',
+            'teamshalf'
+        ];
+
+        return ! in_array($endpoint, $noPlayerID);
     }
 
     public function hasModel($model)

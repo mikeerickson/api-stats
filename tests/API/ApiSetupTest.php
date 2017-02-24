@@ -10,16 +10,14 @@ class ApiSetupTest extends ApiTestCase
     /** @test */
     public function init()
     {
-        $test_suite = "";
-        if ($ret = in_array('--testsuite', $_SERVER['argv'])) {
-            $test_suite = $_SERVER['argv'][2];
-        }
+        $repeat     = in_array('--repeat', $_SERVER['argv']);
+        $test_suite = in_array('--testsuite', $_SERVER['argv']) ? $_SERVER['argv'][2] : '';
 
         $LINE    = "======================================================================";
         $DB_NAME = env('DB_CONNECTION') === 'sqlite' ? env('DB_NAME') : env('DB_DATABASE');
 
-        if (env('APP_DEBUG')) {
-            echo "\n"; // do this so the initial test mark is not on same linke
+        if (env('APP_DEBUG') && !$repeat) {
+            echo "\n"; // do this so the initial test mark is not on same link
             echo Color::CYAN . $LINE . Color::LIGHT_GRAY. PHP_EOL;
             if ($test_suite !== "") {
                 echo Color::CYAN ."Test Suite:      " .Color::LIGHT_GREEN .$test_suite       .Color::LIGHT_GRAY. PHP_EOL;

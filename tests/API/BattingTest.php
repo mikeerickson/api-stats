@@ -117,6 +117,7 @@ class BattersTest extends ApiTestCase
             ->put('api/v1/batting/'.$id.'?token='.$this->token, $updateData);
 
         $data = json_decode($response->getContent());
+
         $response->assertStatus(201);
         $this->assertIsMatch($data->id, $id);
 
