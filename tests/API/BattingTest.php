@@ -8,11 +8,13 @@ use Tests\ApiTestCase;
 class BattersTest extends ApiTestCase
 {
     protected $token;
+    protected $endpoint;
 
     public function __construct()
     {
         parent::__construct();
-        $this->token = "mkjbbtrsh10";
+        $this->token    = "mkjbbtrsh10";
+        $this->endpoint = 'batting';
     }
 
     public function setUp()
@@ -32,6 +34,15 @@ class BattersTest extends ApiTestCase
     {
         $this->login()
             ->get('/');
+    }
+
+    /** @test */
+    public function it_should_not_have_hidden_field_in_schema()
+    {
+        $response = $this->get("/api/v1/{$this->endpoint}?q=schema&token=mkjbbtrsh10");
+        $data = $this->getResponseAsJson($response)->data;
+        $response->assertStatus(200);
+        $this->assertNotContains('stint', $data);
     }
 
     /** @test */

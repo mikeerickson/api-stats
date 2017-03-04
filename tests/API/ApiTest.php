@@ -8,6 +8,7 @@ use Tests\ApiTestCase;
 class ApiTest extends ApiTestCase
 {
     protected $valid_endpoints;
+
     protected $rate_limit;
 
     public function __construct()
@@ -24,6 +25,14 @@ class ApiTest extends ApiTestCase
             'Teams'
         ];
         $this->rate_limit = 60;
+    }
+
+
+    /** @test */
+    public function it_should_test_credentials()
+    {
+        $this->login();
+        $this->assertTrue(true);
     }
 
     public function test_api_root()
@@ -75,5 +84,24 @@ class ApiTest extends ApiTestCase
                 }
             }
         }
+    }
+
+    /** @test */
+    public function it_should_return_schema()
+    {
+        $response = $this->login()->get('/api/v1/batting?q=schema&token=mkjbbtrsh10');
+        $data = $this->getResponseAsJson($response)->data;
+        $response->assertStatus(200);
+        $this->assertTrue($data[6]->Field === 'AB');
+        $this->assertObjectHasAttribute('Field', $data[6]);
+    }
+
+    /** @test */
+    public function it_should_not_have_hidden_field_in_schema()
+    {
+        $response = $this->login()->get('/api/v1/players?q=schema&token=mkjbbtrsh10');
+        $data = $this->getResponseAsJson($response)->data;
+        $response->assertStatus(200);
+        $this->assertNotContains('deathYear', $data);
     }
 }

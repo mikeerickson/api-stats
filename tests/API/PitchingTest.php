@@ -11,9 +11,9 @@ class PitchingTest extends ApiTestCase
 
     protected $endpoint;
 
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function __construct()
     {
-        parent::__construct($name, $data, $dataName);
+        parent::__construct();
         $this->token = "mkjbbtrsh10";
         $this->endpoint = 'pitching';
     }

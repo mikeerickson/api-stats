@@ -17,6 +17,7 @@ class ApiService
     protected $limit;
     protected $token;
     protected $trialLimit;
+    protected $model;
 
     public function __construct(Request $request)
     {
@@ -210,6 +211,11 @@ class ApiService
         $values       = [];
         $errors       = [];
 
+        if ($q === 'schema') {
+            $result = $this->getSchema($this->endpoint);
+            return $result;
+        }
+
         // refactor this to use regex so users can supply delimiters
         // =, >, <, >=, <=, <>, #
         if ($q !== '') {
@@ -301,5 +307,22 @@ class ApiService
     public function hasModel($model)
     {
         return class_exists($model);
+    }
+
+    public function getSchema($tablename)
+    {
+        $result = DB::select("DESCRIBE {$this->endpoint}");
+        $model  = "App\\Models\\" . str_singular(ucwords($this->endpoint));
+        if ($this->hasModel($model)) {
+            $hidden = ((new $model)->getHidden());
+            $filtered = [];
+            foreach ($result as &$value) {
+                if (!in_array($value->Field, $hidden)) {
+                    $filtered[] = $value;
+                }
+            }
+            return $filtered;
+        }
+        return $result;
     }
 }
