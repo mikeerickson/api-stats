@@ -64,6 +64,18 @@ class BattersTest extends ApiTestCase
         $this->assertTrue($data[0]->playerID === 'alvarjo02');
     }
 
+    /** @test */
+    public function it_should_show_player_data()
+    {
+        $response = $this->login()
+            ->get('api/v1/batting?q=teamID:LAA&token=' .$this->token);
+
+        $response->assertStatus(200);
+        $data = $this->getResponseAsJson($response)->data;
+        $this->assertTrue($data[0]->player->nameLast === 'Alvarez');
+    }
+
+
     /** @test  */
     public function it_should_see_dodgers_batters()
     {

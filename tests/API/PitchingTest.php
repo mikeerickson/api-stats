@@ -7,118 +7,126 @@ use Tests\ApiTestCase;
 
 class PitchingTest extends ApiTestCase
 {
+    protected $token;
 
-	protected $token;
+    protected $endpoint;
 
-	protected $endpoint;
+    public function __construct($name = null, array $data = [], $dataName = '')
+    {
+        parent::__construct($name, $data, $dataName);
+        $this->token = "mkjbbtrsh10";
+        $this->endpoint = 'pitching';
+    }
 
-	public function __construct($name = null, array $data = [], $dataName = '')
-	{
-		parent::__construct($name, $data, $dataName);
-		$this->token = "mkjbbtrsh10";
-		$this->endpoint = 'pitching';
-	}
+    public function setUp()
+    {
+        parent::setUp();
+        DB::beginTransaction();
+    }
 
-	public function setUp()
-	{
-		parent::setUp();
-		DB::beginTransaction();
-	}
+    public function tearDown()
+    {
+        DB::rollBack();
+        parent::tearDown();
+    }
 
-	public function tearDown()
-	{
-		DB::rollBack();
-		parent::tearDown();
-	}
+    /** @test */
+    public function it_should_show_pitchers()
+    {
+        $response = $this->login()
+            ->get('/api/v1/' .$this->endpoint .'?token=' .$this->token);
+        $this->responseShouldHave($response, 'playerID', 'aardsda01');
+        return $this;
+    }
 
-	/** @test */
-	public function it_should_show_pitchers()
-	{
-		$response = $this->login()
-			->get('/api/v1/' .$this->endpoint .'?token=' .$this->token);
-		$this->responseShouldHave($response, 'playerID', 'aardsda01');
-		return $this;
-	}
+    /** @test */
+    public function it_should_show_specific_team()
+    {
+        $response = $this->login()
+            ->get('api/v1/' .$this->endpoint .'?q=teamID:LAA&token=' .$this->token);
 
-	/** @test */
-	public function it_should_show_specific_team()
-	{
-		$response = $this->login()
-			->get('api/v1/' .$this->endpoint .'?q=teamID:LAA&token=' .$this->token);
+        $response->assertStatus(200);
+        $data = $this->getResponseAsJson($response)->data;
+        $this->assertTrue($data[0]->playerID === 'alvarjo02');
+    }
 
-		$response->assertStatus(200);
-		$data = $this->getResponseAsJson($response)->data;
-		$this->assertTrue($data[0]->playerID === 'alvarjo02');
-	}
+    /** @test */
+    public function it_should_show_player_data()
+    {
+        $response = $this->login()
+            ->get('api/v1/pitching?q=teamID:LAA&token=' .$this->token);
 
-	/** @test  */
-	public function it_should_see_dodgers_pitchers()
-	{
-		$response = $this->login()
-			->get('api/v1/' .$this->endpoint .'/?q=teamID:LAN&token=' .$this->token);
+        $response->assertStatus(200);
+        $data = $this->getResponseAsJson($response)->data;
+        $this->assertTrue($data[0]->player->nameLast === 'Alvarez');
+    }
 
-		$data = $this->getResponseAsJson($response)->data;
-		$this->assertIsMatch($data[0]->G, '31');
-		$this->assertIsMatch($data[0]->W,  '10');
 
-		$arrData = (array)$data[0];
-		$this->assertIsMatch($arrData['ERA'], '3.69');
-		$this->assertIsMatch($arrData['SH'], '3');
-		$this->assertIsMatch($arrData['BB'], '46');
-		$this->assertIsMatch($arrData['R'], '82');
+    /** @test  */
+    public function it_should_see_dodgers_pitchers()
+    {
+        $response = $this->login()
+            ->get('api/v1/' .$this->endpoint .'/?q=teamID:LAN&token=' .$this->token);
 
-	}
+        $data = $this->getResponseAsJson($response)->data;
+        $this->assertIsMatch($data[0]->G, '31');
+        $this->assertIsMatch($data[0]->W, '10');
 
-	/** @test  */
-	public function it_should_create_pitcher()
-	{
-		$data = $this->createMockPitcher();
+        $arrData = (array)$data[0];
+        $this->assertIsMatch($arrData['ERA'], '3.69');
+        $this->assertIsMatch($arrData['SH'], '3');
+        $this->assertIsMatch($arrData['BB'], '46');
+        $this->assertIsMatch($arrData['R'], '82');
+    }
 
-		$response = $this->login()
-			->post('api/v1/' .$this->endpoint .'?token=' .$this->token, $data);
+    /** @test  */
+    public function it_should_create_pitcher()
+    {
+        $data = $this->createMockPitcher();
 
-		$this->assertArrayHasKey("id",$response->getOriginalContent());
+        $response = $this->login()
+            ->post('api/v1/' .$this->endpoint .'?token=' .$this->token, $data);
 
-		return $response->getOriginalContent()["id"];
-	}
+        $this->assertArrayHasKey("id", $response->getOriginalContent());
 
-	/** @test  */
-	public function it_should_delete_pitcher()
-	{
-		$id = $this->it_should_create_pitcher();
-		$response = $this->login()
-			->delete('api/v1/' .$this->endpoint .'/' .$id .'?token=mkjbbtrsh10');
-		$response->assertStatus(200);
+        return $response->getOriginalContent()["id"];
+    }
 
-		$this->assertArrayHasKey("id",$response->getOriginalContent());
+    /** @test  */
+    public function it_should_delete_pitcher()
+    {
+        $id = $this->it_should_create_pitcher();
+        $response = $this->login()
+            ->delete('api/v1/' .$this->endpoint .'/' .$id .'?token=mkjbbtrsh10');
+        $response->assertStatus(200);
 
-	}
+        $this->assertArrayHasKey("id", $response->getOriginalContent());
+    }
 
-	/** @test  */
-	public function it_should_update_pitcher_info()
-	{
-		$id = $this->it_should_create_pitcher();
+    /** @test  */
+    public function it_should_update_pitcher_info()
+    {
+        $id = $this->it_should_create_pitcher();
 
-		$updateData = ['HR' => '23'];
-		$response = $this->login()
-			->put('api/v1/batting/'.$id.'?token='.$this->token, $updateData);
+        $updateData = ['HR' => '23'];
+        $response = $this->login()
+            ->put('api/v1/batting/'.$id.'?token='.$this->token, $updateData);
 
-		$data = json_decode($response->getContent());
-		$response->assertStatus(201);
-		$this->assertIsMatch($data->id, $id);
+        $data = json_decode($response->getContent());
+        $response->assertStatus(201);
+        $this->assertIsMatch($data->id, $id);
 
-		// cleanup after ourselves
-		$this->delete('api/v1/batting/' .$id .'?token=mkjbbtrsh10');
+        // cleanup after ourselves
+        $this->delete('api/v1/batting/' .$id .'?token=mkjbbtrsh10');
+    }
 
-	}
-
-	protected function createMockPitcher() {
-		return [
-			"playerID" => "erickmi01",
-			"yearID" => 2015,
-			"W" => 22,
-			"L" => 5
-		];
-	}
-
+    protected function createMockPitcher()
+    {
+        return [
+            "playerID" => "erickmi01",
+            "yearID" => 2015,
+            "W" => 22,
+            "L" => 5
+        ];
+    }
 }

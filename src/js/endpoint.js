@@ -5,7 +5,6 @@ const axios    = require('axios');
 const msg      = require('cd-messenger');
 const TreeView = require('vue-json-tree-view');
 
-
 Vue.use(TreeView);
 
 let endpoint = new Vue({

@@ -2,7 +2,6 @@
 
 namespace App\Services;
 
-use App\Models\Batting;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
@@ -218,6 +217,7 @@ class ApiService
                 list($keys[], $values[]) = explode(':', $param);
             }
         }
+
         // build where clause
         for ($i = 0; $i < sizeof($keys); $i++) {
             if ($keys[$i] === 'yearID') {
@@ -233,17 +233,25 @@ class ApiService
             }
         }
 
-        try {
-            $result = DB::table($endpoint)
+        $model = "App\\Models\\" . ucwords($this->endpoint);
+        if ($this->hasModel($model)) {
+            $result = $model::with('player')
                 ->where($whereClause)
                 ->limit($limit)
                 ->get();
-        } catch (QueryException $e) {
-            $errors = [
-                'status'  => 'SQL Error',
-                'message' => 'Internal SQL Error',
-                'sql'     => $e->getMessage(),
-            ];
+        } else {
+            try {
+                $result = DB::table($endpoint)
+                    ->where($whereClause)
+                    ->limit($limit)
+                    ->get();
+            } catch (QueryException $e) {
+                $errors = [
+                    'status'  => 'SQL Error',
+                    'message' => 'Internal SQL Error',
+                    'sql'     => $e->getMessage(),
+                ];
+            }
         }
 
         if (sizeof($errors) > 0) {

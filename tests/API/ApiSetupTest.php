@@ -13,7 +13,7 @@ class ApiSetupTest extends ApiTestCase
         $repeat     = in_array('--repeat', $_SERVER['argv']);
         $test_suite = in_array('--testsuite', $_SERVER['argv']) ? $_SERVER['argv'][2] : '';
 
-        $LINE    = "======================================================================";
+        $LINE    = str_repeat('=', (int)exec('tput cols'));
         $DB_NAME = env('DB_CONNECTION') === 'sqlite' ? env('DB_NAME') : env('DB_DATABASE');
 
         if (env('APP_DEBUG') && !$repeat) {
