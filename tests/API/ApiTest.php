@@ -29,7 +29,7 @@ class ApiTest extends ApiTestCase
 
 
     /** @test */
-    public function it_should_test_credentials()
+    public function test_credentials()
     {
         $this->login();
         $this->assertTrue(true);
