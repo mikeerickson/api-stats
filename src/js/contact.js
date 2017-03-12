@@ -18,7 +18,7 @@ let home = new Vue({
     }
   },
   computed: {
-    getVersion: function() {
+    getVersion: function () {
       return this.version;
     }
   },

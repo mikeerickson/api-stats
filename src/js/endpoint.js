@@ -13,7 +13,7 @@ let endpoint = new Vue({
 	data: {
 		result: ['Select Endpoint From List Above...'],
     tree: ['Select Endpoint From List Above...'],
-    formData: { form: {fname: 'Mike'} }
+    formData: {form: {fname: 'Mike'}}
 	},
 	methods: {
 		handleRequest(evt, request) {
@@ -33,7 +33,7 @@ let endpoint = new Vue({
 
 			if ((/POST|PUT|PATCH|DELETE/.test(req))) {
 				this.result = req + ' Action Not Supported In Demo';
-				this.tree = { data: [this.result] };
+				this.tree = {data: [this.result]};
 			}
 			else {
 				this.result = '';
@@ -103,7 +103,7 @@ let endpoint = new Vue({
 
 function buildForm(data) {
 
-  if(data.length === 1) {
+  if (data.length === 1) {
     let model  = _model(Object.keys(data[0]));
     let fields = _fields(Object.keys(data[0]));
     return {form: {}, model, fields};
