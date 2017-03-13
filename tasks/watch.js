@@ -44,6 +44,11 @@ gulp.task('watch:test:client', ['test:client'], () => {
 	gulp.watch(config.scripts.client, ['test:client']);
 });
 
+gulp.task('watch:test:api', ['test:api'], () => {
+  msg.note(`==> Watching API Files (${config.scripts.server})`);
+  gulp.watch(config.scripts.server, ['test:api']);
+});
+
 gulp.task('watch',[
 	'watch:scripts',
 	'watch:styles',

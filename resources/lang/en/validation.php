@@ -114,6 +114,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'yearID'   => 'yearID',
+        'playerID' => 'playerID',
+        'teamID'   => 'teamID',
+        'lgID'     => 'lgID'
+    ],
 
 ];

@@ -33,6 +33,25 @@ gulp.task('test:server', () => {
 
 });
 
+gulp.task('test:api', () => {
+
+  let files = config.scripts.server;
+
+  let options = {
+    debug: false,
+    statusLine: false,
+    testSuite: (args.testClass) ? '' : 'API',
+    testClass: (args.testClass) ? args.testClass : '',
+  };
+
+  gulp.src(files)
+    .pipe(phpunit('./vendor/bin/phpunit', options))
+    .on('error', (error) => {
+      msg.error(error);
+    });
+
+});
+
 gulp.task('test:client', () => {
 
 		let files = config.scripts.client;
@@ -51,7 +70,5 @@ gulp.task('test:client', () => {
 	}
 
 });
-
-gulp.task('test:api',['test:server']);
 
 gulp.task('test',['test:server','test:client']);

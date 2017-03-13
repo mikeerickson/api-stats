@@ -2,7 +2,7 @@
 
 const pkgInfo = require('../../package.json');
 
-let home = new Vue({
+let home = new Vue({  
   delimiters: ['{%', '%}'],
   el: '#v-contact',
   data: {

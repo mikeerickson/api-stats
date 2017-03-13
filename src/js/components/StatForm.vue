@@ -9,7 +9,7 @@
     	props: ['propData'],
     	data() {
     		return {}
-        }
+        },
     	mounted() {
     		console.log('Stat Form Component Mounted')
         }

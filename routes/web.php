@@ -1,5 +1,6 @@
 <?php
 
+use App\Cache;
 use App\User;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,8 @@ Route::get('resource', function () {
         return redirect('login');
     }
 });
+
+Route::resource('cache', 'CacheController');
 
 // ================================================================================================================
 // AUTHENTICATION (login, logout)

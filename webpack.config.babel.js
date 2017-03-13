@@ -56,7 +56,7 @@ const webpackConfig = {
       host: 'localhost',
       port: 3001,
       proxy: {
-        target: 'http://localhost:7000',
+        target: 'http://api-stats.home',
         reqHeaders: () => {
           return {
             host: 'localhost:3001'
