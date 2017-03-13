@@ -15,42 +15,42 @@ class ApiVerifyEndpoint
      */
     public function handle($request, Closure $next)
     {
-    	$supportedEndpoints = [
-    		'appearances',
-			'batting',
-			'batters',
-			'fielding',
-			'managers',
-			'players',
-			'parks',
-			'pitching',
-			'pitchers',
-			'teams',
-			'teamsfranchises',
-			'salaries',
-		];
-    	$parts = explode("/", $request->getPathInfo());
+        $supportedEndpoints = [
+            'appearances',
+            'batting',
+            'batters',
+            'fielding',
+            'managers',
+            'players',
+            'parks',
+            'pitching',
+            'pitchers',
+            'teams',
+            'teamsfranchises',
+            'salaries',
+        ];
+        $parts = explode("/", $request->getPathInfo());
 
-    	if(!in_array('api',$parts)) {
-    		return $next($request);
-		} else {
-			if(sizeof($parts) > 3) {
-				$endpoint = $parts[3];
-				if(!in_array($endpoint, $supportedEndpoints)) {
-					return response([
-						'error' => 501,
-						'message' => 'Unsupported Endpoint',
-						'requestedEndpoint' => $endpoint
-					], 501);
-				}
-			} else {
-				return response([
-					'error' => 501,
-					'message' => 'API Access Requires Endpoint'
-				], 501);
-			}
+        if (!in_array('api', $parts)) {
+            return $next($request);
+        } else {
+            if (sizeof($parts) > 3) {
+                $endpoint = $parts[3];
+                if (!in_array($endpoint, $supportedEndpoints)) {
+                    return response([
+                        'error' => 501,
+                        'message' => 'Unsupported Endpoint',
+                        'requestedEndpoint' => $endpoint
+                    ], 501);
+                }
+            } else {
+                return response([
+                    'error' => 501,
+                    'message' => 'API Access Requires Endpoint'
+                ], 501);
+            }
 
-			return $next($request);
-		}
+            return $next($request);
+        }
     }
 }

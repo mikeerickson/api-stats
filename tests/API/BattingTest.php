@@ -151,9 +151,11 @@ class BattersTest extends ApiTestCase
     protected function createMockBatter()
     {
         return [
-            "playerID" => "erickmi01",
+            "playerID" => 'erickmi01',
+            "teamID"   => 'LAA',
             "yearID"   => 2015,
             "lgID"     => 'AL',
+            "G"        => 19
         ];
     }
 }

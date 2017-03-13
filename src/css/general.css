@@ -48,3 +48,8 @@ html, body {
 .m-b-md {
     margin-bottom: 30px;
 }
+
+.token-info {
+    border-radius: 3px;
+    border: 1px solid grey;
+}

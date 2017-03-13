@@ -23,6 +23,18 @@
   font-size: 14px;
   font-weight: bold;
 }
+
+.token-info {
+  border-radius: 3px;
+  border: 1px solid lightgrey;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.token-button-group {
+  padding-top: 10px;
+}
+
 //Import section styles (used by Laravel resource/views)
 @import 'message';
 @import 'navbar';

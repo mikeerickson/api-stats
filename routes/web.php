@@ -49,7 +49,16 @@ Route::get('resource', function () {
     }
 });
 
-Route::resource('cache', 'CacheController');
+// ================================================================================================================
+// ADMIN
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('stats', 'AdminController@stats');       // phpinfo
+    Route::get('cache', 'AdminController@cache');       // cache-viewer
+    Route::get('account', 'AdminController@account');   // registered user account information
+    Route::get('token/{email}', 'AdminController@getToken');    // get token
+    Route::get('resetToken/{email}', 'AdminController@resetToken');    // get token
+});
 
 // ================================================================================================================
 // AUTHENTICATION (login, logout)

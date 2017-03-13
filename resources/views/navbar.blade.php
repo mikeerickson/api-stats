@@ -36,7 +36,16 @@
                 @if(! isEndpoint('login'))
                     @if (Auth::check())
                         <li><img class="avatar" src="{{ Gravatar::get(Auth::user()->email, ['size'=> 30]) }}" /></li>
-                        <li><a href="/logout">Logout</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/account">Account</a></li>
+                                <li><a href="/cache">Cache Viewer</a></li>
+                                <li><a href="/stats">Stats</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="/logout">Logout</a></li>
+                            </ul>
+                        </li>
                     @else
                         @if(! isEndpoint('register'))
                             <li><a href="/register">Register</a></li>

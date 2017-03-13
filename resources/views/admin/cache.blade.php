@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <h1>Admin</h1>
+    <h1>Cache Viewer</h1>
 
     <table class="table">
         <thead>
