@@ -29,7 +29,7 @@
                                 <tr>
                                     <td width="40%"><span id="token">{{ $data['token'] }}</span></td>
                                     <td width="40%"><span id="expires">{{ $data['expires'] }}</span></td>
-                                    <td width="20%"><button @click="updateToken" class="btn btn-success">Reset Token</button></td>
+                                    <td width="20%"><button @click="updateToken" class="btn btn-success btn-sm">Reset Token</button></td>
                                 </tr>
                             </tbody>
                         </table>

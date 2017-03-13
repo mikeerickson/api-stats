@@ -41,6 +41,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="/account">Account</a></li>
                                 <li><a href="/cache">Cache Viewer</a></li>
+                                <li><a href="/contacts">Contact Request</a></li>
                                 <li><a href="/stats">Stats</a></li>
                                 <li role="separator" class="divider"></li>
                                 <li><a href="/logout">Logout</a></li>

@@ -39,6 +39,10 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 
+Route::post('contact', 'ContactController@store');
+
+Route::get('contacts', 'ContactController@index');
+
 Route::get('resource', function () {
     if (Auth::check()) {
         return view('resource')
@@ -116,7 +120,6 @@ Route::post('register', function (Request $request) {
 
 // ================================================================================================================
 // API ROUTES
-// ================================================================================================================
 
 Route::group(['prefix' => 'api/v1', 'middleware' => $middleware], function () {
     Route::resource('appearances', 'API\ApiController');
