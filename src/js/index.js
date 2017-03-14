@@ -22,7 +22,7 @@ const app = new Vue({
         .then((results) => {
           $('#token').text(results.data.token);
           let expireDate = moment(new Date(results.data.expires))
-            .format('YYYY-MM-DD hh:mm:ss A');
+            .format('YYYY-MM-DD hh:mm A');
           $('#expires').text(expireDate);
         })
         .catch((error) => {

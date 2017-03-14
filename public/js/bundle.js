@@ -864,7 +864,7 @@ module.exports = {
 	"name": "api-stats",
 	"appName": "Baseball Stats API",
 	"private": true,
-	"version": "0.0.1-dev.884",
+	"version": "0.0.1-dev.887",
 	"scripts": {
 		"build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
 		"build:css": "bash ./scripts/build-sass.sh",
@@ -13974,7 +13974,7 @@ var app = new Vue({
       var email = $('#email').val();
       axios.get('/resetToken/' + email).then(function (results) {
         $('#token').text(results.data.token);
-        var expireDate = moment(new Date(results.data.expires)).format('YYYY-MM-DD hh:mm:ss A');
+        var expireDate = moment(new Date(results.data.expires)).format('YYYY-MM-DD hh:mm A');
         $('#expires').text(expireDate);
       }).catch(function (error) {
         messenger.error(error);

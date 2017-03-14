@@ -3,8 +3,7 @@
 var notify = require('gulp-notify');
 const core = require('cd-core');
 
-module.exports = function() {
-
+module.exports = function () {
 	var args = Array.prototype.slice.call(arguments);
 
 	// Send error to notification center with gulp-notify

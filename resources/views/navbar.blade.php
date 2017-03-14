@@ -15,7 +15,7 @@
             <ul class="nav navbar-nav">
                 <li class="{{ isEndpoint('home')    ? 'active' : '' }}"><a href="/">Home</a></li>
                 <li class="{{ isEndpoint('about')   ? 'active' : '' }}"><a href="/about">About</a></li>
-                <li class="{{ isEndpoint('contact') ? 'active' : '' }}"><a href="/contact">Contact</a></li>
+                <li class="{{ isEndpoint('contact') ? 'active' : '' }}"><a href="/contact">Contact Us</a></li>
                 @if (Auth::check())
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Endpoints <span class="caret"></span></a>

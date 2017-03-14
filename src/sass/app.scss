@@ -24,15 +24,20 @@
   font-weight: bold;
 }
 
-.token-info {
-  border-radius: 3px;
-  border: 1px solid lightgrey;
-  padding-left: 5px;
-  padding-right: 5px;
-}
+//.token-info {
+//  border-radius: 3px;
+//  border: 10px solid lightgrey;
+//  padding-left: 5px;
+//  padding-right: 5px;
+//}
 
 .token-button-group {
   padding-top: 10px;
+}
+
+.token-panel {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
 }
 
 //Import section styles (used by Laravel resource/views)
@@ -43,3 +48,4 @@
 @import 'about';
 @import 'home';
 @import 'footer';
+@import 'account';
