@@ -8,6 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Baseball Stats API">
     <meta name="author" content="Mike Erickson">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="icon" href="../../favicon.ico">
 
     <title>API Stats : {{ ucwords(endpoint()) }}</title>
@@ -19,6 +20,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    
     <![endif]-->
 </head>
     <body id="app">
@@ -38,19 +40,16 @@
             </div>
         @endif
 
-        {{--Vue Application Component --}}
         <div id="v-app">
-            {{--<example></example>--}}
-        </div>
-
-        {{--Laravel Controlled Output--}}
-        <div id="content" class="content">
-            @yield('content')
+            <div id="content" class="content">
+                @yield('content')
+            </div>
         </div>
 
         {{--Vendor libraries available on CDN so we dont overload our bundle--}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
 
         {{--Pull in vue from CDN--}}
         <script src="https://unpkg.com/vue/dist/vue.js"></script>

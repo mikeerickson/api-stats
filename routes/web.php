@@ -1,10 +1,12 @@
 <?php
 
 use App\Cache;
+use App\Models\Batting;
 use App\User;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache as DataCache;
 
 // ================================================================================================================
 // API MIDDLEWARE
@@ -53,11 +55,24 @@ Route::get('resource', function () {
     }
 });
 
+Route::get('test', function () {
+    $data = Batting::where('playerID', 'troutmi01')->where('yearID', 2015)->get();
+    if (DataCache::has('batting')) {
+        $data = DataCache::get('batting');
+        return $data;
+    } else {
+        DataCache::add('batting', $data, 60);
+    }
+
+    return 'done';
+});
+
 // ================================================================================================================
 // ADMIN
 
 Route::group(['middleware' => 'auth'], function () {
     Route::get('stats', 'AdminController@stats');       // phpinfo
+    Route::delete('cache/{key}', 'AdminController@cache_delete');       // cache-viewer
     Route::get('cache', 'AdminController@cache');       // cache-viewer
     Route::get('account', 'AdminController@account');   // registered user account information
     Route::post('account', 'AdminController@account_update');   // registered user account information

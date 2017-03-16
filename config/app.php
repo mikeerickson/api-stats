@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Los_Angeles',
 
     /*
     |--------------------------------------------------------------------------
@@ -177,14 +177,14 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-		/*
-		 * Third Party Providers
-		 */
-		Barryvdh\Debugbar\ServiceProvider::class,
-		Laracasts\Flash\FlashServiceProvider::class,
-		Barryvdh\Cors\ServiceProvider::class,
-		Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
-		Creativeorange\Gravatar\GravatarServiceProvider::class,
+        /*
+         * Third Party Providers
+         */
+        Barryvdh\Debugbar\ServiceProvider::class,
+        Laracasts\Flash\FlashServiceProvider::class,
+        Barryvdh\Cors\ServiceProvider::class,
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+        Creativeorange\Gravatar\GravatarServiceProvider::class,
 
     ],
 
@@ -234,7 +234,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-		'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
 
     ],
 

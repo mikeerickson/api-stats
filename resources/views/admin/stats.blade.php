@@ -1,7 +1,3 @@
-@extends('layout')
-
-@section('content')
-
-    {{  phpinfo() }}
-
-@stop
+<div class="php-info">
+    {{ phpinfo() }}
+</div>

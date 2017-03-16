@@ -35,8 +35,6 @@
         <div class="col-md-6">
             <h3>{{ ucwords(str_singular($endpoint)) }} Form</h3>
             <form>
-                {{--<formly-form :form="formData.form" :model="formData.model" :fields="formData.fields"></formly-form>--}}
-                <formly-form :form="formData.form"></formly-form>
                 <button type="submit">Submit</button>
             </form>
         </div>

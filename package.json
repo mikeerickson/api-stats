@@ -2,7 +2,7 @@
   "name": "api-stats",
   "appName": "Baseball Stats API",
   "private": true,
-  "version": "0.0.1-dev.887",
+  "version": "0.0.1-dev.991",
   "scripts": {
     "build": "npm run copy:assets && npm run build:css && webpack --hide-modules",
     "build:css": "bash ./scripts/build-sass.sh",
@@ -37,6 +37,7 @@
     "test:watch": "npm run test:client:watch",
     "tw": "npm run test:client:watch",
     "watch": "npm-run-all watch:scripts watch:styles watch:php",
+    "watch:lint": "gulp watch:lint",
     "watch:php": "gulp watch:php",
     "watch:scripts": "webpack -w --hide-modules",
     "watch:styles": "gulp watch:styles"
@@ -89,6 +90,7 @@
     "sass-loader": "6.0.3",
     "style-loader": "0.13.2",
     "stylelint": "7.9.0",
+    "url-loader": "0.5.8",
     "vue-loader": "11.1.4",
     "vue-style-loader": "2.0.3",
     "watch-ignore-webpack-plugin": "1.0.0",
@@ -100,7 +102,6 @@
     "jquery": "3.1.1",
     "lodash": "4.17.4",
     "vue": "2.2.2",
-    "vue-formly": "2.2.0",
     "vue-json-tree-view": "2.0.3"
   }
 }

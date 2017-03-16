@@ -17,6 +17,7 @@ let endpoint = new Vue({
 	},
 	methods: {
 		handleRequest(evt, request) {
+		  debugger;
 			let req = request;
 
 			// convert this to baseURL (remove up to endpoint)
@@ -97,7 +98,7 @@ let endpoint = new Vue({
     }
 	},
 	mounted() {
-		msg.success(' === Vue Container Ready === ');
+		msg.success(' === Vue Endpoint API Ready === ');
 	}
 });
 

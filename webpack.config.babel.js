@@ -22,6 +22,7 @@ const webpackConfig = {
 		rules: [
 			{test: /(\.scss|\.sass)$/, loaders: ['style-loader','css-loader', 'sass-loader'], exclude: /(node_modules)/},
 			{test: /(\.jsx|\.js)$/, loaders: ['babel-loader', 'eslint-loader'], exclude: /(node_modules)/},
+			{test: /\.woff($|\?)|\.woff2($|\?)|\.ttf($|\?)|\.eot($|\?)|\.svg($|\?)/, loaders: ['url-loader']},
       {
         test: /\.vue$/,
         loader: 'vue-loader',

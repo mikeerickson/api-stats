@@ -24,6 +24,24 @@ class AdminController extends Controller
         return view('admin.cache', ['data' => Cache::all()]);
     }
 
+    public function cache_delete($key)
+    {
+        $ret = Cache::where('key', '=', $key)->delete();
+        if ($ret === 1) {
+            $data = [
+                "status"      => "success",
+                'message'     => "Record deleted successfully."
+            ];
+        } else {
+            $data = [
+                "status"      => "fail",
+                'message'     => "An error occurred deleting `Cache` value."
+            ];
+        }
+
+        return response($data, $ret === 1 ? 200 : 422);
+    }
+
     public function stats()
     {
         return view('admin.stats');
@@ -70,6 +88,7 @@ class AdminController extends Controller
         
         return redirect('/account');
     }
+
     public function getToken($email)
     {
         $data = APIToken::where('email', $email)->first();

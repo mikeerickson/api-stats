@@ -1,8 +1,7 @@
 @extends ('layout')
 
 @section('content')
-
-    <div id="v-account" class="account">
+    <div class="account-info">
         <div class="col-md-3"></div>
         <div class="col-md-6">
             <h1>Account Information</h1>
@@ -38,7 +37,7 @@
                                 <tr>
                                     <td width="40%"><span id="token">{{ $data['token'] }}</span></td>
                                     <td width="40%"><span id="expires">{{ $data['expires'] }}</span></td>
-                                    <td width="20%"><button @click="updateToken" class="btn btn-success btn-sm">Reset Token</button></td>
+                                    <td width="20%"><button @click.prevent="updateToken" class="btn btn-success btn-sm">Reset Token</button></td>
                                 </tr>
                                 </tbody>
                             </table>
@@ -54,5 +53,4 @@
         </div>
         <div class="col-md-3"></div>
     </div>
-
 @stop
