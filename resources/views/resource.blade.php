@@ -1,6 +1,6 @@
 @extends('layout')
 
-@section('content')
+@section('resource')
     <div id="v-resource">
         <div class="col-md-6">
             <div id="endpoint-list">

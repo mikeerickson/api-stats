@@ -40,10 +40,12 @@
             </div>
         @endif
 
-        <div id="v-app">
-            <div id="content" class="content">
-                @yield('content')
-            </div>
+        <div id="v-app" lass="content">
+            @yield('content')
+        </div>
+
+        <div id="content" class="content">
+            @yield('resource')
         </div>
 
         {{--Vendor libraries available on CDN so we dont overload our bundle--}}

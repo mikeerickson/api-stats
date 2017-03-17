@@ -1,6 +1,6 @@
-/*global require, module*/
+/*global require, module, Vue*/
 
-const Vue      = require('vue');
+// const Vue      = require('vue');
 const axios    = require('axios');
 const msg      = require('cd-messenger');
 const TreeView = require('vue-json-tree-view');
@@ -17,7 +17,6 @@ let endpoint = new Vue({
 	},
 	methods: {
 		handleRequest(evt, request) {
-      debugger;
 			let req = request;
 
 			// convert this to baseURL (remove up to endpoint)
