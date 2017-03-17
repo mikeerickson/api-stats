@@ -17,7 +17,7 @@ let endpoint = new Vue({
 	},
 	methods: {
 		handleRequest(evt, request) {
-		  debugger;
+      debugger;
 			let req = request;
 
 			// convert this to baseURL (remove up to endpoint)

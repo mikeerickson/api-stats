@@ -35,7 +35,7 @@ const app = new Vue({
       updateToken(e);
     },
     deleteCacheItem: (e) => {
-      bootbox.confirm("Are you sure you would like to delete this item?", (result) => {
+      bootbox.confirm('Are you sure you would like to delete this item?', (result) => {
         if (result) {
           admin.deleteCacheItem(e);
         }
