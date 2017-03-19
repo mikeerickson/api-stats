@@ -1,5 +1,7 @@
 <?php
 
+use Carbon\Carbon;
+
 function endpoint()
 {
     $newEndpoint = $_SERVER['REQUEST_URI'];
@@ -108,6 +110,25 @@ function http_parse_query($queryString, $argSeparator = '&', $decType = PHP_QUER
         } else {
             $target   = $paramValue;
         }
+    }
+
+    return $result;
+}
+
+function getContactStatus($inDate, $replied = null)
+{
+    $result = '';
+    if ($replied !== null) {
+        return 'success';
+    }
+    if ($inDate <= Carbon::now()->subDays(3)) {
+        $result = 'info';
+    }
+    if ($inDate <= Carbon::now()->subDays(5)) {
+        $result = 'warning';
+    }
+    if ($inDate <= Carbon::now()->subDays(7)) {
+        $result = 'danger';
     }
 
     return $result;

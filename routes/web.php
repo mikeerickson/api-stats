@@ -1,12 +1,11 @@
 <?php
 
-use App\Cache;
 use App\Models\Batting;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cache as DataCache;
+use Illuminate\Support\Facades\Cache;
 
 // ================================================================================================================
 // API MIDDLEWARE
@@ -57,11 +56,11 @@ Route::get('resource', function () {
 
 Route::get('test', function () {
     $data = Batting::where('playerID', 'troutmi01')->where('yearID', 2015)->get();
-    if (DataCache::has('batting')) {
-        $data = DataCache::get('batting');
+    if (Cache::has('batting')) {
+        $data = Cache::get('batting');
         return $data;
     } else {
-        DataCache::add('batting', $data, 60);
+        Cache::add('batting', $data, 60);
     }
 
     return 'done';

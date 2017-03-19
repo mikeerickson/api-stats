@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class ContactController extends Controller
 {
@@ -17,8 +18,13 @@ class ContactController extends Controller
 
     public function index()
     {
-        $data = Contact::where('replied', '=', null)->orderBy('created_at', 'DESC')->get();
-        return view('admin.contacts', ['data' => $data]);
+        $data = Contact::where('created_at', '<>', null)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+//        dd($data);
+        return view('admin.contacts', [
+            'data' => $data
+        ]);
     }
 
 

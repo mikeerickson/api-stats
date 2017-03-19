@@ -95,7 +95,7 @@ abstract class ApiTestCase extends TestCase
     protected function mockCredentials()
     {
         return [
-            "email"    => "mike.erickson@mac.com",
+            "email"    => "testuser@domain.com",
             "password" => "mkjbbtrsh10"
         ];
     }

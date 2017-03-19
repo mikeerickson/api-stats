@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Cache;
+use App\Models\Cache;
 
 class CacheViewer extends Command
 {

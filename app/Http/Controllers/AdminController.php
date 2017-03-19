@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Cache;
+use App\Models\Cache;
 use App\Models\APIToken;
 use App\User;
 use Carbon\Carbon;
@@ -104,5 +104,10 @@ class AdminController extends Controller
         ]);
         $data = APIToken::find($id);
         return $data;
+    }
+
+    public function getStatus($date)
+    {
+        return 'warning';
     }
 }

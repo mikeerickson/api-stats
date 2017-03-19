@@ -40,7 +40,7 @@
             </div>
         @endif
 
-        <div id="v-app" lass="content">
+        <div id="v-app" class="content">
             @yield('content')
         </div>
 

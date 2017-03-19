@@ -2,6 +2,7 @@
 
 namespace Tests\API;
 
+use App\User;
 use Illuminate\Support\Facades\DB;
 use Tests\ApiTestCase;
 
