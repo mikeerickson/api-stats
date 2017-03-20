@@ -1,0 +1,10 @@
+extensions:
+ PhpSpec\Laravel\Extension\LaravelExtension:
+   testing_environment: "testing"
+   # testing_environment: "production"
+
+suites:
+ main:
+   namespace: App
+   psr4_prefix: App
+   src_path: app
